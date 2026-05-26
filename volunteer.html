@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Volunteer — HopeRise Foundation</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><img src="images/logo.webp" alt="HopeRise Foundation"/></a>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="programs.html" class="nav-link">Our Programs</a></li>
+      <li><a href="volunteer.html" class="nav-link active">Volunteers</a></li>
+      <li><a href="index.html#news" class="nav-link">News</a></li>
+      <li><a href="about.html" class="nav-link">About Us</a></li>
+      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-ghost btn-sm"><i class="fas fa-sign-in-alt"></i> Login</a>
+      <a href="donate.html" class="btn btn-primary btn-sm"><i class="fas fa-heart"></i> Donate Now</a>
+      <button class="nav-hamburger" id="navHamburger"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="about.html" class="nav-link">About Us</a>
+  <a href="donate.html" class="nav-link">Donate</a>
+  <a href="volunteer.html" class="nav-link">Volunteer</a>
+  <a href="login.html" class="nav-link">Login</a>
+  <div class="nav-actions"><button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button><a href="donate.html" class="btn btn-secondary w-full">Donate Now</a></div>
+</div>
+
+<!-- Hero -->
+<div class="page-header" style="background:linear-gradient(135deg,#1b5e20,#2e7d32);">
+  <div class="page-header-bg" style="background-image:url('https://images.unsplash.com/photo-1593113630400-ea4288922559?w=1920&fit=crop&q=80');"></div>
+  <div class="page-header-overlay" style="background:linear-gradient(135deg,rgba(27,94,32,.92),rgba(46,125,50,.88));"></div>
+  <div class="page-header-content container">
+    <div class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>Volunteer</span></div>
+    <h1><i class="fas fa-hands-helping" style="color:#a5d6a7;margin-right:12px"></i>Volunteer with Us</h1>
+    <p>Give your time, skills, and heart. Together we can reach more children in need.</p>
+  </div>
+</div>
+
+<!-- Why Volunteer -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag" style="background:var(--green-light);color:var(--green);"><i class="fas fa-star"></i> Why Volunteer</div>
+      <h2 class="section-title">Be Part of Something <span>Bigger Than Yourself</span></h2>
+      <p class="section-desc">As a HealHope volunteer, you directly contribute to saving children's lives and become part of a caring, passionate community.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal st1">
+        <div class="step-num" style="background:linear-gradient(135deg,var(--green),#4caf50);">❤️</div>
+        <h3 class="step-title">Save Lives</h3>
+        <p class="step-desc">Your work directly enables surgeries and treatment for children who would otherwise go without care.</p>
+      </div>
+      <div class="step-card reveal st2">
+        <div class="step-num" style="background:linear-gradient(135deg,var(--green),#4caf50);">🎓</div>
+        <h3 class="step-title">Gain Skills</h3>
+        <p class="step-desc">Develop professional skills in healthcare outreach, social work, fundraising, and community coordination.</p>
+      </div>
+      <div class="step-card reveal st3">
+        <div class="step-num" style="background:linear-gradient(135deg,var(--green),#4caf50);">🏆</div>
+        <h3 class="step-title">Get Recognised</h3>
+        <p class="step-desc">Receive official certificates, letters of recommendation, and recognition on our platform and events.</p>
+      </div>
+      <div class="step-card reveal st4">
+        <div class="step-num" style="background:linear-gradient(135deg,var(--green),#4caf50);">🌐</div>
+        <h3 class="step-title">Build Network</h3>
+        <p class="step-desc">Connect with doctors, philanthropists, NGO leaders, and like-minded change-makers across India.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Volunteer Roles -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag" style="background:var(--green-light);color:var(--green);"><i class="fas fa-list"></i> Roles Available</div>
+      <h2 class="section-title">Find Your <span>Role</span></h2>
+      <p class="section-desc">Whether you're a doctor, student, tech professional, or homemaker — there's a perfect volunteer role for you.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;">
+      <div class="card" style="padding:24px;" class="reveal">
+        <div style="font-size:2rem;margin-bottom:12px;">🩺</div>
+        <h3 style="font-weight:700;margin-bottom:8px;">Medical Volunteer</h3>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:14px;">Doctors, nurses, lab technicians — provide free consultations, assist in camps, and review case files.</p>
+        <span class="badge badge-green">Open</span>
+      </div>
+      <div class="card" style="padding:24px;">
+        <div style="font-size:2rem;margin-bottom:12px;">📞</div>
+        <h3 style="font-weight:700;margin-bottom:8px;">Case Coordinator</h3>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:14px;">Help families navigate the donation process, communicate with hospitals, and follow up on treatment progress.</p>
+        <span class="badge badge-primary">Open</span>
+      </div>
+      <div class="card" style="padding:24px;">
+        <div style="font-size:2rem;margin-bottom:12px;">💻</div>
+        <h3 style="font-weight:700;margin-bottom:8px;">Tech & Digital</h3>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:14px;">Developers, designers, data analysts — help improve our platform, build tools, and manage digital campaigns.</p>
+        <span class="badge badge-primary">Open</span>
+      </div>
+      <div class="card" style="padding:24px;">
+        <div style="font-size:2rem;margin-bottom:12px;">📷</div>
+        <h3 style="font-weight:700;margin-bottom:8px;">Content & Media</h3>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:14px;">Writers, photographers, videographers — document impact stories and run our awareness campaigns.</p>
+        <span class="badge badge-orange">Limited</span>
+      </div>
+      <div class="card" style="padding:24px;">
+        <div style="font-size:2rem;margin-bottom:12px;">🏫</div>
+        <h3 style="font-weight:700;margin-bottom:8px;">Community Outreach</h3>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:14px;">Identify children in need, connect with village panchayats, organise screening camps, and raise awareness locally.</p>
+        <span class="badge badge-green">Open</span>
+      </div>
+      <div class="card" style="padding:24px;">
+        <div style="font-size:2rem;margin-bottom:12px;">💰</div>
+        <h3 style="font-weight:700;margin-bottom:8px;">Fundraising Lead</h3>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.6;margin-bottom:14px;">Organise fundraisers, crowdfunding campaigns, corporate CSR drives, and peer-to-peer donation initiatives.</p>
+        <span class="badge badge-primary">Open</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Activities -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag" style="background:var(--green-light);color:var(--green);"><i class="fas fa-calendar"></i> Upcoming Events</div>
+      <h2 class="section-title">Volunteer <span>Activities</span></h2>
+      <p class="section-desc">Join our upcoming camps, workshops, and community programs. All volunteers welcome.</p>
+    </div>
+    <div class="activities-grid">
+      <div class="activity-card reveal st1">
+        <img class="activity-img" src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&fit=crop&q=80" alt="Medical Camp" loading="lazy"/>
+        <div class="activity-body">
+          <div class="activity-date"><i class="fas fa-calendar-alt" style="color:var(--primary);margin-right:6px;"></i>June 8, 2026 • Nagpur, Maharashtra</div>
+          <h3 class="activity-title">Free Paediatric Health Camp</h3>
+          <p class="activity-desc">One-day camp providing free consultations, blood tests, and malnutrition screening for children under 12 in Nagpur slum areas.</p>
+          <div style="margin-top:10px;"><span class="badge badge-primary">Medical</span> <span style="font-size:.78rem;color:var(--text-muted);">28 volunteers needed</span></div>
+        </div>
+      </div>
+      <div class="activity-card reveal st2">
+        <img class="activity-img" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&fit=crop&q=80" alt="School Visit" loading="lazy"/>
+        <div class="activity-body">
+          <div class="activity-date"><i class="fas fa-calendar-alt" style="color:var(--primary);margin-right:6px;"></i>June 14–15, 2026 • Jaipur, Rajasthan</div>
+          <h3 class="activity-title">School Health Awareness Drive</h3>
+          <p class="activity-desc">Two-day program visiting 8 government schools — teaching children about hygiene, nutrition, and early signs of illness.</p>
+          <div style="margin-top:10px;"><span class="badge badge-green">Outreach</span> <span style="font-size:.78rem;color:var(--text-muted);">15 volunteers needed</span></div>
+        </div>
+      </div>
+      <div class="activity-card reveal st3">
+        <img class="activity-img" src="images/charity-run.webp" alt="Annual Charity Run 2026" loading="lazy"/>
+        <div class="activity-body">
+          <div class="activity-date"><i class="fas fa-calendar-alt" style="color:var(--primary);margin-right:6px;"></i>June 22, 2026 • Bengaluru, Karnataka</div>
+          <h3 class="activity-title">Annual Charity Run 2026</h3>
+          <p class="activity-desc">5K and 10K runs with proceeds funding surgery costs. Participants get T-shirts, medals, and direct donor recognition.</p>
+          <div style="margin-top:10px;"><span class="badge badge-orange">Fundraising</span> <span style="font-size:.78rem;color:var(--text-muted);">50+ volunteers needed</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Registration Form -->
+<section class="section section-alt" id="register">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;" class="vol-layout">
+      <div class="reveal-left">
+        <div class="section-tag" style="background:var(--green-light);color:var(--green);">Join Us</div>
+        <h2 class="section-title">Register as a <span>Volunteer</span></h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:24px;">Fill in the form and our volunteer coordinator will reach out within 48 hours. No prior experience required — just a willing heart.</p>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <div style="width:40px;height:40px;background:var(--green-light);color:var(--green);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;"><i class="fas fa-clock"></i></div>
+            <div><h4 style="font-weight:700;margin-bottom:4px;">Flexible Hours</h4><p style="font-size:.85rem;color:var(--text-muted);">Volunteer on weekends or evenings — we work around your schedule.</p></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <div style="width:40px;height:40px;background:var(--green-light);color:var(--green);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;"><i class="fas fa-certificate"></i></div>
+            <div><h4 style="font-weight:700;margin-bottom:4px;">Official Certificate</h4><p style="font-size:.85rem;color:var(--text-muted);">Receive a verified experience certificate after 20 hours of volunteering.</p></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <div style="width:40px;height:40px;background:var(--green-light);color:var(--green);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;"><i class="fas fa-map-marker-alt"></i></div>
+            <div><h4 style="font-weight:700;margin-bottom:4px;">22 States</h4><p style="font-size:.85rem;color:var(--text-muted);">Opportunities available in your city — no need to travel far.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-right">
+        <div style="background:var(--bg-card);border-radius:var(--radius-xl);border:1px solid var(--border);padding:32px;box-shadow:var(--shadow-md);">
+          <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:20px;">Volunteer Registration Form</h3>
+          <form id="volunteerForm" class="validate-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Full Name <span class="req">*</span></label>
+                <input type="text" class="form-input" placeholder="Your name" required/>
+                <div class="form-error"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email <span class="req">*</span></label>
+                <input type="email" class="form-input" placeholder="your@email.com" required/>
+                <div class="form-error"></div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Mobile <span class="req">*</span></label>
+                <input type="tel" class="form-input" placeholder="10-digit number" required/>
+                <div class="form-error"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">City / State</label>
+                <input type="text" class="form-input" placeholder="e.g. Mumbai, Maharashtra"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Profession / Background</label>
+              <input type="text" class="form-input" placeholder="e.g. Doctor, Engineer, Student"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Volunteer Role Interest</label>
+              <select class="form-select">
+                <option>Medical Volunteer</option>
+                <option>Case Coordinator</option>
+                <option>Tech & Digital</option>
+                <option>Content & Media</option>
+                <option>Community Outreach</option>
+                <option>Fundraising Lead</option>
+                <option>General Volunteer</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Hours Available Per Month</label>
+              <select class="form-select">
+                <option>4–8 hours</option>
+                <option>8–16 hours</option>
+                <option>16–24 hours</option>
+                <option>Full-time (40+ hrs)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Why do you want to volunteer?</label>
+              <textarea class="form-textarea" placeholder="Tell us your motivation..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-full" style="background:var(--green);" onclick="submitVolunteer(event)">
+              <i class="fas fa-hands-helping"></i> Submit Registration
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>.vol-layout{grid-template-columns:1fr 1fr}@media(max-width:900px){.vol-layout{grid-template-columns:1fr}}</style>
+
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.webp" alt="HopeRise Foundation" style="height:36px;width:auto;"/>
+        </div>
+        <p>Transforming Lives, One Act at a Time. Registered NGO — 80G &amp; 12A Certified. Founded 2014.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Our Programs</div>
+        <div class="footer-links">
+          <a href="programs.html" class="footer-link">Education</a>
+          <a href="programs.html" class="footer-link">Healthcare</a>
+          <a href="programs.html" class="footer-link">Food Relief</a>
+          <a href="programs.html" class="footer-link">Environment</a>
+          <a href="programs.html" class="footer-link">Child Welfare</a>
+          <a href="programs.html" class="footer-link">All Programs</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Get Involved</div>
+        <div class="footer-links">
+          <a href="donate.html" class="footer-link">Donate Now</a>
+          <a href="volunteer.html" class="footer-link">Volunteer</a>
+          <a href="#" class="footer-link">Partner With Us</a>
+          <a href="#" class="footer-link">Corporate CSR</a>
+          <a href="#contact" class="footer-link">Contact Us</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">About</div>
+        <div class="footer-links">
+          <a href="about.html" class="footer-link">Who We Are</a>
+          <a href="#" class="footer-link">News &amp; Stories</a>
+          <a href="#" class="footer-link">Annual Report</a>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Press &amp; Media</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 HopeRise Foundation. All rights reserved. Registered NGO — 80G &amp; 12A Certified.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+function submitVolunteer(e) {
+  e.preventDefault();
+  showToast('Thank you for registering! Our coordinator will contact you within 48 hours.', 'success');
+  e.target.closest('form').reset();
+}
+</script>
+<script src="js/main.js"></script>
+</body>
+</html>

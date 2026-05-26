@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donate — HopeRise Foundation</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><img src="images/logo.webp" alt="HopeRise Foundation"/></a>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="programs.html" class="nav-link">Our Programs</a></li>
+      <li><a href="volunteer.html" class="nav-link">Volunteers</a></li>
+      <li><a href="index.html#news" class="nav-link">News</a></li>
+      <li><a href="about.html" class="nav-link">About Us</a></li>
+      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-ghost btn-sm"><i class="fas fa-sign-in-alt"></i> Login</a>
+      <a href="donate.html" class="btn btn-primary btn-sm"><i class="fas fa-heart"></i> Donate Now</a>
+      <button class="nav-hamburger" id="navHamburger"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="programs.html" class="nav-link">Our Programs</a>
+  <a href="volunteer.html" class="nav-link">Volunteers</a>
+  <a href="index.html#news" class="nav-link">News</a>
+  <a href="about.html" class="nav-link">About Us</a>
+  <a href="index.html#contact" class="nav-link">Contact</a>
+</div>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content container">
+    <div class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>Donate</span></div>
+    <h1><i class="fas fa-heart" style="color:#ffcc02;margin-right:12px"></i>Make a Donation</h1>
+    <p>Your donation directly funds a child's medical treatment. 92% of every rupee goes to the child.</p>
+  </div>
+</div>
+
+<!-- Donation Form -->
+<section class="section">
+  <div class="container">
+    <div class="donate-layout">
+
+      <!-- Form -->
+      <div class="donate-form-card">
+        <!-- Step Indicator -->
+        <div class="step-indicator">
+          <div class="step-dot active" id="sdot1">1</div>
+          <div class="step-line" id="sline1"></div>
+          <div class="step-dot" id="sdot2">2</div>
+          <div class="step-line" id="sline2"></div>
+          <div class="step-dot" id="sdot3">3</div>
+          <div class="step-line" id="sline3"></div>
+          <div class="step-dot" id="sdot4">4</div>
+        </div>
+
+        <!-- Step 1: Amount -->
+        <div class="donate-step" id="step1">
+          <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px;">Choose Donation Amount</h2>
+          <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:24px;">100% transparent — see exactly where your money goes.</p>
+
+          <!-- Frequency -->
+          <div class="form-group">
+            <label class="form-label">Donation Frequency</label>
+            <div style="display:flex;gap:10px;">
+              <button class="freq-btn active btn btn-primary btn-sm" data-freq="one-time" onclick="setFrequency('one-time')"><i class="fas fa-circle-dot"></i> One-time</button>
+              <button class="freq-btn btn btn-outline btn-sm" data-freq="monthly" onclick="setFrequency('monthly')"><i class="fas fa-rotate"></i> Monthly</button>
+            </div>
+          </div>
+
+          <!-- Amount Grid -->
+          <div class="form-group">
+            <label class="form-label">Select Amount</label>
+            <div class="amount-grid">
+              <button class="amount-btn" data-amount="500">₹500</button>
+              <button class="amount-btn active" data-amount="1000">₹1,000</button>
+              <button class="amount-btn" data-amount="2500">₹2,500</button>
+              <button class="amount-btn" data-amount="5000">₹5,000</button>
+              <button class="amount-btn" data-amount="10000">₹10,000</button>
+              <button class="amount-btn" data-amount="custom">Custom</button>
+            </div>
+            <input type="number" id="customAmount" class="form-input" placeholder="Enter custom amount in ₹" style="display:none;margin-top:10px;" min="10" onchange="updateDonateTotal()"/>
+          </div>
+
+          <!-- Purpose -->
+          <div class="form-group">
+            <label class="form-label" for="donationPurpose">Purpose of Donation</label>
+            <select class="form-select" id="donationPurpose">
+              <option value="General Fund">General Medical Fund (Where Needed Most)</option>
+              <option value="Heart Surgery">Heart Surgery</option>
+              <option value="Cancer Treatment">Cancer Treatment</option>
+              <option value="Kidney Transplant">Kidney Transplant</option>
+              <option value="Brain Surgery">Brain / Neuro Surgery</option>
+              <option value="Cleft Repair">Cleft Lip/Palate Repair</option>
+              <option value="Orthopaedic Surgery">Orthopaedic Surgery</option>
+              <option value="Medicine Support">Medicine & Rehabilitation</option>
+              <option value="Emergency Relief">Emergency Relief</option>
+            </select>
+          </div>
+
+          <!-- Impact preview -->
+          <div style="background:rgba(230,57,70,.1);border-radius:var(--radius);padding:16px 20px;margin-bottom:24px;">
+            <p style="font-size:.85rem;font-weight:600;color:var(--primary);margin-bottom:8px;"><i class="fas fa-lightbulb"></i> Your Impact</p>
+            <ul style="font-size:.83rem;color:var(--text-muted);line-height:2;padding-left:16px;">
+              <li>₹500 → Medical consultation for 1 child</li>
+              <li>₹1,000 → Medicines for 2 weeks</li>
+              <li>₹5,000 → Lab tests & pre-surgery diagnostics</li>
+              <li>₹25,000 → Partially fund a minor surgery</li>
+              <li>₹1,00,000 → Fund a complete surgery end-to-end</li>
+            </ul>
+          </div>
+
+          <button class="btn btn-primary w-full btn-lg" onclick="nextStep()"><i class="fas fa-arrow-right"></i> Continue to Donor Details</button>
+        </div>
+
+        <!-- Step 2: Donor Info -->
+        <div class="donate-step" id="step2" style="display:none;">
+          <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px;">Your Details</h2>
+          <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:24px;">We'll send your receipt and impact reports to these details. Required for 80G tax certificate.</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="donorName">Full Name <span class="req">*</span></label>
+              <input type="text" id="donorName" class="form-input" placeholder="e.g. Rajesh Kumar" required/>
+              <div class="form-error">Name is required.</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="donorEmail">Email Address <span class="req">*</span></label>
+              <input type="email" id="donorEmail" class="form-input" placeholder="your@email.com" required/>
+              <div class="form-error">Valid email required.</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="donorPhone">Mobile Number <span class="req">*</span></label>
+              <input type="tel" id="donorPhone" class="form-input" placeholder="10-digit mobile number" required/>
+              <div class="form-error">Valid mobile number required.</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="donorPan">PAN Number (for 80G certificate)</label>
+              <input type="text" id="donorPan" class="form-input" placeholder="ABCDE1234F (optional)"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="donorAddress">Address</label>
+            <input type="text" id="donorAddress" class="form-input" placeholder="Full address for receipt"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="donorMessage">Message (optional)</label>
+            <textarea id="donorMessage" class="form-textarea" placeholder="Any message for the child or family..."></textarea>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:24px;font-size:.85rem;color:var(--text-muted);">
+            <input type="checkbox" id="anonymous" style="width:16px;height:16px;cursor:pointer;"/>
+            <label for="anonymous" style="cursor:pointer;">Donate anonymously (your name won't be shown publicly)</label>
+          </div>
+
+          <div style="display:flex;gap:12px;">
+            <button class="btn btn-outline" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button>
+            <button class="btn btn-primary" style="flex:1;" onclick="nextStep()"><i class="fas fa-arrow-right"></i> Continue to Payment</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Payment Method -->
+        <div class="donate-step" id="step3" style="display:none;">
+          <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px;">Payment Method</h2>
+          <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:24px;">Choose your preferred secure payment option.</p>
+
+          <div class="form-group">
+            <label class="form-label">Select Payment Method</label>
+            <div class="payment-methods">
+              <div class="pay-method active" data-method="UPI"><i class="fas fa-mobile-alt"></i> UPI</div>
+              <div class="pay-method" data-method="Net Banking"><i class="fas fa-university"></i> Net Banking</div>
+              <div class="pay-method" data-method="Credit Card"><i class="fas fa-credit-card"></i> Credit Card</div>
+              <div class="pay-method" data-method="Debit Card"><i class="fas fa-credit-card"></i> Debit Card</div>
+              <div class="pay-method" data-method="Wallet"><i class="fas fa-wallet"></i> Wallet</div>
+              <div class="pay-method" data-method="NEFT/RTGS"><i class="fas fa-building"></i> NEFT/RTGS</div>
+            </div>
+          </div>
+
+          <!-- UPI Section (default shown) -->
+          <div style="background:var(--bg-surface);border-radius:var(--radius);padding:20px;margin-bottom:24px;text-align:center;">
+            <p style="font-size:.85rem;font-weight:600;margin-bottom:12px;color:var(--text-muted);">Scan QR or enter UPI ID</p>
+            <div style="width:120px;height:120px;background:linear-gradient(135deg,rgba(230,57,70,.1),var(--bg-surface));border:2px dashed var(--border);border-radius:var(--radius);margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:2rem;">📱</div>
+            <div style="font-size:.9rem;font-weight:700;color:var(--primary);">hoperise@ybl</div>
+            <p style="font-size:.75rem;color:var(--text-muted);margin-top:6px;">Or send to: hoperise@axisbank</p>
+          </div>
+
+          <div style="background:rgba(34,197,94,.1);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:24px;display:flex;gap:10px;align-items:center;">
+            <i class="fas fa-shield-alt" style="color:var(--green);font-size:1.1rem;"></i>
+            <span style="font-size:.83rem;color:var(--text-muted);">Your payment is 100% secure. We use bank-grade SSL encryption. We never store card details.</span>
+          </div>
+
+          <div style="display:flex;gap:12px;">
+            <button class="btn btn-outline" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button>
+            <button class="btn btn-primary" style="flex:1;" onclick="nextStep()"><i class="fas fa-arrow-right"></i> Review Donation</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Review & Confirm -->
+        <div class="donate-step" id="step4" style="display:none;">
+          <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px;">Review & Confirm</h2>
+          <p style="color:var(--text-muted);font-size:.9rem;margin-bottom:24px;">Please review your donation details before confirming.</p>
+
+          <div style="background:var(--bg-surface);border-radius:var(--radius-lg);overflow:hidden;margin-bottom:24px;border:1px solid var(--border);">
+            <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));padding:16px 20px;color:#fff;">
+              <div style="font-size:.8rem;opacity:.8;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">Donation Summary</div>
+              <div style="font-size:2rem;font-weight:900;" id="sumAmount">₹1,000</div>
+            </div>
+            <div style="padding:16px 20px;">
+              <div class="sidebar-stat"><span class="sidebar-stat-label">Purpose</span><span class="sidebar-stat-val" id="sumPurpose">General Fund</span></div>
+              <div class="sidebar-stat"><span class="sidebar-stat-label">Frequency</span><span class="sidebar-stat-val" id="sumFrequency">One-time</span></div>
+              <div class="sidebar-stat"><span class="sidebar-stat-label">Donor Name</span><span class="sidebar-stat-val" id="sumName">—</span></div>
+              <div class="sidebar-stat"><span class="sidebar-stat-label">Email</span><span class="sidebar-stat-val" id="sumEmail">—</span></div>
+              <div class="sidebar-stat"><span class="sidebar-stat-label">Phone</span><span class="sidebar-stat-val" id="sumPhone">—</span></div>
+              <div class="sidebar-stat"><span class="sidebar-stat-label">Payment</span><span class="sidebar-stat-val" id="sumMethod">UPI</span></div>
+            </div>
+          </div>
+
+          <div style="font-size:.83rem;color:var(--text-muted);line-height:1.7;margin-bottom:24px;background:rgba(230,57,70,.1);padding:14px 18px;border-radius:var(--radius-sm);">
+            <i class="fas fa-info-circle" style="color:var(--primary);margin-right:6px;"></i>
+            By confirming, you agree to HopeRise Foundation's Terms of Use. A receipt will be emailed to you, and a tax certificate (80G) will be sent within 7 working days.
+          </div>
+
+          <div style="display:flex;gap:12px;">
+            <button class="btn btn-outline" onclick="prevStep()"><i class="fas fa-arrow-left"></i> Back</button>
+            <button class="btn btn-primary btn-pulse" style="flex:1;font-size:1rem;" id="donateSubmitBtn" onclick="processDonation()">
+              <i class="fas fa-heart"></i> Confirm Donation
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="donate-sidebar-card">
+        <h3 style="font-size:1rem;font-weight:800;margin-bottom:16px;"><i class="fas fa-chart-pie" style="color:var(--primary);margin-right:8px;"></i>Fund Allocation</h3>
+        <div style="margin-bottom:20px;">
+          <div style="display:flex;justify-content:space-between;font-size:.83rem;font-weight:600;margin-bottom:6px;"><span>Medical Treatment</span><span style="color:var(--primary);">72%</span></div>
+          <div class="progress-bar"><div class="progress-fill" data-width="72"></div></div>
+        </div>
+        <div style="margin-bottom:20px;">
+          <div style="display:flex;justify-content:space-between;font-size:.83rem;font-weight:600;margin-bottom:6px;"><span>Medicine & Rehab</span><span style="color:var(--primary);">12%</span></div>
+          <div class="progress-bar"><div class="progress-fill" data-width="12" style="background:linear-gradient(90deg,var(--green),#4caf50);"></div></div>
+        </div>
+        <div style="margin-bottom:20px;">
+          <div style="display:flex;justify-content:space-between;font-size:.83rem;font-weight:600;margin-bottom:6px;"><span>Diagnostics & Tests</span><span style="color:var(--primary);">8%</span></div>
+          <div class="progress-bar"><div class="progress-fill" data-width="8" style="background:linear-gradient(90deg,var(--orange),#ff9800);"></div></div>
+        </div>
+        <div style="margin-bottom:20px;">
+          <div style="display:flex;justify-content:space-between;font-size:.83rem;font-weight:600;margin-bottom:6px;"><span>Operations</span><span style="color:var(--primary);">8%</span></div>
+          <div class="progress-bar"><div class="progress-fill" data-width="8" style="background:linear-gradient(90deg,var(--secondary),#ff7043);"></div></div>
+        </div>
+        <div class="divider" style="margin:20px 0;"></div>
+        <div style="text-align:center;">
+          <div style="font-size:2.5rem;font-weight:900;color:var(--primary);">92%</div>
+          <div style="font-size:.85rem;color:var(--text-muted);margin-top:4px;">of every rupee goes directly to a child's treatment</div>
+        </div>
+        <div class="divider" style="margin:20px 0;"></div>
+        <div style="font-size:.82rem;color:var(--text-muted);line-height:1.6;text-align:center;">
+          <i class="fas fa-certificate" style="color:var(--green);font-size:1rem;"></i><br>
+          <strong style="color:var(--text);">80G Tax Exemption</strong><br>
+          Donations are eligible for tax deduction under Section 80G of the Income Tax Act.
+        </div>
+        <div class="divider" style="margin:20px 0;"></div>
+        <div style="display:flex;justify-content:center;gap:12px;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/200px-Visa_Inc._logo.svg.png" alt="Visa" style="height:20px;filter:grayscale(1);opacity:.6;"/>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png" alt="Mastercard" style="height:20px;filter:grayscale(1);opacity:.6;"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Receipt Modal -->
+<div class="modal-overlay" id="receiptModal">
+  <div class="modal" style="max-width:480px;">
+    <div class="modal-header">
+      <div class="modal-title"><i class="fas fa-check-circle" style="color:var(--green);margin-right:8px;"></i>Donation Confirmed!</div>
+      <button class="modal-close" onclick="closeModal('receiptModal')"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <div style="text-align:center;padding:16px 0 24px;">
+        <div style="font-size:3rem;">🙏</div>
+        <h3 style="font-size:1.2rem;font-weight:800;margin:12px 0 8px;">Thank You for Your Generosity!</h3>
+        <p style="font-size:.9rem;color:var(--text-muted);">Your donation is making a real difference in a child's life.</p>
+      </div>
+      <div style="background:var(--bg-surface);border-radius:var(--radius);padding:20px;font-size:.88rem;line-height:2;border:1px dashed var(--border);">
+        <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Receipt ID</span><strong id="rcptId">HHF-XXXXXX</strong></div>
+        <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Date</span><span id="rcptDate">—</span></div>
+        <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Donor</span><span id="rcptName">—</span></div>
+        <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Email</span><span id="rcptEmail">—</span></div>
+        <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Amount</span><strong style="color:var(--primary);font-size:1.1rem;" id="rcptAmount">—</strong></div>
+        <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Purpose</span><span id="rcptPurpose">—</span></div>
+        <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Method</span><span id="rcptMethod">—</span></div>
+      </div>
+      <p style="font-size:.8rem;color:var(--text-muted);margin:12px 0 20px;text-align:center;">A receipt has been emailed to you. 80G certificate will be sent within 7 days.</p>
+      <div style="display:flex;gap:10px;">
+        <button class="btn btn-outline w-full" onclick="downloadReceipt()"><i class="fas fa-download"></i> Download Receipt</button>
+        <button class="btn btn-primary w-full" onclick="closeModal('receiptModal')"><i class="fas fa-heart"></i> Donate Again</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.webp" alt="HopeRise Foundation" style="height:36px;width:auto;"/>
+        </div>
+        <p>Transforming Lives, One Act at a Time. Registered NGO — 80G &amp; 12A Certified. Founded 2014.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Our Programs</div>
+        <div class="footer-links">
+          <a href="programs.html" class="footer-link">Education</a>
+          <a href="programs.html" class="footer-link">Healthcare</a>
+          <a href="programs.html" class="footer-link">Food Relief</a>
+          <a href="programs.html" class="footer-link">Environment</a>
+          <a href="programs.html" class="footer-link">Child Welfare</a>
+          <a href="programs.html" class="footer-link">All Programs</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Get Involved</div>
+        <div class="footer-links">
+          <a href="donate.html" class="footer-link">Donate Now</a>
+          <a href="volunteer.html" class="footer-link">Volunteer</a>
+          <a href="#" class="footer-link">Partner With Us</a>
+          <a href="#" class="footer-link">Corporate CSR</a>
+          <a href="#contact" class="footer-link">Contact Us</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">About</div>
+        <div class="footer-links">
+          <a href="about.html" class="footer-link">Who We Are</a>
+          <a href="#" class="footer-link">News &amp; Stories</a>
+          <a href="#" class="footer-link">Annual Report</a>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Press &amp; Media</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 HopeRise Foundation. All rights reserved. Registered NGO — 80G &amp; 12A Certified.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/main.js"></script>
+<script src="js/donation.js"></script>
+</body>
+</html>

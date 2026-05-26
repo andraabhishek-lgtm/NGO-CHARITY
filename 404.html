@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Page Not Found — HealHope Foundation</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💙</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <style>
+    .nf-heart { animation: float 3s ease-in-out infinite; display:inline-block; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-15px)} }
+    .nf-pulse { animation: nf-pulse 1.5s infinite; }
+    @keyframes nf-pulse { 0%,100%{opacity:1}50%{opacity:.4} }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><div class="nav-logo-icon">💙</div><span>Heal<span>Hope</span></span></a>
+    <div class="nav-actions">
+      <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+    </div>
+  </div>
+</nav>
+
+<div class="nf-page" style="padding-top:var(--nav-h);">
+  <div class="nf-content">
+    <!-- Animated illustration -->
+    <div style="position:relative;width:200px;height:200px;margin:0 auto 32px;">
+      <div style="width:200px;height:200px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;">
+        <div class="nf-heart" style="font-size:5rem;">💔</div>
+      </div>
+      <div style="position:absolute;top:10px;right:10px;width:36px;height:36px;background:var(--secondary);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.85rem;font-weight:800;" class="nf-pulse">!</div>
+    </div>
+
+    <div class="nf-number">404</div>
+    <div class="nf-icon">🔍</div>
+    <h1 class="nf-title">Oops! Page Not Found</h1>
+    <p class="nf-text">
+      The page you're looking for seems to have gone missing — but don't worry, the children we serve haven't!
+      While you're here, perhaps consider making a donation to help a child in need?
+    </p>
+
+    <div class="nf-btns">
+      <a href="index.html" class="btn btn-primary btn-lg"><i class="fas fa-home"></i> Back to Home</a>
+      <a href="donate.html" class="btn btn-secondary btn-lg"><i class="fas fa-heart"></i> Donate Now</a>
+    </div>
+
+    <!-- Quick Links -->
+    <div style="margin-top:40px;padding-top:28px;border-top:1px solid var(--border);">
+      <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:16px;">Or visit one of these pages:</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+        <a href="about.html" class="btn btn-outline btn-sm"><i class="fas fa-info-circle"></i> About Us</a>
+        <a href="volunteer.html" class="btn btn-outline btn-sm"><i class="fas fa-hands-helping"></i> Volunteer</a>
+        <a href="login.html" class="btn btn-outline btn-sm"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="donate.html" class="btn btn-outline btn-sm"><i class="fas fa-heart"></i> Donate</a>
+      </div>
+    </div>
+
+    <!-- Contact Info -->
+    <div style="margin-top:32px;background:var(--bg-soft);border-radius:var(--radius-lg);padding:20px;border:1px solid var(--border);">
+      <p style="font-size:.85rem;font-weight:700;margin-bottom:10px;"><i class="fas fa-headset" style="color:var(--primary);margin-right:6px;"></i>Need Help?</p>
+      <div style="font-size:.83rem;color:var(--text-muted);line-height:2;">
+        <div><i class="fas fa-envelope" style="width:18px;color:var(--primary);"></i> support@healhope.org</div>
+        <div><i class="fas fa-phone" style="width:18px;color:var(--primary);"></i> +91 98765 43210</div>
+        <div><i class="fas fa-clock" style="width:18px;color:var(--primary);"></i> Mon–Sat, 9am–6pm IST</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

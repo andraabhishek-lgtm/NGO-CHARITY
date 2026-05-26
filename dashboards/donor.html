@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donor Dashboard — HealHope Foundation</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💙</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="stylesheet" href="../css/dashboard.css"/>
+</head>
+<body>
+
+<!-- Mobile overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<!-- Sidebar -->
+<aside class="dash-sidebar" id="sidebar">
+  <div class="dash-sidebar-logo">
+    <a href="../index.html"><div class="nav-logo-icon">💙</div><span>Heal<span>Hope</span></span></a>
+    <button class="sidebar-close-btn" onclick="closeSidebar()"><i class="fas fa-times"></i></button>
+  </div>
+  <nav class="dash-nav">
+    <div class="dash-nav-section">Overview</div>
+    <a href="#overview" class="dash-nav-link active" onclick="showSection('overview',this)"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+    <a href="#donations" class="dash-nav-link" onclick="showSection('donations',this)"><i class="fas fa-heart"></i> Donation History</a>
+    <a href="#receipts" class="dash-nav-link" onclick="showSection('receipts',this)"><i class="fas fa-file-invoice"></i> Receipts & Tax</a>
+    <div class="dash-nav-section">My Impact</div>
+    <a href="#patients" class="dash-nav-link" onclick="showSection('patients',this)"><i class="fas fa-child"></i> Helped Children</a>
+    <a href="#notifications" class="dash-nav-link" onclick="showSection('notifications',this)"><i class="fas fa-bell"></i> Notifications <span class="badge-pill">3</span></a>
+    <div class="dash-nav-section">Account</div>
+    <a href="#profile" class="dash-nav-link" onclick="showSection('profile',this)"><i class="fas fa-user"></i> My Profile</a>
+    <a href="#payment" class="dash-nav-link" onclick="showSection('payment',this)"><i class="fas fa-credit-card"></i> Payment Methods</a>
+    <a href="../donate.html" class="dash-nav-link" style="color:var(--secondary);"><i class="fas fa-plus-circle"></i> Donate Again</a>
+  </nav>
+  <div class="sidebar-footer">
+    <button onclick="logout()" class="btn btn-outline btn-sm w-full"><i class="fas fa-sign-out-alt"></i> Logout</button>
+  </div>
+</aside>
+
+<!-- Main content -->
+<div class="dash-main" id="dashMain">
+
+  <!-- Topbar -->
+  <header class="dash-topbar">
+    <div class="dash-topbar-left">
+      <button class="sidebar-toggle-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+      <div class="dash-breadcrumb"><span>Donor</span> / <span id="breadcrumbCurrent">Dashboard</span></div>
+    </div>
+    <div class="dash-topbar-right">
+      <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+      <a href="../donate.html" class="btn btn-primary btn-sm"><i class="fas fa-heart"></i> Donate</a>
+      <div class="dash-avatar-wrap">
+        <div class="dash-avatar" id="avatarInitials">D</div>
+        <div class="dash-avatar-info">
+          <span class="dash-avatar-name" data-auth-name>Donor</span>
+          <span class="dash-avatar-role">Donor</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="dash-body">
+
+    <!-- OVERVIEW SECTION -->
+    <section id="sec-overview" class="dash-section active">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">Welcome Back, <span data-auth-name>Donor</span>! 💙</h1>
+        <p class="dash-section-sub">Thank you for making a difference in children's lives.</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="mini-stats-grid">
+        <div class="mini-stat-card">
+          <div class="mini-stat-icon" style="background:#e3f2fd;color:var(--primary);"><i class="fas fa-rupee-sign"></i></div>
+          <div class="mini-stat-body">
+            <div class="mini-stat-val" id="totalDonated">₹0</div>
+            <div class="mini-stat-label">Total Donated</div>
+          </div>
+        </div>
+        <div class="mini-stat-card">
+          <div class="mini-stat-icon" style="background:#fce4ec;color:#e53935;"><i class="fas fa-heart"></i></div>
+          <div class="mini-stat-body">
+            <div class="mini-stat-val" id="donationCount">0</div>
+            <div class="mini-stat-label">Donations Made</div>
+          </div>
+        </div>
+        <div class="mini-stat-card">
+          <div class="mini-stat-icon" style="background:#e8f5e9;color:#2e7d32;"><i class="fas fa-child"></i></div>
+          <div class="mini-stat-body">
+            <div class="mini-stat-val" id="childrenHelped">0</div>
+            <div class="mini-stat-label">Children Helped</div>
+          </div>
+        </div>
+        <div class="mini-stat-card">
+          <div class="mini-stat-icon" style="background:#fff3e0;color:#e65100;"><i class="fas fa-certificate"></i></div>
+          <div class="mini-stat-body">
+            <div class="mini-stat-val" id="taxSaved">₹0</div>
+            <div class="mini-stat-label">Tax Saved (80G)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Impact Banner -->
+      <div class="dash-card" style="background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);color:#fff;padding:28px;margin-bottom:24px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+          <div>
+            <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:6px;">Your Impact This Year</h3>
+            <p style="opacity:.85;font-size:.9rem;">Every rupee you donate goes directly to a child's treatment</p>
+          </div>
+          <a href="../donate.html" class="btn btn-sm" style="background:#fff;color:var(--primary);font-weight:700;"><i class="fas fa-plus"></i> Make New Donation</a>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;">
+          <div style="background:rgba(255,255,255,.15);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-size:1.5rem;font-weight:900;" id="surgeries">0</div>
+            <div style="font-size:.75rem;opacity:.75;margin-top:2px;">Surgeries Funded</div>
+          </div>
+          <div style="background:rgba(255,255,255,.15);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-size:1.5rem;font-weight:900;" id="meals">0</div>
+            <div style="font-size:.75rem;opacity:.75;margin-top:2px;">Meals Provided</div>
+          </div>
+          <div style="background:rgba(255,255,255,.15);border-radius:10px;padding:14px;text-align:center;">
+            <div style="font-size:1.5rem;font-weight:900;" id="checkups">0</div>
+            <div style="font-size:.75rem;opacity:.75;margin-top:2px;">Health Checkups</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Donations -->
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <h3 class="dash-card-title"><i class="fas fa-history"></i> Recent Donations</h3>
+          <a href="#donations" onclick="showSection('donations',null)" class="btn btn-outline btn-sm">View All</a>
+        </div>
+        <div id="recentDonationsList">
+          <div class="empty-state"><i class="fas fa-heart-broken"></i><p>No donations yet. <a href="../donate.html" style="color:var(--primary);">Make your first donation!</a></p></div>
+        </div>
+      </div>
+
+      <!-- Notifications Preview -->
+      <div class="dash-card" style="margin-top:20px;">
+        <div class="dash-card-header">
+          <h3 class="dash-card-title"><i class="fas fa-bell"></i> Recent Updates</h3>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background:#2e7d32;"></div>
+            <div class="timeline-content">
+              <div class="timeline-title">Arjun's Surgery Successful!</div>
+              <div class="timeline-text">The child you helped is recovering well. Thank you for your support.</div>
+              <div class="timeline-time">2 days ago</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background:var(--primary);"></div>
+            <div class="timeline-content">
+              <div class="timeline-title">Tax Certificate Ready</div>
+              <div class="timeline-text">Your 80G tax exemption certificate for FY 2025-26 is ready to download.</div>
+              <div class="timeline-time">1 week ago</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background:var(--secondary);"></div>
+            <div class="timeline-content">
+              <div class="timeline-title">Emergency Appeal: 5 Children Need Help</div>
+              <div class="timeline-text">Critical cases need immediate surgery funding. Consider donating.</div>
+              <div class="timeline-time">3 days ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DONATIONS SECTION -->
+    <section id="sec-donations" class="dash-section">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">Donation History</h1>
+        <p class="dash-section-sub">All your contributions at a glance</p>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <h3 class="dash-card-title"><i class="fas fa-list"></i> All Donations</h3>
+          <div style="display:flex;gap:8px;">
+            <select class="form-input" style="padding:6px 12px;font-size:.85rem;width:auto;" id="filterYear">
+              <option value="">All Years</option>
+              <option value="2026">2026</option>
+              <option value="2025">2025</option>
+            </select>
+            <button class="btn btn-primary btn-sm" onclick="exportDonations()"><i class="fas fa-download"></i> Export</button>
+          </div>
+        </div>
+        <div class="dash-table-wrap">
+          <table class="dash-table">
+            <thead>
+              <tr><th>Receipt ID</th><th>Date</th><th>Amount</th><th>Purpose</th><th>Method</th><th>Status</th><th>Action</th></tr>
+            </thead>
+            <tbody id="donationsTableBody">
+              <tr><td colspan="7" style="text-align:center;padding:32px;color:var(--text-muted);">No donations found. <a href="../donate.html" style="color:var(--primary);">Donate now!</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECEIPTS SECTION -->
+    <section id="sec-receipts" class="dash-section">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">Receipts & Tax Documents</h1>
+        <p class="dash-section-sub">Download your 80G certificates and payment receipts</p>
+      </div>
+
+      <div class="dash-card" style="background:linear-gradient(135deg,#e8f5e9,#f1f8e9);border-left:4px solid #2e7d32;margin-bottom:20px;">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="width:48px;height:48px;background:#2e7d32;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem;flex-shrink:0;"><i class="fas fa-certificate"></i></div>
+          <div>
+            <h3 style="font-weight:700;margin-bottom:4px;">80G Tax Exemption</h3>
+            <p style="font-size:.88rem;color:var(--text-muted);">HealHope Foundation is registered under Section 80G. Your donations are eligible for 50% tax deduction. PAN: AAATH1234F</p>
+          </div>
+          <button class="btn btn-sm" style="background:#2e7d32;color:#fff;margin-left:auto;white-space:nowrap;" onclick="downloadTaxCert()"><i class="fas fa-download"></i> Download Certificate</button>
+        </div>
+      </div>
+
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <h3 class="dash-card-title"><i class="fas fa-file-invoice"></i> Downloadable Receipts</h3>
+        </div>
+        <div id="receiptsList">
+          <div class="empty-state"><i class="fas fa-file-invoice"></i><p>No receipts yet. Make a donation to get your first receipt.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PATIENTS SECTION -->
+    <section id="sec-patients" class="dash-section">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">Children You've Helped</h1>
+        <p class="dash-section-sub">See the real impact of your donations</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;">
+        <div class="dash-card patient-impact-card">
+          <img src="https://images.unsplash.com/photo-1519340241574-2cec6aef0c01?w=400&fit=crop&q=80" alt="Arjun" style="width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:14px;"/>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <h4 style="font-weight:700;">Arjun, 7 years</h4>
+            <span class="status-pill status-success">Recovered</span>
+          </div>
+          <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:12px;">Heart surgery funded by donors like you. Arjun is now healthy and back in school!</p>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px;font-size:.82rem;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="color:var(--text-muted);">Treatment</span><span style="font-weight:600;">Open Heart Surgery</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Cost Covered</span><span style="font-weight:600;color:#2e7d32;">₹1,20,000</span></div>
+          </div>
+        </div>
+        <div class="dash-card patient-impact-card">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&fit=crop&q=80" alt="Priya" style="width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:14px;"/>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <h4 style="font-weight:700;">Priya, 5 years</h4>
+            <span class="status-pill status-warning">Treatment Ongoing</span>
+          </div>
+          <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:12px;">Cancer treatment supported. Priya is responding well to chemotherapy.</p>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px;font-size:.82rem;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="color:var(--text-muted);">Treatment</span><span style="font-weight:600;">Chemotherapy</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Cost Covered</span><span style="font-weight:600;color:#2e7d32;">₹85,000</span></div>
+          </div>
+        </div>
+        <div class="dash-card patient-impact-card">
+          <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&fit=crop&q=80" alt="Ravi" style="width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:14px;"/>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <h4 style="font-weight:700;">Ravi, 9 years</h4>
+            <span class="status-pill status-success">Recovered</span>
+          </div>
+          <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:12px;">Bone marrow transplant made possible through community donations.</p>
+          <div style="background:var(--bg-soft);border-radius:8px;padding:10px;font-size:.82rem;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="color:var(--text-muted);">Treatment</span><span style="font-weight:600;">Bone Marrow Transplant</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Cost Covered</span><span style="font-weight:600;color:#2e7d32;">₹2,40,000</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTIFICATIONS SECTION -->
+    <section id="sec-notifications" class="dash-section">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">Notifications</h1>
+        <p class="dash-section-sub">Updates on your donations and children you've helped</p>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <h3 class="dash-card-title"><i class="fas fa-bell"></i> All Notifications</h3>
+          <button class="btn btn-outline btn-sm" onclick="markAllRead()"><i class="fas fa-check-double"></i> Mark All Read</button>
+        </div>
+        <div class="notif-list">
+          <div class="notif-item unread">
+            <div class="notif-icon" style="background:#e8f5e9;color:#2e7d32;"><i class="fas fa-check-circle"></i></div>
+            <div class="notif-body">
+              <div class="notif-title">Arjun's Surgery was Successful!</div>
+              <div class="notif-text">The child you contributed to has fully recovered and is back home. View his recovery story.</div>
+              <div class="notif-time"><i class="fas fa-clock"></i> 2 hours ago</div>
+            </div>
+            <div class="notif-badge"></div>
+          </div>
+          <div class="notif-item unread">
+            <div class="notif-icon" style="background:#e3f2fd;color:var(--primary);"><i class="fas fa-file-invoice"></i></div>
+            <div class="notif-body">
+              <div class="notif-title">Your 80G Certificate is Ready</div>
+              <div class="notif-text">Tax exemption certificate for FY 2025-26 is available for download. Save it for your ITR.</div>
+              <div class="notif-time"><i class="fas fa-clock"></i> 1 day ago</div>
+            </div>
+            <div class="notif-badge"></div>
+          </div>
+          <div class="notif-item unread">
+            <div class="notif-icon" style="background:#fce4ec;color:#e53935;"><i class="fas fa-exclamation-circle"></i></div>
+            <div class="notif-body">
+              <div class="notif-title">Urgent: 3 Children Need Immediate Surgery</div>
+              <div class="notif-text">Emergency appeal — funding needed within 48 hours for life-saving operations.</div>
+              <div class="notif-time"><i class="fas fa-clock"></i> 3 days ago</div>
+            </div>
+            <div class="notif-badge"></div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon" style="background:#fff3e0;color:#e65100;"><i class="fas fa-heart"></i></div>
+            <div class="notif-body">
+              <div class="notif-title">Thank You for Your Last Donation!</div>
+              <div class="notif-text">Your donation has been received and is being directed to the General Medical Fund.</div>
+              <div class="notif-time"><i class="fas fa-clock"></i> 1 week ago</div>
+            </div>
+          </div>
+          <div class="notif-item">
+            <div class="notif-icon" style="background:#e8f5e9;color:#2e7d32;"><i class="fas fa-user-check"></i></div>
+            <div class="notif-body">
+              <div class="notif-title">Profile Verified</div>
+              <div class="notif-text">Your donor profile has been verified. You can now access all donor features.</div>
+              <div class="notif-time"><i class="fas fa-clock"></i> 2 weeks ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFILE SECTION -->
+    <section id="sec-profile" class="dash-section">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">My Profile</h1>
+        <p class="dash-section-sub">Manage your account details</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 2fr;gap:20px;align-items:start;">
+        <div class="dash-card" style="text-align:center;">
+          <div style="width:100px;height:100px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.5rem;font-weight:800;color:var(--primary);margin:0 auto 14px;" id="profileAvatar">S</div>
+          <h3 style="font-weight:700;" data-auth-name>Sunita Sharma</h3>
+          <p style="color:var(--text-muted);font-size:.85rem;">Donor since 2024</p>
+          <span class="status-pill status-success" style="margin:10px auto 0;display:inline-block;">Verified Donor</span>
+          <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
+            <div style="font-size:.85rem;color:var(--text-muted);margin-bottom:8px;">Donor Badge</div>
+            <div style="font-size:2rem;">🏆</div>
+            <div style="font-size:.8rem;font-weight:700;color:#e65100;">Gold Donor</div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header"><h3 class="dash-card-title">Personal Information</h3><button class="btn btn-outline btn-sm" onclick="toggleEdit('profileForm')"><i class="fas fa-edit"></i> Edit</button></div>
+          <form id="profileForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" value="Sunita Sharma" disabled id="pfName"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" value="donor@healhope.org" disabled id="pfEmail"/>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Mobile</label>
+                <input type="tel" class="form-input" value="+91 98765 43210" disabled id="pfPhone"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">PAN Number</label>
+                <input type="text" class="form-input" value="ABCDE1234F" disabled id="pfPan"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Address</label>
+              <textarea class="form-input" rows="2" disabled id="pfAddress">123 Civil Lines, Pune, Maharashtra - 411001</textarea>
+            </div>
+            <div id="profileSaveBtn" style="display:none;margin-top:10px;">
+              <button type="button" class="btn btn-primary btn-sm" onclick="saveProfile()"><i class="fas fa-save"></i> Save Changes</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="toggleEdit('profileForm')" style="margin-left:8px;">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAYMENT METHODS SECTION -->
+    <section id="sec-payment" class="dash-section">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">Payment Methods</h1>
+        <p class="dash-section-sub">Manage your saved payment options</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;">
+        <div class="dash-card" style="border:2px solid var(--primary);">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:42px;height:42px;background:var(--primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">📱</div>
+              <div><div style="font-weight:700;font-size:.95rem;">UPI</div><div style="font-size:.8rem;color:var(--text-muted);">Primary</div></div>
+            </div>
+            <span class="status-pill status-success">Active</span>
+          </div>
+          <div style="font-size:.9rem;color:var(--text-muted);">sunita@upi</div>
+          <div style="margin-top:12px;display:flex;gap:8px;">
+            <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i> Edit</button>
+            <button class="btn btn-outline btn-sm" style="color:var(--secondary);border-color:var(--secondary);"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="width:42px;height:42px;background:#e3f2fd;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">💳</div>
+              <div><div style="font-weight:700;font-size:.95rem;">Credit Card</div><div style="font-size:.8rem;color:var(--text-muted);">Ending in 4242</div></div>
+            </div>
+            <span class="status-pill status-success">Active</span>
+          </div>
+          <div style="font-size:.9rem;color:var(--text-muted);">HDFC Bank Visa •••• 4242</div>
+          <div style="margin-top:12px;display:flex;gap:8px;">
+            <button class="btn btn-outline btn-sm"><i class="fas fa-edit"></i> Edit</button>
+            <button class="btn btn-outline btn-sm" style="color:var(--secondary);border-color:var(--secondary);"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="dash-card" style="border:2px dashed var(--border);display:flex;align-items:center;justify-content:center;min-height:140px;cursor:pointer;" onclick="showToast('Payment method addition coming soon!','info')">
+          <div style="text-align:center;color:var(--text-muted);">
+            <i class="fas fa-plus-circle" style="font-size:2rem;margin-bottom:8px;"></i>
+            <div style="font-size:.9rem;font-weight:600;">Add Payment Method</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- end dash-body -->
+</div><!-- end dash-main -->
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="../js/main.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+// Require auth — donor only
+requireAuth(['donor','admin']);
+populateDashboardUser();
+
+// Set avatar initials
+const authData = JSON.parse(localStorage.getItem('hh-auth') || '{}');
+if (authData.name) {
+  const initials = authData.name.split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase();
+  document.getElementById('avatarInitials').textContent = initials;
+  document.getElementById('profileAvatar').textContent = initials;
+}
+
+// Load donations from localStorage
+function loadDonations() {
+  const all = JSON.parse(localStorage.getItem('hh-donations') || '[]');
+  const myEmail = authData.email || '';
+  const myDonations = all.filter(d => d.email === myEmail);
+
+  const total = myDonations.reduce((s,d) => s + (parseFloat(d.amount)||0), 0);
+  document.getElementById('totalDonated').textContent = '₹' + total.toLocaleString('en-IN');
+  document.getElementById('donationCount').textContent = myDonations.length;
+  document.getElementById('childrenHelped').textContent = Math.floor(total / 5000) || 0;
+  document.getElementById('taxSaved').textContent = '₹' + Math.floor(total * 0.5).toLocaleString('en-IN');
+  document.getElementById('surgeries').textContent = Math.floor(total / 50000) || 0;
+  document.getElementById('meals').textContent = Math.floor(total / 50) || 0;
+  document.getElementById('checkups').textContent = Math.floor(total / 500) || 0;
+
+  // Recent donations list
+  const recEl = document.getElementById('recentDonationsList');
+  if (myDonations.length === 0) {
+    recEl.innerHTML = '<div class="empty-state"><i class="fas fa-heart-broken"></i><p>No donations yet. <a href="../donate.html" style="color:var(--primary);">Make your first donation!</a></p></div>';
+  } else {
+    recEl.innerHTML = '<div class="dash-table-wrap"><table class="dash-table"><thead><tr><th>Receipt ID</th><th>Date</th><th>Amount</th><th>Purpose</th><th>Status</th></tr></thead><tbody>' +
+      myDonations.slice(-5).reverse().map(d => `<tr>
+        <td><code style="font-size:.82rem;">${d.receiptId||'—'}</code></td>
+        <td>${d.date||'—'}</td>
+        <td style="font-weight:700;color:#2e7d32;">₹${parseFloat(d.amount).toLocaleString('en-IN')}</td>
+        <td>${d.purpose||'General Fund'}</td>
+        <td><span class="status-pill status-success">Completed</span></td>
+      </tr>`).join('') + '</tbody></table></div>';
+  }
+
+  // Full table
+  const tbody = document.getElementById('donationsTableBody');
+  if (myDonations.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:32px;color:var(--text-muted);">No donations found. <a href="../donate.html" style="color:var(--primary);">Donate now!</a></td></tr>';
+  } else {
+    tbody.innerHTML = myDonations.slice().reverse().map(d => `<tr>
+      <td><code style="font-size:.82rem;">${d.receiptId||'—'}</code></td>
+      <td>${d.date||'—'}</td>
+      <td style="font-weight:700;color:#2e7d32;">₹${parseFloat(d.amount).toLocaleString('en-IN')}</td>
+      <td>${d.purpose||'General Fund'}</td>
+      <td>${d.method||'UPI'}</td>
+      <td><span class="status-pill status-success">Completed</span></td>
+      <td><button class="btn btn-outline btn-sm" onclick='downloadSingleReceipt(${JSON.stringify(d)})'><i class="fas fa-download"></i></button></td>
+    </tr>`).join('');
+  }
+
+  // Receipts list
+  const receiptsEl = document.getElementById('receiptsList');
+  if (myDonations.length === 0) {
+    receiptsEl.innerHTML = '<div class="empty-state"><i class="fas fa-file-invoice"></i><p>No receipts yet.</p></div>';
+  } else {
+    receiptsEl.innerHTML = myDonations.slice().reverse().map(d => `
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:40px;height:40px;background:var(--primary-light);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--primary);"><i class="fas fa-file-pdf"></i></div>
+          <div>
+            <div style="font-weight:600;font-size:.9rem;">${d.receiptId||'Receipt'}</div>
+            <div style="font-size:.8rem;color:var(--text-muted);">${d.date||''} • ₹${parseFloat(d.amount).toLocaleString('en-IN')} • ${d.purpose||'General Fund'}</div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick='downloadSingleReceipt(${JSON.stringify(d)})'><i class="fas fa-download"></i> Download</button>
+      </div>`).join('');
+  }
+}
+
+function downloadSingleReceipt(d) {
+  const txt = `HEALHOPE FOUNDATION\nDonation Receipt\n${'='.repeat(40)}\nReceipt ID: ${d.receiptId||'N/A'}\nDate: ${d.date||'N/A'}\nDonor: ${d.name||'N/A'}\nEmail: ${d.email||'N/A'}\nAmount: ₹${d.amount||'N/A'}\nPurpose: ${d.purpose||'General Fund'}\nPayment Method: ${d.method||'N/A'}\n${'='.repeat(40)}\n80G Tax Exemption: 50% of donation amount\nPAN: AAATH1234F\n\nThank you for saving a child's life!`;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([txt], {type:'text/plain'}));
+  a.download = (d.receiptId||'receipt') + '.txt';
+  a.click();
+  showToast('Receipt downloaded!', 'success');
+}
+
+function exportDonations() {
+  const all = JSON.parse(localStorage.getItem('hh-donations') || '[]');
+  const myEmail = authData.email || '';
+  const myDonations = all.filter(d => d.email === myEmail);
+  if (!myDonations.length) { showToast('No donations to export', 'info'); return; }
+  const csv = 'Receipt ID,Date,Amount,Purpose,Method,Status\n' +
+    myDonations.map(d => `${d.receiptId||''},${d.date||''},${d.amount||''},${d.purpose||''},${d.method||''},Completed`).join('\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv], {type:'text/csv'}));
+  a.download = 'healhope_donations.csv';
+  a.click();
+  showToast('Donations exported!', 'success');
+}
+
+function downloadTaxCert() {
+  const txt = `HEALHOPE FOUNDATION\n80G Tax Exemption Certificate\nFY 2025-26\n${'='.repeat(40)}\nDonor: ${authData.name||'Donor'}\nEmail: ${authData.email||''}\nPAN: AAATH1234F\nRegistration No: 80G/2023/HHF/001\n\nThis is to certify that donations made to HealHope Foundation are eligible for 50% tax deduction under Section 80G of the Income Tax Act, 1961.\n\nChartered Accountant: CA Ramesh Kumar\nDate: ${new Date().toLocaleDateString('en-IN')}`;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([txt], {type:'text/plain'}));
+  a.download = '80G_Certificate_HealHope.txt';
+  a.click();
+  showToast('80G Certificate downloaded!', 'success');
+}
+
+function markAllRead() {
+  document.querySelectorAll('.notif-item.unread').forEach(n => n.classList.remove('unread'));
+  document.querySelectorAll('.notif-badge').forEach(b => b.remove());
+  document.querySelector('.badge-pill') && (document.querySelector('.badge-pill').style.display='none');
+  showToast('All notifications marked as read', 'success');
+}
+
+function toggleEdit(formId) {
+  const form = document.getElementById(formId);
+  const inputs = form.querySelectorAll('input, textarea');
+  const saveBtn = document.getElementById('profileSaveBtn');
+  const isDisabled = inputs[0].disabled;
+  inputs.forEach(i => i.disabled = !isDisabled);
+  saveBtn.style.display = isDisabled ? 'block' : 'none';
+}
+
+function saveProfile() {
+  toggleEdit('profileForm');
+  showToast('Profile updated successfully!', 'success');
+}
+
+function showSection(id, link) {
+  document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  document.querySelectorAll('.dash-nav-link').forEach(l => l.classList.remove('active'));
+  if (link) link.classList.add('active');
+  document.getElementById('breadcrumbCurrent').textContent = id.charAt(0).toUpperCase() + id.slice(1);
+  if (window.innerWidth < 992) closeSidebar();
+}
+
+loadDonations();
+</script>
+</body>
+</html>

@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="HopeRise Foundation — Empowering lives through education, healthcare, food security, environment, and community programs worldwide."/>
+  <title>HopeRise Foundation — Give Hope. Change Lives.</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+
+<!-- Page Loader -->
+<div class="page-loader" id="pageLoader">
+  <div class="loader-logo">HOPERISE</div>
+  <div style="font-size:.85rem;color:var(--text-muted);margin-bottom:14px;font-family:var(--font-body)">Foundation</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<!-- ════ NAVBAR ════ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.webp" alt="HopeRise Foundation"/>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="nav-link active">Home</a></li>
+      <li><a href="programs.html" class="nav-link">Our Programs</a></li>
+      <li><a href="volunteer.html" class="nav-link">Volunteers</a></li>
+      <li><a href="#news" class="nav-link">News</a></li>
+      <li><a href="about.html" class="nav-link">About Us</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-ghost btn-sm"><i class="fas fa-sign-in-alt"></i> Login</a>
+      <a href="donate.html" class="btn btn-primary btn-sm"><i class="fas fa-heart"></i> Donate Now</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Open Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="programs.html" class="nav-link">Our Programs</a>
+  <a href="volunteer.html" class="nav-link">Volunteers</a>
+  <a href="#news" class="nav-link">News</a>
+  <a href="about.html" class="nav-link">About Us</a>
+  <a href="#contact" class="nav-link">Contact</a>
+  <div class="nav-actions" style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">
+    <a href="login.html" class="btn btn-ghost w-full" style="justify-content:center"><i class="fas fa-sign-in-alt"></i> Login</a>
+    <a href="donate.html" class="btn btn-primary w-full" style="justify-content:center"><i class="fas fa-heart"></i> Donate Now</a>
+  </div>
+</div>
+
+<!-- ════ HERO SWIPER ════ -->
+<div class="swiper hero-swiper" id="heroSwiper">
+  <div class="swiper-wrapper">
+
+    <!-- Slide 1 -->
+    <div class="swiper-slide">
+      <div class="hero-slide">
+        <div class="hero-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&fit=crop&q=80')"></div>
+        <div class="hero-slide-overlay"></div>
+        <div class="hero-slide-content">
+          <div class="hero-badge"><div class="hero-badge-dot"></div> Emergency Appeal — Act Now</div>
+          <h1 class="hero-title">Give Hope.<br><span class="hl-red">Change Lives.</span></h1>
+          <p class="hero-subtitle">Join thousands of compassionate donors and volunteers working together to uplift communities through education, healthcare, and sustainable development.</p>
+          <div class="hero-btns">
+            <a href="donate.html" class="btn btn-primary btn-lg"><i class="fas fa-heart"></i> Donate Now</a>
+            <a href="programs.html" class="btn btn-ghost btn-lg"><i class="fas fa-layer-group"></i> Our Programs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="swiper-slide">
+      <div class="hero-slide">
+        <div class="hero-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&fit=crop&q=80')"></div>
+        <div class="hero-slide-overlay"></div>
+        <div class="hero-slide-content">
+          <div class="hero-badge"><div class="hero-badge-dot"></div> Education for All • Enrolment Open</div>
+          <h1 class="hero-title">Every Child<br>Deserves <span class="hl-cyan">Education.</span></h1>
+          <p class="hero-subtitle">120,000+ children in classrooms across 45 countries — and we're just getting started. Sponsor a child's future today.</p>
+          <div class="hero-btns">
+            <a href="donate.html" class="btn btn-cyan btn-lg"><i class="fas fa-graduation-cap"></i> Support Education</a>
+            <a href="about.html" class="btn btn-ghost btn-lg"><i class="fas fa-book-open"></i> Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="swiper-slide">
+      <div class="hero-slide">
+        <div class="hero-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1920&fit=crop&q=80')"></div>
+        <div class="hero-slide-overlay"></div>
+        <div class="hero-slide-content">
+          <div class="hero-badge"><div class="hero-badge-dot"></div> Healthcare Initiative • Running Now</div>
+          <h1 class="hero-title">Healthy Lives.<br><span class="hl-red">Brighter Futures.</span></h1>
+          <p class="hero-subtitle">50,000+ lives saved per year in underserved regions. Mobile clinics, free surgeries, and medicines reaching the most vulnerable.</p>
+          <div class="hero-btns">
+            <a href="donate.html" class="btn btn-primary btn-lg"><i class="fas fa-stethoscope"></i> Fund Healthcare</a>
+            <a href="about.html" class="btn btn-ghost btn-lg"><i class="fas fa-book-medical"></i> Read Stories</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="swiper-slide">
+      <div class="hero-slide">
+        <div class="hero-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&fit=crop&q=80')"></div>
+        <div class="hero-slide-overlay"></div>
+        <div class="hero-slide-content">
+          <div class="hero-badge"><div class="hero-badge-dot"></div> Environment Program • New Initiative</div>
+          <h1 class="hero-title">Protect<br><span class="hl-cyan">Our Planet.</span></h1>
+          <p class="hero-subtitle">2 million trees planted this year. Clean water, solar energy, and ocean conservation — for the generations that follow us.</p>
+          <div class="hero-btns">
+            <a href="donate.html" class="btn btn-primary btn-lg"><i class="fas fa-leaf"></i> Go Green</a>
+            <a href="volunteer.html" class="btn btn-ghost btn-lg"><i class="fas fa-hand-raised"></i> Get Involved</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="swiper-slide">
+      <div class="hero-slide">
+        <div class="hero-slide-bg" style="background-image:url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1920&fit=crop&q=80')"></div>
+        <div class="hero-slide-overlay"></div>
+        <div class="hero-slide-content">
+          <div class="hero-badge"><div class="hero-badge-dot"></div> Global Reach • 80+ Countries</div>
+          <h1 class="hero-title">Together<br>We <span class="hl-purple">Rise.</span></h1>
+          <p class="hero-subtitle">200 active programs across food security, environment, children welfare, and community development — in 80+ countries worldwide.</p>
+          <div class="hero-btns">
+            <a href="programs.html" class="btn btn-primary btn-lg"><i class="fas fa-globe"></i> View Programs</a>
+            <a href="volunteer.html" class="btn btn-ghost btn-lg"><i class="fas fa-users"></i> Volunteer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-pagination"></div>
+</div>
+
+<!-- ════ TICKER ════ -->
+<div class="ticker">
+  <div class="container">
+    <div class="ticker-inner">
+      <div class="ticker-label"><i class="fas fa-bolt"></i> LIVE</div>
+      <div class="ticker-track">
+        <div class="ticker-content">
+          <span class="ticker-item"><span class="ticker-dot"></span> 1,200 meals served today in rural Maharashtra</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> Medical camp active in Rajasthan — 340 patients treated</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> ₹50 Lakh raised in July donation drive</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> Tree Plantation Drive — 500 volunteers joined</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> Volunteer Registration Open • 250 spots remaining</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> 80 new students enrolled this week</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> 1,200 meals served today in rural Maharashtra</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> Medical camp active in Rajasthan — 340 patients treated</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> ₹50 Lakh raised in July donation drive</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> Tree Plantation Drive — 500 volunteers joined</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> Volunteer Registration Open • 250 spots remaining</span>
+          <span class="ticker-item"><span class="ticker-dot"></span> 80 new students enrolled this week</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ STATS STRIP ════ -->
+<section class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card reveal st1">
+        <div class="stat-icon red"><i class="fas fa-users"></i></div>
+        <div class="stat-num" data-counter data-target="2500000" data-suffix="+">0</div>
+        <div class="stat-label">Lives Impacted</div>
+      </div>
+      <div class="stat-card reveal st2">
+        <div class="stat-icon cyan"><i class="fas fa-hand-holding-heart"></i></div>
+        <div class="stat-num" data-counter data-target="200" data-suffix="+">0</div>
+        <div class="stat-label">Active Programs</div>
+      </div>
+      <div class="stat-card reveal st3">
+        <div class="stat-icon purple"><i class="fas fa-rupee-sign"></i></div>
+        <div class="stat-num" data-counter data-target="120" data-suffix="Cr+" data-prefix="₹">0</div>
+        <div class="stat-label">Funds Raised</div>
+      </div>
+      <div class="stat-card reveal st4">
+        <div class="stat-icon green"><i class="fas fa-globe"></i></div>
+        <div class="stat-num" data-counter data-target="80" data-suffix="+">0</div>
+        <div class="stat-label">Countries Served</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ACTIVE CAMPAIGNS ════ -->
+<section class="section" id="programs">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-bolt"></i> Happening Now</div>
+      <h2 class="section-title">Our <span>Active Campaigns</span></h2>
+      <p class="section-desc">These programs are live right now and need your support to reach more lives. Every contribution makes a direct difference.</p>
+    </div>
+    <div class="campaigns-grid">
+
+      <div class="campaign-card reveal st1">
+        <div class="campaign-thumb">
+          <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=85" alt="Hunger Relief" loading="lazy"/>
+          <span class="campaign-cat">Food Aid</span>
+          <span class="campaign-badge active"><i class="fas fa-circle" style="font-size:.5rem"></i> Active</span>
+        </div>
+        <div class="campaign-body">
+          <h3 class="campaign-title">Hunger Relief — Maharashtra</h3>
+          <p class="campaign-desc">Providing nutritious daily meals and food ration kits to 5,000 families across Pune District. Target: 5,000 Meals • 3,760 Done.</p>
+          <div class="campaign-stats-row">
+            <span class="c-stat"><i class="fas fa-map-marker-alt"></i> Pune District</span>
+            <span class="c-stat"><i class="fas fa-user-friends"></i> 48 Volunteers</span>
+          </div>
+          <div class="campaign-progress">
+            <div class="campaign-prog-header">
+              <span class="campaign-prog-raised">₹5,50,000 raised</span>
+              <span class="campaign-prog-goal">Goal: ₹8,00,000</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="69"></div></div>
+          </div>
+          <div class="campaign-meta">
+            <span class="campaign-donors"><i class="fas fa-users"></i> 3,842 donors</span>
+            <a href="donate.html" class="btn btn-primary btn-sm"><i class="fas fa-heart"></i> Donate Now</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="campaign-card reveal st2">
+        <div class="campaign-thumb">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&auto=format&fit=crop&q=85" alt="Education Fund" loading="lazy"/>
+          <span class="campaign-cat">Education</span>
+          <span class="campaign-badge active"><i class="fas fa-circle" style="font-size:.5rem"></i> Active</span>
+        </div>
+        <div class="campaign-body">
+          <h3 class="campaign-title">Scholarship Fund — Rural Schools</h3>
+          <p class="campaign-desc">Girls Education • STEM Access — Merit-based scholarships for underprivileged students in 12 schools across Rajasthan & UP.</p>
+          <div class="campaign-stats-row">
+            <span class="c-stat"><i class="fas fa-map-marker-alt"></i> Rajasthan & UP</span>
+            <span class="c-stat"><i class="fas fa-school"></i> 12 Schools</span>
+          </div>
+          <div class="campaign-progress">
+            <div class="campaign-prog-header">
+              <span class="campaign-prog-raised">₹14,00,000 raised</span>
+              <span class="campaign-prog-goal">Goal: ₹25,00,000</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="56"></div></div>
+          </div>
+          <div class="campaign-meta">
+            <span class="campaign-donors"><i class="fas fa-users"></i> 2,107 donors</span>
+            <a href="donate.html" class="btn btn-primary btn-sm"><i class="fas fa-graduation-cap"></i> Fund Education</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="campaign-card reveal st3">
+        <div class="campaign-thumb">
+          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&auto=format&fit=crop&q=85" alt="Healthcare Camp" loading="lazy"/>
+          <span class="campaign-cat">Healthcare</span>
+          <span class="campaign-badge deadline"><i class="fas fa-clock" style="font-size:.6rem"></i> Upcoming</span>
+        </div>
+        <div class="campaign-body">
+          <h3 class="campaign-title">Free Medical Camp — Jharkhand</h3>
+          <p class="campaign-desc">500 Patients • Free Medicines — A 3-day free medical camp across 3 districts of Jharkhand. Dates: June 1–3, 2026.</p>
+          <div class="campaign-stats-row">
+            <span class="c-stat"><i class="fas fa-map-marker-alt"></i> 3 Districts</span>
+            <span class="c-stat"><i class="fas fa-calendar"></i> June 1–3, 2026</span>
+          </div>
+          <div class="campaign-progress">
+            <div class="campaign-prog-header">
+              <span class="campaign-prog-raised">₹6,80,000 raised</span>
+              <span class="campaign-prog-goal">Goal: ₹12,00,000</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="57"></div></div>
+          </div>
+          <div class="campaign-meta">
+            <span class="campaign-donors"><i class="fas fa-users"></i> 1,594 donors</span>
+            <a href="donate.html" class="btn btn-primary btn-sm"><i class="fas fa-stethoscope"></i> Support Healthcare</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="text-center mt-24">
+      <a href="donate.html" class="btn btn-outline btn-lg"><i class="fas fa-th-list"></i> View All Campaigns</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOCUS AREAS / CAUSES ════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-layer-group"></i> Our Focus Areas</div>
+      <h2 class="section-title">Causes We <span class="cyan">Champion</span></h2>
+      <p class="section-desc">Six pillars of change — every program we run is rooted in one of these core areas of human dignity and development.</p>
+    </div>
+    <div class="causes-grid">
+
+      <div class="cause-card-full reveal st1">
+        <div class="cause-full-thumb">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=85" alt="Education" loading="lazy"/>
+          <div class="cause-full-overlay"></div>
+          <div class="cause-full-icon" style="background:rgba(6,182,212,.9)"><i class="fas fa-graduation-cap"></i></div>
+        </div>
+        <div class="cause-full-body">
+          <div class="cause-full-title">Education</div>
+          <p class="cause-full-desc">Scholarships, school construction, digital classrooms</p>
+          <a href="donate.html" class="cause-cta">Support Now <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="cause-card-full reveal st2">
+        <div class="cause-full-thumb">
+          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&auto=format&fit=crop&q=85" alt="Healthcare" loading="lazy"/>
+          <div class="cause-full-overlay"></div>
+          <div class="cause-full-icon" style="background:rgba(230,57,70,.9)"><i class="fas fa-stethoscope"></i></div>
+        </div>
+        <div class="cause-full-body">
+          <div class="cause-full-title">Healthcare</div>
+          <p class="cause-full-desc">Mobile clinics, maternal health, rural hospitals</p>
+          <a href="donate.html" class="cause-cta">Fund Health <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="cause-card-full reveal st3">
+        <div class="cause-full-thumb">
+          <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=500&auto=format&fit=crop&q=85" alt="Food" loading="lazy"/>
+          <div class="cause-full-overlay"></div>
+          <div class="cause-full-icon" style="background:rgba(249,115,22,.9)"><i class="fas fa-bowl-food"></i></div>
+        </div>
+        <div class="cause-full-body">
+          <div class="cause-full-title">Food</div>
+          <p class="cause-full-desc">Daily meal programs, anganwadi support, food banks</p>
+          <a href="donate.html" class="cause-cta">Feed Hope <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="cause-card-full reveal st4">
+        <div class="cause-full-thumb">
+          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&auto=format&fit=crop&q=85" alt="Environment" loading="lazy"/>
+          <div class="cause-full-overlay"></div>
+          <div class="cause-full-icon" style="background:rgba(34,197,94,.9)"><i class="fas fa-leaf"></i></div>
+        </div>
+        <div class="cause-full-body">
+          <div class="cause-full-title">Environment</div>
+          <p class="cause-full-desc">Tree planting, clean energy, ocean conservation</p>
+          <a href="donate.html" class="cause-cta">Go Green <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="cause-card-full reveal st5">
+        <div class="cause-full-thumb">
+          <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=500&auto=format&fit=crop&q=85" alt="Children" loading="lazy"/>
+          <div class="cause-full-overlay"></div>
+          <div class="cause-full-icon" style="background:rgba(168,85,247,.9)"><i class="fas fa-child"></i></div>
+        </div>
+        <div class="cause-full-body">
+          <div class="cause-full-title">Children</div>
+          <p class="cause-full-desc">Safe homes, child protection, early childhood development</p>
+          <a href="donate.html" class="cause-cta">Protect Kids <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="cause-card-full reveal st6">
+        <div class="cause-full-thumb">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&auto=format&fit=crop&q=85" alt="Empowerment" loading="lazy"/>
+          <div class="cause-full-overlay"></div>
+          <div class="cause-full-icon" style="background:rgba(234,179,8,.9)"><i class="fas fa-venus"></i></div>
+        </div>
+        <div class="cause-full-body">
+          <div class="cause-full-title">Empowerment</div>
+          <p class="cause-full-desc">Skills training, microfinance, leadership programs</p>
+          <a href="donate.html" class="cause-cta">Empower Her <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ DONOR LEADERBOARD ════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-trophy"></i> Donor Recognition</div>
+      <h2 class="section-title">Our <span>Champions</span></h2>
+      <p class="section-desc">Top Donors & Impact — Celebrating the generous hearts driving real change every day.</p>
+    </div>
+    <div class="leaderboard-layout">
+      <div class="leaderboard-table-wrap reveal-left">
+        <div class="lb-header">
+          <div class="lb-header-title"><i class="fas fa-list-ol" style="color:var(--primary);margin-right:8px"></i> Donor Rankings</div>
+          <div class="lb-sort">
+            <button class="lb-sort-btn active">Monthly</button>
+            <button class="lb-sort-btn">All-Time</button>
+          </div>
+        </div>
+        <table class="lb-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Donor</th>
+              <th>Level</th>
+              <th>Donated</th>
+              <th>Trend</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="lb-rank gold">🥇 1</div></td>
+              <td>
+                <div class="lb-donor-cell">
+                  <div class="lb-initial-avatar" style="background:linear-gradient(135deg,#a855f7,#7c3aed)">AR</div>
+                  <div>
+                    <div class="lb-name">Ananya R.</div>
+                    <div class="lb-location">Mumbai</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="lb-tier platinum">Platinum</span></td>
+              <td><div class="lb-amount">₹4.8L</div></td>
+              <td><span class="lb-trend up">▲ +3</span></td>
+            </tr>
+            <tr>
+              <td><div class="lb-rank silver">🥈 2</div></td>
+              <td>
+                <div class="lb-donor-cell">
+                  <div class="lb-initial-avatar" style="background:linear-gradient(135deg,#e63946,#c1121f)">RK</div>
+                  <div>
+                    <div class="lb-name">Rajiv K.</div>
+                    <div class="lb-location">Bengaluru</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="lb-tier platinum">Platinum</span></td>
+              <td><div class="lb-amount">₹3.2L</div></td>
+              <td><span class="lb-trend neutral">— 0</span></td>
+            </tr>
+            <tr>
+              <td><div class="lb-rank bronze">🥉 3</div></td>
+              <td>
+                <div class="lb-donor-cell">
+                  <div class="lb-initial-avatar" style="background:linear-gradient(135deg,#06b6d4,#0891b2)">SP</div>
+                  <div>
+                    <div class="lb-name">Sunita P.</div>
+                    <div class="lb-location">Delhi</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="lb-tier gold-t">Gold</span></td>
+              <td><div class="lb-amount">₹2.9L</div></td>
+              <td><span class="lb-trend up">▲ +1</span></td>
+            </tr>
+            <tr>
+              <td><div class="lb-rank other">4</div></td>
+              <td>
+                <div class="lb-donor-cell">
+                  <div class="lb-initial-avatar" style="background:linear-gradient(135deg,#f97316,#ea580c)">VT</div>
+                  <div>
+                    <div class="lb-name">Vikram T.</div>
+                    <div class="lb-location">Pune</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="lb-tier gold-t">Gold</span></td>
+              <td><div class="lb-amount">₹2.1L</div></td>
+              <td><span class="lb-trend down">▼ -1</span></td>
+            </tr>
+            <tr>
+              <td><div class="lb-rank other">5</div></td>
+              <td>
+                <div class="lb-donor-cell">
+                  <div class="lb-initial-avatar" style="background:linear-gradient(135deg,#22c55e,#16a34a)">MS</div>
+                  <div>
+                    <div class="lb-name">Meera S.</div>
+                    <div class="lb-location">Chennai</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="lb-tier silver-t">Silver</span></td>
+              <td><div class="lb-amount">₹1.6L</div></td>
+              <td><span class="lb-trend up">▲ +5</span></td>
+            </tr>
+            <tr>
+              <td><div class="lb-rank other">6</div></td>
+              <td>
+                <div class="lb-donor-cell">
+                  <div class="lb-initial-avatar" style="background:linear-gradient(135deg,#eab308,#ca8a04)">AJ</div>
+                  <div>
+                    <div class="lb-name">Arjun J.</div>
+                    <div class="lb-location">Hyderabad</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="lb-tier silver-t">Silver</span></td>
+              <td><div class="lb-amount">₹1.2L</div></td>
+              <td><span class="lb-trend neutral">— 0</span></td>
+            </tr>
+            <tr>
+              <td><div class="lb-rank other">7</div></td>
+              <td>
+                <div class="lb-donor-cell">
+                  <div class="lb-initial-avatar" style="background:linear-gradient(135deg,#94a3b8,#64748b)">NB</div>
+                  <div>
+                    <div class="lb-name">Neha B.</div>
+                    <div class="lb-location">Kolkata</div>
+                  </div>
+                </div>
+              </td>
+              <td><span class="lb-tier silver-t">Silver</span></td>
+              <td><div class="lb-amount">₹98K</div></td>
+              <td><span class="lb-trend down">▼ -1</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tier-card reveal-right">
+        <div class="tier-card-header">
+          <h3><i class="fas fa-crown" style="margin-right:8px"></i> Donor Level Breakdown</h3>
+          <p>Join our community of change-makers</p>
+        </div>
+        <div class="tier-list">
+          <div class="tier-item">
+            <div class="tier-icon" style="background:rgba(230,57,70,.12);border:1px solid rgba(230,57,70,.25)">🏅</div>
+            <div class="tier-info">
+              <div class="tier-name" style="color:var(--primary)">Champion</div>
+              <div class="tier-range">₹5,00,000+</div>
+            </div>
+            <div class="tier-count">8 donors</div>
+          </div>
+          <div class="tier-item">
+            <div class="tier-icon" style="background:rgba(168,85,247,.12);border:1px solid rgba(168,85,247,.25)">💎</div>
+            <div class="tier-info">
+              <div class="tier-name" style="color:var(--purple)">Platinum</div>
+              <div class="tier-range">₹2,00,000+</div>
+            </div>
+            <div class="tier-count">42 donors</div>
+          </div>
+          <div class="tier-item">
+            <div class="tier-icon" style="background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.25)">🏆</div>
+            <div class="tier-info">
+              <div class="tier-name" style="color:var(--yellow)">Gold</div>
+              <div class="tier-range">₹1,00,000+</div>
+            </div>
+            <div class="tier-count">180 donors</div>
+          </div>
+          <div class="tier-item">
+            <div class="tier-icon" style="background:rgba(148,163,184,.12);border:1px solid rgba(148,163,184,.25)">🥈</div>
+            <div class="tier-info">
+              <div class="tier-name" style="color:#94a3b8">Silver</div>
+              <div class="tier-range">₹25,000+</div>
+            </div>
+            <div class="tier-count">620 donors</div>
+          </div>
+          <div class="tier-item">
+            <div class="tier-icon" style="background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25)">⭐</div>
+            <div class="tier-info">
+              <div class="tier-name" style="color:var(--green)">Friend</div>
+              <div class="tier-range">Any donation</div>
+            </div>
+            <div class="tier-count">12K+ donors</div>
+          </div>
+          <div class="tier-item">
+            <div class="tier-icon" style="background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.25)">🤝</div>
+            <div class="tier-info">
+              <div class="tier-name" style="color:var(--cyan)">Volunteer</div>
+              <div class="tier-range">Time & service</div>
+            </div>
+            <div class="tier-count">5K+ active</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ABOUT SECTION ════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal-left">
+        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=700&auto=format&fit=crop&q=85" alt="HopeRise Foundation" loading="lazy"/>
+        <div class="about-badge">
+          <div class="about-badge-num">12+</div>
+          <div class="about-badge-text">Years of<br>Service</div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="section-tag" style="text-align:left;display:inline-flex"><i class="fas fa-info-circle"></i> Who We Are</div>
+        <h2 class="section-title" style="text-align:left">A Foundation Built on<br><span>Compassion</span></h2>
+        <p style="color:var(--text-sec);line-height:1.8;margin-bottom:24px;">
+          Founded in 2014, HopeRise Foundation has grown from a small community kitchen into one of India's most trusted humanitarian organizations. We believe every person deserves dignity, opportunity, and hope.
+        </p>
+        <div class="about-achieve-grid">
+          <div class="about-achieve">
+            <div class="about-achieve-num">120K+</div>
+            <div class="about-achieve-label">Education Programs<br>children enrolled</div>
+          </div>
+          <div class="about-achieve">
+            <div class="about-achieve-num">50K+</div>
+            <div class="about-achieve-label">Healthcare Access<br>patients yearly</div>
+          </div>
+          <div class="about-achieve">
+            <div class="about-achieve-num">2M+</div>
+            <div class="about-achieve-label">Environment Action<br>trees planted</div>
+          </div>
+        </div>
+        <a href="about.html" class="btn btn-primary mt-24"><i class="fas fa-arrow-right"></i> Learn More About Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ APPROACH ════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-route"></i> Our Approach</div>
+      <h2 class="section-title">How We Create <span class="cyan">Lasting Impact</span></h2>
+      <p class="section-desc">Six pillars of action — a transparent, data-driven methodology ensuring every donation delivers measurable, lasting change.</p>
+    </div>
+    <div class="approach-grid">
+      <div class="approach-card c1 reveal st1">
+        <div class="approach-num">01</div>
+        <div class="approach-icon">🤝</div>
+        <div class="approach-title">Direct Community Aid</div>
+        <div class="approach-badge" style="color:var(--green)">100% Transparent</div>
+        <p class="approach-desc">All funds go directly to communities — zero bureaucratic waste, fully audited financial records published quarterly.</p>
+      </div>
+      <div class="approach-card c2 reveal st2">
+        <div class="approach-num">02</div>
+        <div class="approach-icon">📚</div>
+        <div class="approach-title">Education Access</div>
+        <div class="approach-badge" style="color:var(--cyan)">120K+ Students</div>
+        <p class="approach-desc">Scholarships, digital classrooms, and teacher training ensuring quality education reaches every child, every village.</p>
+      </div>
+      <div class="approach-card c3 reveal st3">
+        <div class="approach-num">03</div>
+        <div class="approach-icon">🏥</div>
+        <div class="approach-title">Healthcare for All</div>
+        <div class="approach-badge" style="color:var(--primary)">50K+ Patients/yr</div>
+        <p class="approach-desc">Mobile clinics, free surgeries, telemedicine — making healthcare accessible to the most remote communities in India.</p>
+      </div>
+      <div class="approach-card c4 reveal st4">
+        <div class="approach-num">04</div>
+        <div class="approach-icon">🌳</div>
+        <div class="approach-title">Environmental Action</div>
+        <div class="approach-badge" style="color:var(--green)">2M+ Trees Planted</div>
+        <p class="approach-desc">Reforestation, clean water projects, solar energy, and ocean conservation for a sustainable planet.</p>
+      </div>
+      <div class="approach-card c5 reveal st5">
+        <div class="approach-num">05</div>
+        <div class="approach-icon">🧒</div>
+        <div class="approach-title">Child Protection</div>
+        <div class="approach-badge" style="color:var(--purple)">Zero Tolerance</div>
+        <p class="approach-desc">Safe homes, counselling, nutrition programs, and legal advocacy protecting every child's right to safety and dignity.</p>
+      </div>
+      <div class="approach-card c6 reveal st6">
+        <div class="approach-num">06</div>
+        <div class="approach-icon">📊</div>
+        <div class="approach-title">Full Transparency</div>
+        <div class="approach-badge" style="color:var(--cyan)">Live Reports</div>
+        <p class="approach-desc">Real-time impact tracking, live donation dashboards, and quarterly audited reports — your trust is everything to us.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PARTNERS ════ -->
+<div class="partners-section">
+  <div class="container">
+    <p class="partners-label"><i class="fas fa-handshake" style="margin-right:8px;color:var(--primary)"></i> Our Trusted Partners & Supporters</p>
+    <div class="partners-track-wrap">
+      <div class="partners-track">
+        <div class="partner-logo"><i class="fas fa-hospital"></i> AIIMS Delhi</div>
+        <div class="partner-logo"><i class="fas fa-building"></i> Tata Trusts</div>
+        <div class="partner-logo"><i class="fas fa-globe"></i> UNICEF</div>
+        <div class="partner-logo"><i class="fas fa-globe"></i> WHO India</div>
+        <div class="partner-logo"><i class="fas fa-building"></i> Azim Premji Foundation</div>
+        <div class="partner-logo"><i class="fas fa-clinic-medical"></i> Apollo Hospitals</div>
+        <div class="partner-logo"><i class="fas fa-globe"></i> Bill & Melinda Gates Foundation</div>
+        <div class="partner-logo"><i class="fas fa-hospital"></i> Fortis Healthcare</div>
+        <div class="partner-logo"><i class="fas fa-building"></i> Infosys Foundation</div>
+        <div class="partner-logo"><i class="fas fa-globe"></i> USAID</div>
+        <div class="partner-logo"><i class="fas fa-hospital"></i> AIIMS Delhi</div>
+        <div class="partner-logo"><i class="fas fa-building"></i> Tata Trusts</div>
+        <div class="partner-logo"><i class="fas fa-globe"></i> UNICEF</div>
+        <div class="partner-logo"><i class="fas fa-globe"></i> WHO India</div>
+        <div class="partner-logo"><i class="fas fa-building"></i> Azim Premji Foundation</div>
+        <div class="partner-logo"><i class="fas fa-clinic-medical"></i> Apollo Hospitals</div>
+        <div class="partner-logo"><i class="fas fa-globe"></i> Bill & Melinda Gates Foundation</div>
+        <div class="partner-logo"><i class="fas fa-hospital"></i> Fortis Healthcare</div>
+        <div class="partner-logo"><i class="fas fa-building"></i> Infosys Foundation</div>
+        <div class="partner-logo"><i class="fas fa-globe"></i> USAID</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ VOLUNTEER TEAMS ════ -->
+<section class="section section-alt" id="volunteers">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-users"></i> Volunteer Teams</div>
+      <h2 class="section-title">Our <span class="purple">Change-Makers</span></h2>
+      <p class="section-desc">Featured Volunteer Teams — Over 5,000 active volunteers working across India and beyond.</p>
+    </div>
+    <div class="vol-grid">
+
+      <div class="vol-card reveal st1">
+        <div class="vol-thumb">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&auto=format&fit=crop&q=85" alt="Project Shiksha" loading="lazy"/>
+          <span class="vol-tag">Education</span>
+          <div class="vol-stats-bar">
+            <div class="vol-stat-mini"><i class="fas fa-users"></i> 42 Volunteers</div>
+            <div class="vol-stat-mini"><i class="fas fa-home"></i> 18 Villages</div>
+            <div class="vol-stat-mini"><i class="fas fa-child"></i> 3.2K Students</div>
+          </div>
+        </div>
+        <div class="vol-body">
+          <div class="vol-name">Project Shiksha</div>
+          <div class="vol-location"><i class="fas fa-tag"></i> Education Outreach Team</div>
+          <p class="vol-desc">Dedicated educators and social workers running mobile schools, digital literacy camps, and evening coaching centers across 18 villages.</p>
+          <div class="vol-roles">
+            <span class="vol-role">Teaching</span>
+            <span class="vol-role">Digital Literacy</span>
+            <span class="vol-role">Mobile Schools</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="vol-card reveal st2">
+        <div class="vol-thumb">
+          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&auto=format&fit=crop&q=85" alt="HealthBridge Team" loading="lazy"/>
+          <span class="vol-tag" style="background:rgba(230,57,70,.85)">Healthcare</span>
+          <div class="vol-stats-bar">
+            <div class="vol-stat-mini"><i class="fas fa-user-md"></i> 28 Medics</div>
+            <div class="vol-stat-mini"><i class="fas fa-map"></i> 6 Districts</div>
+            <div class="vol-stat-mini"><i class="fas fa-heartbeat"></i> 12K Patients</div>
+          </div>
+        </div>
+        <div class="vol-body">
+          <div class="vol-name">HealthBridge Team</div>
+          <div class="vol-location"><i class="fas fa-tag"></i> Medical Outreach Unit</div>
+          <p class="vol-desc">Doctors, nurses, and paramedics conducting free camps, distributing medicines, and running maternal care programs across 6 districts.</p>
+          <div class="vol-roles">
+            <span class="vol-role" style="background:rgba(230,57,70,.1);color:var(--primary);border-color:rgba(230,57,70,.2)">Free Camps</span>
+            <span class="vol-role" style="background:rgba(230,57,70,.1);color:var(--primary);border-color:rgba(230,57,70,.2)">Maternal Care</span>
+            <span class="vol-role" style="background:rgba(230,57,70,.1);color:var(--primary);border-color:rgba(230,57,70,.2)">Medicines</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="vol-card reveal st3">
+        <div class="vol-thumb">
+          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&auto=format&fit=crop&q=85" alt="GreenEarth Corps" loading="lazy"/>
+          <span class="vol-tag" style="background:rgba(34,197,94,.85)">Environment</span>
+          <div class="vol-stats-bar">
+            <div class="vol-stat-mini"><i class="fas fa-users"></i> 65 Members</div>
+            <div class="vol-stat-mini"><i class="fas fa-tree"></i> 200K Trees</div>
+            <div class="vol-stat-mini"><i class="fas fa-city"></i> 15 Cities</div>
+          </div>
+        </div>
+        <div class="vol-body">
+          <div class="vol-name">GreenEarth Corps</div>
+          <div class="vol-location"><i class="fas fa-tag"></i> Environmental Action Team</div>
+          <p class="vol-desc">Passionate eco-warriors leading plantation drives, river clean-ups, plastic collection, and climate awareness workshops across 15 cities.</p>
+          <div class="vol-roles">
+            <span class="vol-role" style="background:rgba(34,197,94,.1);color:var(--green);border-color:rgba(34,197,94,.2)">Plantation</span>
+            <span class="vol-role" style="background:rgba(34,197,94,.1);color:var(--green);border-color:rgba(34,197,94,.2)">River Clean-up</span>
+            <span class="vol-role" style="background:rgba(34,197,94,.1);color:var(--green);border-color:rgba(34,197,94,.2)">Awareness</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="text-center mt-24">
+      <a href="volunteer.html" class="btn btn-outline btn-lg"><i class="fas fa-hand-raised"></i> Join a Volunteer Team</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ NEWS / STORIES ════ -->
+<section class="section" id="news">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-newspaper"></i> Latest Stories</div>
+      <h2 class="section-title">News & <span>Impact Stories</span></h2>
+      <p class="section-desc">Real stories. Real change. See how your support is transforming communities across the world.</p>
+    </div>
+    <div class="blog-grid">
+
+      <div class="blog-card reveal st1">
+        <div class="blog-thumb">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=85" alt="Education Story" loading="lazy"/>
+        </div>
+        <div class="blog-meta-bar">
+          <span class="blog-cat">Education</span>
+          <div class="blog-date"><i class="fas fa-calendar-alt"></i> May 10, 2026 &nbsp;·&nbsp; 4 min read</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-title">80 Girls Receive Scholarships — A New Chapter Begins</div>
+          <p class="blog-excerpt">Our annual scholarship drive reaches a milestone — 80 first-generation learners get full funding for higher education across rural India.</p>
+          <a href="#" class="blog-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="blog-card reveal st2">
+        <div class="blog-thumb">
+          <img src="images/blog-water.webp" alt="Clean Water for 12 Villages in Rajasthan" loading="lazy"/>
+        </div>
+        <div class="blog-meta-bar">
+          <span class="blog-cat">Healthcare</span>
+          <div class="blog-date"><i class="fas fa-calendar-alt"></i> May 7, 2026 &nbsp;·&nbsp; 5 min read</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-title">Clean Water for 12 Villages in Rajasthan</div>
+          <p class="blog-excerpt">Our water purification project goes live — over 8,000 residents now have access to safe drinking water for the very first time.</p>
+          <a href="#" class="blog-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="blog-card reveal st3">
+        <div class="blog-thumb">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&auto=format&fit=crop&q=85" alt="Volunteer Story" loading="lazy"/>
+        </div>
+        <div class="blog-meta-bar">
+          <span class="blog-cat">Volunteers</span>
+          <div class="blog-date"><i class="fas fa-calendar-alt"></i> May 3, 2026 &nbsp;·&nbsp; 5 min read</div>
+        </div>
+        <div class="blog-body">
+          <div class="blog-title">Meet Priya: From Volunteer to Program Lead</div>
+          <p class="blog-excerpt">How a college student turned weekend volunteering into a full-time mission — and changed 400 lives in the process. Priya's inspiring story.</p>
+          <a href="#" class="blog-readmore">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ CTA SECTION ════ -->
+<section class="cta-section">
+  <div class="cta-bg" style="background-image:url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&fit=crop&q=80')"></div>
+  <div class="cta-overlay"></div>
+  <div class="container">
+    <div class="cta-content">
+      <div class="section-tag" style="margin-bottom:20px;background:rgba(230,57,70,.15);color:var(--primary);border-color:rgba(230,57,70,.3)">
+        <i class="fas fa-heart"></i> Every Rupee Counts
+      </div>
+      <h2 class="cta-title">Ready to Make a<br><span class="hl">Difference?</span></h2>
+      <p class="cta-desc">Join 12,000+ donors and 5,000+ volunteers already transforming lives through the HopeRise Foundation. Your action matters — start today.</p>
+      <div class="cta-btns">
+        <a href="donate.html" class="btn btn-primary btn-lg"><i class="fas fa-heart"></i> Donate Now</a>
+        <a href="about.html" class="btn btn-ghost btn-lg" style="border:1px solid rgba(255,255,255,.25)"><i class="fas fa-compass"></i> Our Mission</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ NEWSLETTER ════ -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-card">
+      <h2>Stay Connected With Our Impact</h2>
+      <p>Monthly impact reports, campaign updates, and stories of hope — delivered to your inbox.</p>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Your email address" required/>
+        <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+      </form>
+      <p style="font-size:.75rem;color:var(--text-muted);margin-top:12px;">No spam. Unsubscribe anytime. 80G & 12A certified NGO.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.webp" alt="HopeRise Foundation" style="height:36px;width:auto;"/>
+        </div>
+        <p>Transforming Lives, One Act at a Time. Registered NGO — 80G & 12A Certified. Founded 2014.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Our Programs</div>
+        <div class="footer-links">
+          <a href="programs.html" class="footer-link">Education</a>
+          <a href="programs.html" class="footer-link">Healthcare</a>
+          <a href="programs.html" class="footer-link">Food Relief</a>
+          <a href="programs.html" class="footer-link">Environment</a>
+          <a href="programs.html" class="footer-link">Child Welfare</a>
+          <a href="programs.html" class="footer-link">All Programs</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Get Involved</div>
+        <div class="footer-links">
+          <a href="donate.html" class="footer-link">Donate Now</a>
+          <a href="volunteer.html" class="footer-link">Volunteer</a>
+          <a href="#" class="footer-link">Partner With Us</a>
+          <a href="#" class="footer-link">Corporate CSR</a>
+          <a href="#contact" class="footer-link">Contact Us</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">About</div>
+        <div class="footer-links">
+          <a href="about.html" class="footer-link">Who We Are</a>
+          <a href="#news" class="footer-link">News & Stories</a>
+          <a href="#" class="footer-link">Annual Report</a>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Press & Media</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 HopeRise Foundation. All rights reserved. Registered NGO — 80G & 12A Certified.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll to Top -->
+<button class="scroll-top" id="scrollTopBtn" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<!-- Floating Donate FAB -->
+<a href="donate.html" class="donate-fab" id="donateFab" title="Donate Now">
+  <i class="fas fa-heart"></i>
+  <span>Donate Now</span>
+</a>
+
+<!-- Toast -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+new Swiper('#heroSwiper', {
+  loop: true,
+  autoplay: { delay: 5500, disableOnInteraction: false },
+  speed: 900,
+  effect: 'fade',
+  fadeEffect: { crossFade: true },
+  pagination: { el: '.swiper-pagination', clickable: true },
+  navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+});
+
+document.querySelectorAll('.lb-sort-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.lb-sort-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

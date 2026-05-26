@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Programs — HopeRise Foundation</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <style>
+    /* ─── PROGRAMS PAGE SPECIFIC ─── */
+    .programs-hero {
+      position: relative; min-height: 420px;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+      padding: calc(var(--nav-h) + 80px) 0 80px;
+    }
+    .programs-hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1920&fit=crop&q=80') center/cover no-repeat;
+      filter: brightness(.35) saturate(1.2);
+      transform: scale(1.04);
+    }
+    .programs-hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(10,10,15,.85) 0%, rgba(230,57,70,.15) 50%, rgba(10,10,15,.85) 100%);
+    }
+    .programs-hero-content { position: relative; z-index: 2; }
+    .programs-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900;
+      line-height: 1.1; letter-spacing: -2px; margin-bottom: 18px;
+    }
+    .programs-hero-title .word-our { color: var(--text); }
+    .programs-hero-title .word-programs { color: var(--primary); }
+    .breadcrumb-bar {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: .85rem; color: var(--text-sec);
+    }
+    .breadcrumb-bar a { color: var(--text-sec); transition: color var(--transition); }
+    .breadcrumb-bar a:hover { color: var(--primary); }
+    .breadcrumb-sep { color: var(--primary); font-size: .7rem; }
+    .breadcrumb-current { color: var(--primary); font-weight: 700; }
+    .breadcrumb-icon {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(230,57,70,.15); border: 1px solid rgba(230,57,70,.3);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: .5rem; color: var(--primary);
+    }
+
+    /* ─── STATS STRIP ─── */
+    .prog-stats-strip {
+      background: linear-gradient(90deg, #1565c0 0%, #1976d2 50%, #0288d1 100%);
+      padding: 40px 0;
+    }
+    .prog-stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; }
+    .prog-stat-item {
+      text-align: center; padding: 16px 20px;
+      border-right: 1px solid rgba(255,255,255,.15);
+      position: relative;
+    }
+    .prog-stat-item:last-child { border-right: none; }
+    .prog-stat-num {
+      font-family: var(--font-display); font-size: 2.4rem; font-weight: 900;
+      color: #fff; line-height: 1; margin-bottom: 6px; letter-spacing: -1px;
+    }
+    .prog-stat-label {
+      font-size: .78rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255,255,255,.75);
+    }
+
+    /* ─── FILTER TABS ─── */
+    .filter-section { padding: 48px 0 32px; }
+    .filter-bar {
+      display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+    }
+    .filter-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 22px; border-radius: var(--radius-full);
+      border: 1.5px solid var(--border); background: rgba(255,255,255,.04);
+      color: var(--text-sec); font-family: var(--font-body);
+      font-size: .88rem; font-weight: 600; cursor: pointer;
+      transition: all var(--transition);
+    }
+    .filter-btn i { font-size: .85rem; }
+    .filter-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(230,57,70,.08); }
+    .filter-btn.active {
+      background: var(--primary); color: #fff; border-color: var(--primary);
+      box-shadow: 0 4px 16px var(--primary-glow);
+    }
+
+    /* ─── PROGRAM CARDS ─── */
+    .prog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .prog-card {
+      background: var(--bg-card); border-radius: var(--radius-lg);
+      border: 1px solid var(--border); overflow: hidden;
+      transition: all var(--transition); position: relative;
+      display: none; /* hidden by default, shown by filter */
+    }
+    .prog-card.show { display: flex; flex-direction: column; }
+    .prog-card:hover { transform: translateY(-7px); border-color: rgba(230,57,70,.3); box-shadow: 0 20px 50px rgba(0,0,0,.45); }
+    .prog-thumb { position: relative; overflow: hidden; flex-shrink: 0; }
+    .prog-thumb img { width: 100%; height: 210px; object-fit: cover; transition: transform .5s ease; display: block; }
+    .prog-card:hover .prog-thumb img { transform: scale(1.07); }
+    .prog-status {
+      position: absolute; top: 14px; right: 14px;
+      font-size: .7rem; font-weight: 700; padding: 4px 12px;
+      border-radius: var(--radius-full); letter-spacing: .5px;
+      backdrop-filter: blur(8px);
+    }
+    .prog-status.active { background: rgba(34,197,94,.85); color: #fff; }
+    .prog-status.open { background: rgba(6,182,212,.85); color: #fff; }
+    .prog-status.upcoming { background: rgba(234,179,8,.85); color: #000; }
+    .prog-cat-badge {
+      position: absolute; top: 14px; left: 14px;
+      font-size: .7rem; font-weight: 700; padding: 4px 12px;
+      border-radius: var(--radius-full); background: rgba(10,10,15,.75);
+      backdrop-filter: blur(8px); color: #fff; letter-spacing: .5px;
+    }
+    .prog-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+    .prog-name {
+      font-family: var(--font-display); font-size: .95rem; font-weight: 700;
+      margin-bottom: 8px; line-height: 1.4; letter-spacing: -.2px;
+    }
+    .prog-meta-row {
+      display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 14px;
+    }
+    .prog-meta { font-size: .75rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+    .prog-meta i { color: var(--cyan); font-size: .65rem; }
+    .prog-progress { margin-bottom: 14px; }
+    .prog-prog-header { display: flex; justify-content: space-between; font-size: .78rem; font-weight: 700; margin-bottom: 7px; }
+    .prog-prog-raised { color: var(--primary); }
+    .prog-prog-goal { color: var(--text-muted); }
+    .prog-actions { display: flex; gap: 10px; margin-top: auto; padding-top: 14px; }
+    .prog-actions .btn { flex: 1; justify-content: center; font-size: .83rem; }
+    .prog-info-btn {
+      width: 42px; height: 42px; border-radius: var(--radius-sm);
+      background: rgba(255,255,255,.05); border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); cursor: pointer; transition: all var(--transition);
+      flex-shrink: 0;
+    }
+    .prog-info-btn:hover { border-color: var(--cyan); color: var(--cyan); }
+    @media(max-width:900px) { .prog-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:580px) { .prog-grid { grid-template-columns: 1fr; } }
+    @media(max-width:768px) { .prog-stats-grid { grid-template-columns: repeat(2,1fr); } .prog-stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.15); } .prog-stat-item:nth-child(2), .prog-stat-item:last-child { border-bottom: none; } }
+
+    /* ─── FOCUS AREAS SPOTLIGHT ─── */
+    .focus-spotlight { display: grid; grid-template-columns: repeat(5,1fr); gap: 18px; }
+    .focus-spot-card {
+      border-radius: var(--radius-lg); border: 1px solid var(--border);
+      overflow: hidden; transition: all var(--transition); cursor: pointer;
+      position: relative;
+    }
+    .focus-spot-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+    .focus-spot-thumb { position: relative; overflow: hidden; }
+    .focus-spot-thumb img { width: 100%; height: 160px; object-fit: cover; transition: transform .5s ease; display: block; }
+    .focus-spot-card:hover .focus-spot-thumb img { transform: scale(1.08); }
+    .focus-spot-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(0deg, rgba(10,10,15,.85) 0%, rgba(10,10,15,.2) 60%, transparent 100%);
+    }
+    .focus-spot-icon {
+      position: absolute; top: 12px; left: 12px;
+      width: 36px; height: 36px; border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem; color: #fff;
+    }
+    .focus-spot-body { padding: 14px; background: var(--bg-card); }
+    .focus-spot-title { font-family: var(--font-display); font-size: .82rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -.2px; }
+    .focus-spot-stats { display: flex; flex-direction: column; gap: 4px; }
+    .focus-spot-stat { font-size: .72rem; color: var(--text-sec); display: flex; justify-content: space-between; }
+    .focus-spot-stat-val { font-weight: 700; color: var(--text); }
+    @media(max-width:1100px) { .focus-spotlight { grid-template-columns: repeat(3,1fr); } }
+    @media(max-width:768px) { .focus-spotlight { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:480px) { .focus-spotlight { grid-template-columns: 1fr; } }
+
+    /* ─── HOW TO DONATE ─── */
+    .how-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; position: relative; }
+    .how-grid::before {
+      content: ''; position: absolute; top: 36px; left: 10%; right: 10%;
+      height: 2px; background: linear-gradient(90deg, var(--primary), var(--purple));
+      z-index: 0;
+    }
+    .how-step { text-align: center; position: relative; z-index: 1; }
+    .how-num {
+      width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 16px;
+      background: linear-gradient(135deg, var(--primary), var(--purple));
+      color: #fff; font-family: var(--font-display); font-size: 1.4rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px var(--primary-glow);
+    }
+    .how-title { font-family: var(--font-display); font-size: .9rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -.2px; }
+    .how-desc { font-size: .83rem; color: var(--text-sec); line-height: 1.6; }
+    @media(max-width:768px) { .how-grid { grid-template-columns: repeat(2,1fr); } .how-grid::before { display: none; } }
+
+    /* ─── COMMITMENT CARDS ─── */
+    .commit-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .commit-card {
+      background: var(--bg-card); border-radius: var(--radius-lg);
+      border: 1px solid var(--border); padding: 26px; transition: all var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .commit-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--primary); opacity: 0; transition: opacity var(--transition);
+    }
+    .commit-card:hover::before { opacity: 1; }
+    .commit-card:hover { border-color: rgba(230,57,70,.3); transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,.4); }
+    .commit-icon { font-size: 1.8rem; margin-bottom: 14px; }
+    .commit-title { font-family: var(--font-display); font-size: .9rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -.2px; }
+    .commit-text { font-size: .83rem; color: var(--text-sec); line-height: 1.65; }
+    @media(max-width:900px) { .commit-grid { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:580px) { .commit-grid { grid-template-columns: 1fr; } }
+
+    /* ─── FUND ALLOCATION ─── */
+    .fund-alloc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .fund-alloc-bars { display: flex; flex-direction: column; gap: 20px; }
+    .fund-bar-item {}
+    .fund-bar-label { display: flex; justify-content: space-between; font-size: .88rem; font-weight: 600; margin-bottom: 8px; }
+    .fund-bar-pct { font-family: var(--font-display); color: var(--primary); font-weight: 800; }
+    .fund-bar-track { height: 10px; background: rgba(255,255,255,.06); border-radius: var(--radius-full); overflow: hidden; }
+    .fund-bar-fill { height: 100%; border-radius: var(--radius-full); transition: width 1.2s ease; }
+    .fund-visual { }
+    .fund-visual-title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 900; margin-bottom: 10px; letter-spacing: -1px; }
+    .fund-visual-sub { font-size: .88rem; color: var(--text-sec); line-height: 1.7; margin-bottom: 24px; }
+    .fund-highlight { display: flex; gap: 24px; flex-wrap: wrap; }
+    .fund-hl-item { }
+    .fund-hl-num { font-family: var(--font-display); font-size: 2rem; font-weight: 900; color: var(--primary); line-height: 1; }
+    .fund-hl-label { font-size: .75rem; color: var(--text-sec); margin-top: 4px; }
+    @media(max-width:900px) { .fund-alloc-grid { grid-template-columns: 1fr; gap: 32px; } }
+  </style>
+</head>
+<body>
+
+<!-- ════ NAVBAR ════ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.webp" alt="HopeRise Foundation"/>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="programs.html" class="nav-link active">Our Programs</a></li>
+      <li><a href="volunteer.html" class="nav-link">Volunteers</a></li>
+      <li><a href="index.html#news" class="nav-link">News</a></li>
+      <li><a href="about.html" class="nav-link">About Us</a></li>
+      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-ghost btn-sm"><i class="fas fa-sign-in-alt"></i> Login</a>
+      <a href="donate.html" class="btn btn-primary btn-sm"><i class="fas fa-heart"></i> Donate Now</a>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="programs.html" class="nav-link">Our Programs</a>
+  <a href="volunteer.html" class="nav-link">Volunteers</a>
+  <a href="index.html#news" class="nav-link">News</a>
+  <a href="about.html" class="nav-link">About Us</a>
+  <a href="index.html#contact" class="nav-link">Contact</a>
+  <div class="nav-actions" style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">
+    <a href="login.html" class="btn btn-ghost w-full" style="justify-content:center"><i class="fas fa-sign-in-alt"></i> Login</a>
+    <a href="donate.html" class="btn btn-primary w-full" style="justify-content:center"><i class="fas fa-heart"></i> Donate Now</a>
+  </div>
+</div>
+
+<!-- ════ HERO ════ -->
+<div class="programs-hero">
+  <div class="programs-hero-bg"></div>
+  <div class="programs-hero-overlay"></div>
+  <div class="programs-hero-content container">
+    <div class="breadcrumb-bar" style="margin-bottom:20px">
+      <div class="breadcrumb-icon"><i class="fas fa-circle"></i></div>
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep"><i class="fas fa-chevron-right"></i></span>
+      <span class="breadcrumb-current">Programs</span>
+    </div>
+    <h1 class="programs-hero-title">
+      <span class="word-our">Our </span><span class="word-programs">Programs</span>
+    </h1>
+    <p style="font-size:1.05rem;color:var(--text-sec);max-width:560px;margin:0 auto;line-height:1.7;">
+      200+ active programs across education, healthcare, food security, environment, and child welfare — transforming lives in 80+ countries.
+    </p>
+  </div>
+</div>
+
+<!-- ════ STATS STRIP ════ -->
+<div class="prog-stats-strip">
+  <div class="container">
+    <div class="prog-stats-grid">
+      <div class="prog-stat-item">
+        <div class="prog-stat-num" data-counter data-target="200" data-suffix="+">0</div>
+        <div class="prog-stat-label">Active Programs</div>
+      </div>
+      <div class="prog-stat-item">
+        <div class="prog-stat-num" data-counter data-target="120" data-suffix="Cr+" data-prefix="₹">0</div>
+        <div class="prog-stat-label">Funds Raised</div>
+      </div>
+      <div class="prog-stat-item">
+        <div class="prog-stat-num" data-counter data-target="2500000" data-suffix="+">0</div>
+        <div class="prog-stat-label">Lives Impacted</div>
+      </div>
+      <div class="prog-stat-item">
+        <div class="prog-stat-num" data-counter data-target="80" data-suffix="+">0</div>
+        <div class="prog-stat-label">Countries Served</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ FILTER TABS ════ -->
+<div class="filter-section">
+  <div class="container">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all" onclick="filterPrograms('all', this)"><i class="fas fa-border-all"></i> All</button>
+      <button class="filter-btn" data-filter="education" onclick="filterPrograms('education', this)"><i class="fas fa-graduation-cap"></i> Education</button>
+      <button class="filter-btn" data-filter="healthcare" onclick="filterPrograms('healthcare', this)"><i class="fas fa-heartbeat"></i> Healthcare</button>
+      <button class="filter-btn" data-filter="food" onclick="filterPrograms('food', this)"><i class="fas fa-utensils"></i> Food Relief</button>
+      <button class="filter-btn" data-filter="environment" onclick="filterPrograms('environment', this)"><i class="fas fa-seedling"></i> Environment</button>
+      <button class="filter-btn" data-filter="children" onclick="filterPrograms('children', this)"><i class="fas fa-child"></i> Child Welfare</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ PROGRAM CARDS ════ -->
+<section style="padding-bottom:clamp(64px,9vw,110px)">
+  <div class="container">
+    <div class="prog-grid" id="progGrid">
+
+      <!-- Education 1 -->
+      <div class="prog-card show" data-cat="education">
+        <div class="prog-thumb">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&auto=format&fit=crop&q=85" alt="Scholarship Drive" loading="lazy"/>
+          <span class="prog-cat-badge"><i class="fas fa-graduation-cap"></i> Education</span>
+          <span class="prog-status open">Open</span>
+        </div>
+        <div class="prog-body">
+          <div class="prog-name">Annual Scholarship Drive 2026</div>
+          <div class="prog-meta-row">
+            <span class="prog-meta"><i class="fas fa-map-marker-alt"></i> Rajasthan & UP</span>
+            <span class="prog-meta"><i class="fas fa-users"></i> 5,000 Beneficiaries</span>
+          </div>
+          <div class="prog-progress">
+            <div class="prog-prog-header">
+              <span class="prog-prog-raised">₹14,00,000 raised</span>
+              <span class="prog-prog-goal">Goal: ₹25,00,000</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="56"></div></div>
+          </div>
+          <div class="prog-actions">
+            <a href="donate.html" class="btn btn-primary">Donate Now</a>
+            <button class="prog-info-btn" title="More Info"><i class="fas fa-info"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Healthcare 1 -->
+      <div class="prog-card show" data-cat="healthcare">
+        <div class="prog-thumb">
+          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&auto=format&fit=crop&q=85" alt="Medical Camp" loading="lazy"/>
+          <span class="prog-cat-badge"><i class="fas fa-stethoscope"></i> Healthcare</span>
+          <span class="prog-status upcoming">Upcoming</span>
+        </div>
+        <div class="prog-body">
+          <div class="prog-name">Free Medical Camp — Jharkhand</div>
+          <div class="prog-meta-row">
+            <span class="prog-meta"><i class="fas fa-calendar"></i> June 1–3, 2026</span>
+            <span class="prog-meta"><i class="fas fa-map"></i> 3 Districts</span>
+          </div>
+          <div class="prog-progress">
+            <div class="prog-prog-header">
+              <span class="prog-prog-raised">₹6,80,000 raised</span>
+              <span class="prog-prog-goal">Goal: ₹12,00,000</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="57"></div></div>
+          </div>
+          <div class="prog-actions">
+            <a href="donate.html" class="btn btn-primary">Donate Now</a>
+            <button class="prog-info-btn" title="More Info"><i class="fas fa-info"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Food 1 -->
+      <div class="prog-card show" data-cat="food">
+        <div class="prog-thumb">
+          <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&auto=format&fit=crop&q=85" alt="Hunger Relief" loading="lazy"/>
+          <span class="prog-cat-badge"><i class="fas fa-bowl-food"></i> Food Relief</span>
+          <span class="prog-status active">Active</span>
+        </div>
+        <div class="prog-body">
+          <div class="prog-name">Hunger Relief Drive — Maharashtra</div>
+          <div class="prog-meta-row">
+            <span class="prog-meta"><i class="fas fa-map-marker-alt"></i> Pune District</span>
+            <span class="prog-meta"><i class="fas fa-utensils"></i> 5,000 Meals/day</span>
+          </div>
+          <div class="prog-progress">
+            <div class="prog-prog-header">
+              <span class="prog-prog-raised">₹5,50,000 raised</span>
+              <span class="prog-prog-goal">Goal: ₹8,00,000</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="69"></div></div>
+          </div>
+          <div class="prog-actions">
+            <a href="donate.html" class="btn btn-primary">Donate Now</a>
+            <button class="prog-info-btn" title="More Info"><i class="fas fa-info"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Environment 1 -->
+      <div class="prog-card show" data-cat="environment">
+        <div class="prog-thumb">
+          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600&auto=format&fit=crop&q=85" alt="Tree Plantation" loading="lazy"/>
+          <span class="prog-cat-badge"><i class="fas fa-seedling"></i> Environment</span>
+          <span class="prog-status active">Active</span>
+        </div>
+        <div class="prog-body">
+          <div class="prog-name">Monsoon Tree Plantation Drive</div>
+          <div class="prog-meta-row">
+            <span class="prog-meta"><i class="fas fa-tree"></i> Target: 5 Lakh Trees</span>
+            <span class="prog-meta"><i class="fas fa-city"></i> 15 Cities</span>
+          </div>
+          <div class="prog-progress">
+            <div class="prog-prog-header">
+              <span class="prog-prog-raised">₹3,20,000 raised</span>
+              <span class="prog-prog-goal">Goal: ₹6,00,000</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="53" style="background:linear-gradient(90deg,var(--green),#16a34a)"></div></div>
+          </div>
+          <div class="prog-actions">
+            <a href="donate.html" class="btn btn-primary">Donate Now</a>
+            <button class="prog-info-btn" title="More Info"><i class="fas fa-info"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Children 1 -->
+      <div class="prog-card show" data-cat="children">
+        <div class="prog-thumb">
+          <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600&auto=format&fit=crop&q=85" alt="Safe Homes" loading="lazy"/>
+          <span class="prog-cat-badge"><i class="fas fa-child"></i> Child Welfare</span>
+          <span class="prog-status active">Active</span>
+        </div>
+        <div class="prog-body">
+          <div class="prog-name">Safe Homes for Street Children</div>
+          <div class="prog-meta-row">
+            <span class="prog-meta"><i class="fas fa-home"></i> 8 Shelter Homes</span>
+            <span class="prog-meta"><i class="fas fa-child"></i> 1,200 Children</span>
+          </div>
+          <div class="prog-progress">
+            <div class="prog-prog-header">
+              <span class="prog-prog-raised">₹9,40,000 raised</span>
+              <span class="prog-prog-goal">Goal: ₹15,00,000</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="63" style="background:linear-gradient(90deg,var(--purple),#7c3aed)"></div></div>
+          </div>
+          <div class="prog-actions">
+            <a href="donate.html" class="btn btn-primary">Donate Now</a>
+            <button class="prog-info-btn" title="More Info"><i class="fas fa-info"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Healthcare 2 -->
+      <div class="prog-card show" data-cat="healthcare">
+        <div class="prog-thumb">
+          <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?w=600&auto=format&fit=crop&q=85" alt="Maternal Health" loading="lazy"/>
+          <span class="prog-cat-badge"><i class="fas fa-heart"></i> Healthcare</span>
+          <span class="prog-status active">Active</span>
+        </div>
+        <div class="prog-body">
+          <div class="prog-name">Maternal & Child Health Program</div>
+          <div class="prog-meta-row">
+            <span class="prog-meta"><i class="fas fa-map-marker-alt"></i> Bihar & Odisha</span>
+            <span class="prog-meta"><i class="fas fa-user-nurse"></i> 24 Health Workers</span>
+          </div>
+          <div class="prog-progress">
+            <div class="prog-prog-header">
+              <span class="prog-prog-raised">₹11,20,000 raised</span>
+              <span class="prog-prog-goal">Goal: ₹18,00,000</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="62"></div></div>
+          </div>
+          <div class="prog-actions">
+            <a href="donate.html" class="btn btn-primary">Donate Now</a>
+            <button class="prog-info-btn" title="More Info"><i class="fas fa-info"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education 2 -->
+      <div class="prog-card show" data-cat="education">
+        <div class="prog-thumb">
+          <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=600&auto=format&fit=crop&q=85" alt="Digital Classrooms" loading="lazy"/>
+          <span class="prog-cat-badge"><i class="fas fa-laptop"></i> Education</span>
+          <span class="prog-status open">Open</span>
+        </div>
+        <div class="prog-body">
+          <div class="prog-name">Digital Classrooms Initiative</div>
+          <div class="prog-meta-row">
+            <span class="prog-meta"><i class="fas fa-school"></i> 200 Schools</span>
+            <span class="prog-meta"><i class="fas fa-tablet-alt"></i> 10,000 Tablets</span>
+          </div>
+          <div class="prog-progress">
+            <div class="prog-prog-header">
+              <span class="prog-prog-raised">₹22,00,000 raised</span>
+              <span class="prog-prog-goal">Goal: ₹40,00,000</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="55" style="background:linear-gradient(90deg,var(--cyan),#0891b2)"></div></div>
+          </div>
+          <div class="prog-actions">
+            <a href="donate.html" class="btn btn-primary">Donate Now</a>
+            <button class="prog-info-btn" title="More Info"><i class="fas fa-info"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Environment 2 -->
+      <div class="prog-card show" data-cat="environment">
+        <div class="prog-thumb">
+          <img src="https://images.unsplash.com/photo-1541009085953-d45ad30046f5?w=600&auto=format&fit=crop&q=85" alt="Clean Water" loading="lazy"/>
+          <span class="prog-cat-badge"><i class="fas fa-tint"></i> Environment</span>
+          <span class="prog-status active">Active</span>
+        </div>
+        <div class="prog-body">
+          <div class="prog-name">Clean Water Project — Rajasthan</div>
+          <div class="prog-meta-row">
+            <span class="prog-meta"><i class="fas fa-map-marker-alt"></i> 12 Villages</span>
+            <span class="prog-meta"><i class="fas fa-users"></i> 8,000 Residents</span>
+          </div>
+          <div class="prog-progress">
+            <div class="prog-prog-header">
+              <span class="prog-prog-raised">₹7,80,000 raised</span>
+              <span class="prog-prog-goal">Goal: ₹14,00,000</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="56" style="background:linear-gradient(90deg,var(--cyan),#0891b2)"></div></div>
+          </div>
+          <div class="prog-actions">
+            <a href="donate.html" class="btn btn-primary">Donate Now</a>
+            <button class="prog-info-btn" title="More Info"><i class="fas fa-info"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Food 2 -->
+      <div class="prog-card show" data-cat="food">
+        <div class="prog-thumb">
+          <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=600&auto=format&fit=crop&q=85" alt="Mid-Day Meal" loading="lazy"/>
+          <span class="prog-cat-badge"><i class="fas fa-utensils"></i> Food Relief</span>
+          <span class="prog-status active">Active</span>
+        </div>
+        <div class="prog-body">
+          <div class="prog-name">Mid-Day Meal Expansion Program</div>
+          <div class="prog-meta-row">
+            <span class="prog-meta"><i class="fas fa-school"></i> 350 Schools</span>
+            <span class="prog-meta"><i class="fas fa-child"></i> 50,000 Children</span>
+          </div>
+          <div class="prog-progress">
+            <div class="prog-prog-header">
+              <span class="prog-prog-raised">₹18,40,000 raised</span>
+              <span class="prog-prog-goal">Goal: ₹30,00,000</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" data-width="61" style="background:linear-gradient(90deg,var(--orange),#ea580c)"></div></div>
+          </div>
+          <div class="prog-actions">
+            <a href="donate.html" class="btn btn-primary">Donate Now</a>
+            <button class="prog-info-btn" title="More Info"><i class="fas fa-info"></i></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-24">
+      <button class="btn btn-outline btn-lg" onclick="showMore()"><i class="fas fa-plus"></i> Load More Programs</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOCUS AREAS SPOTLIGHT ════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-layer-group"></i> Focus Areas</div>
+      <h2 class="section-title">Education & <span>Literacy</span> — and More</h2>
+      <p class="section-desc">Each pillar of our work is backed by data, on-ground research, and a passionate team of changemakers.</p>
+    </div>
+    <div class="focus-spotlight">
+      <div class="focus-spot-card reveal st1">
+        <div class="focus-spot-thumb">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&auto=format&fit=crop&q=85" alt="Education" loading="lazy"/>
+          <div class="focus-spot-overlay"></div>
+          <div class="focus-spot-icon" style="background:rgba(6,182,212,.9)"><i class="fas fa-graduation-cap"></i></div>
+        </div>
+        <div class="focus-spot-body">
+          <div class="focus-spot-title">Education & Literacy</div>
+          <div class="focus-spot-stats">
+            <div class="focus-spot-stat"><span>Programs</span><span class="focus-spot-stat-val">68</span></div>
+            <div class="focus-spot-stat"><span>Beneficiaries</span><span class="focus-spot-stat-val">1.2L+</span></div>
+            <div class="focus-spot-stat"><span>Schools</span><span class="focus-spot-stat-val">450+</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="focus-spot-card reveal st2">
+        <div class="focus-spot-thumb">
+          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&auto=format&fit=crop&q=85" alt="Healthcare" loading="lazy"/>
+          <div class="focus-spot-overlay"></div>
+          <div class="focus-spot-icon" style="background:rgba(230,57,70,.9)"><i class="fas fa-heartbeat"></i></div>
+        </div>
+        <div class="focus-spot-body">
+          <div class="focus-spot-title">Healthcare & Wellness</div>
+          <div class="focus-spot-stats">
+            <div class="focus-spot-stat"><span>Programs</span><span class="focus-spot-stat-val">54</span></div>
+            <div class="focus-spot-stat"><span>Patients/yr</span><span class="focus-spot-stat-val">50K+</span></div>
+            <div class="focus-spot-stat"><span>Clinics</span><span class="focus-spot-stat-val">120+</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="focus-spot-card reveal st3">
+        <div class="focus-spot-thumb">
+          <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=400&auto=format&fit=crop&q=85" alt="Food" loading="lazy"/>
+          <div class="focus-spot-overlay"></div>
+          <div class="focus-spot-icon" style="background:rgba(249,115,22,.9)"><i class="fas fa-utensils"></i></div>
+        </div>
+        <div class="focus-spot-body">
+          <div class="focus-spot-title">Food & Nutrition</div>
+          <div class="focus-spot-stats">
+            <div class="focus-spot-stat"><span>Programs</span><span class="focus-spot-stat-val">38</span></div>
+            <div class="focus-spot-stat"><span>Meals/day</span><span class="focus-spot-stat-val">50K+</span></div>
+            <div class="focus-spot-stat"><span>Districts</span><span class="focus-spot-stat-val">42</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="focus-spot-card reveal st4">
+        <div class="focus-spot-thumb">
+          <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&auto=format&fit=crop&q=85" alt="Environment" loading="lazy"/>
+          <div class="focus-spot-overlay"></div>
+          <div class="focus-spot-icon" style="background:rgba(34,197,94,.9)"><i class="fas fa-leaf"></i></div>
+        </div>
+        <div class="focus-spot-body">
+          <div class="focus-spot-title">Environment & Climate</div>
+          <div class="focus-spot-stats">
+            <div class="focus-spot-stat"><span>Programs</span><span class="focus-spot-stat-val">26</span></div>
+            <div class="focus-spot-stat"><span>Trees Planted</span><span class="focus-spot-stat-val">2M+</span></div>
+            <div class="focus-spot-stat"><span>Cities</span><span class="focus-spot-stat-val">85+</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="focus-spot-card reveal st5">
+        <div class="focus-spot-thumb">
+          <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&auto=format&fit=crop&q=85" alt="Children" loading="lazy"/>
+          <div class="focus-spot-overlay"></div>
+          <div class="focus-spot-icon" style="background:rgba(168,85,247,.9)"><i class="fas fa-child"></i></div>
+        </div>
+        <div class="focus-spot-body">
+          <div class="focus-spot-title">Child Welfare & Rights</div>
+          <div class="focus-spot-stats">
+            <div class="focus-spot-stat"><span>Programs</span><span class="focus-spot-stat-val">22</span></div>
+            <div class="focus-spot-stat"><span>Children</span><span class="focus-spot-stat-val">85K+</span></div>
+            <div class="focus-spot-stat"><span>Shelters</span><span class="focus-spot-stat-val">48</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ HOW TO DONATE ════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-hand-holding-heart"></i> Simple Process</div>
+      <h2 class="section-title">How to <span>Donate</span></h2>
+      <p class="section-desc">Four simple steps — your generosity reaches a community in need within 48 hours.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-step reveal st1">
+        <div class="how-num">1</div>
+        <div class="how-title">Choose a Program</div>
+        <p class="how-desc">Browse our active programs and pick the cause closest to your heart — or donate to the General Fund.</p>
+      </div>
+      <div class="how-step reveal st2">
+        <div class="how-num">2</div>
+        <div class="how-title">Select an Amount</div>
+        <p class="how-desc">Choose from preset amounts or enter a custom donation. Every rupee, big or small, creates real change.</p>
+      </div>
+      <div class="how-step reveal st3">
+        <div class="how-num">3</div>
+        <div class="how-title">Donate Securely</div>
+        <p class="how-desc">Pay via UPI, Net Banking, Credit/Debit Card or NEFT. Bank-grade SSL encryption protects every transaction.</p>
+      </div>
+      <div class="how-step reveal st4">
+        <div class="how-num">4</div>
+        <div class="how-title">Track Your Impact</div>
+        <p class="how-desc">Receive real-time updates, impact reports, and a tax receipt (80G certificate) within 7 working days.</p>
+      </div>
+    </div>
+    <div class="text-center mt-24">
+      <a href="donate.html" class="btn btn-primary btn-lg"><i class="fas fa-heart"></i> Donate Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ COMMITMENT ════ -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-shield-alt"></i> Our Commitment</div>
+      <h2 class="section-title">Standards We <span>Never Compromise</span></h2>
+      <p class="section-desc">Every program we run is guided by these six non-negotiable principles of impact, integrity, and dignity.</p>
+    </div>
+    <div class="commit-grid">
+      <div class="commit-card reveal st1">
+        <div class="commit-icon">📊</div>
+        <div class="commit-title">Program Standards</div>
+        <p class="commit-text">At least 85% of every donation goes directly to field operations. Our overhead is the lowest in the industry — published every quarter.</p>
+      </div>
+      <div class="commit-card reveal st2">
+        <div class="commit-icon">🤝</div>
+        <div class="commit-title">Beneficiary Dignity</div>
+        <p class="commit-text">We never exploit or sensationalize the stories of people we serve. Every individual's identity and dignity is protected and respected.</p>
+      </div>
+      <div class="commit-card reveal st3">
+        <div class="commit-icon">🧒</div>
+        <div class="commit-title">Child Safeguarding</div>
+        <p class="commit-text">Zero tolerance for any harm to children. All volunteers undergo background checks and training before any child interaction.</p>
+      </div>
+      <div class="commit-card reveal st4">
+        <div class="commit-icon">📋</div>
+        <div class="commit-title">Impact Reporting</div>
+        <p class="commit-text">Every donor receives a quarterly impact report showing exactly how their funds were used and lives changed.</p>
+      </div>
+      <div class="commit-card reveal st5">
+        <div class="commit-icon">🔍</div>
+        <div class="commit-title">Full Transparency</div>
+        <p class="commit-text">All our financial statements, auditor reports, and program outcome data are publicly available on our website at all times.</p>
+      </div>
+      <div class="commit-card reveal st6">
+        <div class="commit-icon">💬</div>
+        <div class="commit-title">Donor Support</div>
+        <p class="commit-text">Dedicated donor relations team available Mon–Sat. Every query answered within 24 hours. Your trust is our foundation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FUND ALLOCATION ════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-chart-bar"></i> Fund Allocation</div>
+      <h2 class="section-title">Where Your <span>Money Goes</span></h2>
+      <p class="section-desc">Complete transparency in how every rupee is distributed across our programs.</p>
+    </div>
+    <div class="fund-alloc-grid">
+      <div class="fund-alloc-bars reveal-left">
+        <div class="fund-bar-item">
+          <div class="fund-bar-label">
+            <span><i class="fas fa-graduation-cap" style="color:var(--cyan);margin-right:8px"></i>Education Programs</span>
+            <span class="fund-bar-pct">35%</span>
+          </div>
+          <div class="fund-bar-track">
+            <div class="fund-bar-fill" data-width="35" style="background:linear-gradient(90deg,var(--cyan),#0891b2)"></div>
+          </div>
+        </div>
+        <div class="fund-bar-item">
+          <div class="fund-bar-label">
+            <span><i class="fas fa-stethoscope" style="color:var(--primary);margin-right:8px"></i>Healthcare Initiatives</span>
+            <span class="fund-bar-pct">28%</span>
+          </div>
+          <div class="fund-bar-track">
+            <div class="fund-bar-fill" data-width="28" style="background:linear-gradient(90deg,var(--primary),var(--primary-dark))"></div>
+          </div>
+        </div>
+        <div class="fund-bar-item">
+          <div class="fund-bar-label">
+            <span><i class="fas fa-utensils" style="color:var(--orange);margin-right:8px"></i>Food & Nutrition</span>
+            <span class="fund-bar-pct">22%</span>
+          </div>
+          <div class="fund-bar-track">
+            <div class="fund-bar-fill" data-width="22" style="background:linear-gradient(90deg,var(--orange),#ea580c)"></div>
+          </div>
+        </div>
+        <div class="fund-bar-item">
+          <div class="fund-bar-label">
+            <span><i class="fas fa-leaf" style="color:var(--green);margin-right:8px"></i>Environment & Children</span>
+            <span class="fund-bar-pct">15%</span>
+          </div>
+          <div class="fund-bar-track">
+            <div class="fund-bar-fill" data-width="15" style="background:linear-gradient(90deg,var(--green),#16a34a)"></div>
+          </div>
+        </div>
+      </div>
+      <div class="fund-visual reveal-right">
+        <div class="fund-visual-title">85% Goes Directly to Communities</div>
+        <p class="fund-visual-sub">Only 15% is used for operational, administrative, and fundraising costs — one of the lowest ratios among Indian NGOs. Our financials are fully audited and publicly available.</p>
+        <div class="fund-highlight">
+          <div class="fund-hl-item">
+            <div class="fund-hl-num">₹120Cr+</div>
+            <div class="fund-hl-label">Total Funds Raised Since 2014</div>
+          </div>
+          <div class="fund-hl-item">
+            <div class="fund-hl-num">85%</div>
+            <div class="fund-hl-label">Directly to Field Operations</div>
+          </div>
+        </div>
+        <a href="donate.html" class="btn btn-primary mt-24" style="display:inline-flex"><i class="fas fa-heart"></i> Start Donating</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CTA ════ -->
+<section class="cta-section">
+  <div class="cta-bg" style="background-image:url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&fit=crop&q=80')"></div>
+  <div class="cta-overlay"></div>
+  <div class="container">
+    <div class="cta-content">
+      <div class="section-tag" style="margin-bottom:20px;background:rgba(230,57,70,.15);color:var(--primary);border-color:rgba(230,57,70,.3)">
+        <i class="fas fa-bolt"></i> Take Action Today
+      </div>
+      <h2 class="cta-title">Ready to <span class="hl">Change a Life?</span></h2>
+      <p class="cta-desc">Join 12,000+ donors and 5,000+ volunteers already transforming lives through HopeRise Foundation. Every rupee, every hour — it all counts.</p>
+      <div class="cta-btns">
+        <a href="donate.html" class="btn btn-primary btn-lg"><i class="fas fa-heart"></i> Donate Now</a>
+        <a href="about.html" class="btn btn-ghost btn-lg" style="border:1px solid rgba(255,255,255,.25)"><i class="fas fa-compass"></i> Our Mission</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.webp" alt="HopeRise Foundation" style="height:36px;width:auto;"/>
+        </div>
+        <p>Transforming Lives, One Act at a Time. Registered NGO — 80G & 12A Certified. Founded 2014.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Our Programs</div>
+        <div class="footer-links">
+          <a href="programs.html" class="footer-link">Education</a>
+          <a href="programs.html" class="footer-link">Healthcare</a>
+          <a href="programs.html" class="footer-link">Food Relief</a>
+          <a href="programs.html" class="footer-link">Environment</a>
+          <a href="programs.html" class="footer-link">Child Welfare</a>
+          <a href="programs.html" class="footer-link">All Programs</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Get Involved</div>
+        <div class="footer-links">
+          <a href="donate.html" class="footer-link">Donate Now</a>
+          <a href="volunteer.html" class="footer-link">Volunteer</a>
+          <a href="#" class="footer-link">Partner With Us</a>
+          <a href="#" class="footer-link">Corporate CSR</a>
+          <a href="index.html#contact" class="footer-link">Contact Us</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">About</div>
+        <div class="footer-links">
+          <a href="about.html" class="footer-link">Who We Are</a>
+          <a href="index.html#news" class="footer-link">News & Stories</a>
+          <a href="#" class="footer-link">Annual Report</a>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Press & Media</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 HopeRise Foundation. All rights reserved. Registered NGO — 80G & 12A Certified.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+<a href="donate.html" class="donate-fab"><i class="fas fa-heart"></i><span>Donate Now</span></a>
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/main.js"></script>
+<script>
+  // ── Filter Programs ──
+  function filterPrograms(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.prog-card').forEach(card => {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.classList.add('show');
+      } else {
+        card.classList.remove('show');
+      }
+    });
+  }
+
+  // ── Animated fund bars on scroll ──
+  function initFundBars() {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.fund-bar-fill').forEach(fill => {
+            fill.style.width = (fill.dataset.width || '0') + '%';
+          });
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.fund-alloc-bars').forEach(el => obs.observe(el));
+  }
+
+  document.addEventListener('DOMContentLoaded', initFundBars);
+
+  // ── Load More stub ──
+  function showMore() {
+    document.querySelector('[onclick="showMore()"]').textContent = 'All Programs Loaded';
+    document.querySelector('[onclick="showMore()"]').disabled = true;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Doctor Dashboard — HealHope Foundation</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💙</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="stylesheet" href="../css/dashboard.css"/>
+</head>
+<body>
+
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<aside class="dash-sidebar" id="sidebar">
+  <div class="dash-sidebar-logo">
+    <a href="../index.html"><div class="nav-logo-icon">💙</div><span>Heal<span>Hope</span></span></a>
+    <button class="sidebar-close-btn" onclick="closeSidebar()"><i class="fas fa-times"></i></button>
+  </div>
+  <nav class="dash-nav">
+    <div class="dash-nav-section">Clinical</div>
+    <a href="#overview" class="dash-nav-link active" onclick="showSection('overview',this)"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+    <a href="#patients" class="dash-nav-link" onclick="showSection('patients',this)"><i class="fas fa-child"></i> My Patients</a>
+    <a href="#appointments" class="dash-nav-link" onclick="showSection('appointments',this)"><i class="fas fa-calendar-check"></i> Appointments</a>
+    <a href="#prescriptions" class="dash-nav-link" onclick="showSection('prescriptions',this)"><i class="fas fa-prescription"></i> Write Prescription</a>
+    <a href="#history" class="dash-nav-link" onclick="showSection('history',this)"><i class="fas fa-history"></i> Medical History</a>
+    <div class="dash-nav-section">Updates</div>
+    <a href="#updates" class="dash-nav-link" onclick="showSection('updates',this)"><i class="fas fa-notes-medical"></i> Treatment Updates</a>
+    <a href="#reports" class="dash-nav-link" onclick="showSection('reports',this)"><i class="fas fa-file-medical"></i> Upload Reports</a>
+    <div class="dash-nav-section">Account</div>
+    <a href="#profile" class="dash-nav-link" onclick="showSection('profile',this)"><i class="fas fa-user-md"></i> My Profile</a>
+  </nav>
+  <div class="sidebar-footer">
+    <button onclick="logout()" class="btn btn-outline btn-sm w-full"><i class="fas fa-sign-out-alt"></i> Logout</button>
+  </div>
+</aside>
+
+<div class="dash-main" id="dashMain">
+  <header class="dash-topbar">
+    <div class="dash-topbar-left">
+      <button class="sidebar-toggle-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+      <div class="dash-breadcrumb"><span>Doctor</span> / <span id="breadcrumbCurrent">Dashboard</span></div>
+    </div>
+    <div class="dash-topbar-right">
+      <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+      <div class="dash-avatar-wrap">
+        <div class="dash-avatar" id="avatarInitials">D</div>
+        <div class="dash-avatar-info">
+          <span class="dash-avatar-name" data-auth-name>Doctor</span>
+          <span class="dash-avatar-role" style="color:#00acc1;">Medical Staff</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="dash-body">
+
+    <!-- OVERVIEW -->
+    <section id="sec-overview" class="dash-section active">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">Good Morning, <span data-auth-name>Doctor</span> 🩺</h1>
+        <p class="dash-section-sub">Here's your clinical overview for today.</p>
+      </div>
+
+      <div class="mini-stats-grid">
+        <div class="mini-stat-card">
+          <div class="mini-stat-icon" style="background:#e3f2fd;color:var(--primary);"><i class="fas fa-child"></i></div>
+          <div class="mini-stat-body"><div class="mini-stat-val">24</div><div class="mini-stat-label">Active Patients</div></div>
+        </div>
+        <div class="mini-stat-card">
+          <div class="mini-stat-icon" style="background:#e8f5e9;color:#2e7d32;"><i class="fas fa-calendar-check"></i></div>
+          <div class="mini-stat-body"><div class="mini-stat-val">6</div><div class="mini-stat-label">Today's Appointments</div></div>
+        </div>
+        <div class="mini-stat-card">
+          <div class="mini-stat-icon" style="background:#fce4ec;color:#e53935;"><i class="fas fa-procedures"></i></div>
+          <div class="mini-stat-body"><div class="mini-stat-val">3</div><div class="mini-stat-label">Surgeries Scheduled</div></div>
+        </div>
+        <div class="mini-stat-card">
+          <div class="mini-stat-icon" style="background:#fff3e0;color:#e65100;"><i class="fas fa-check-circle"></i></div>
+          <div class="mini-stat-body"><div class="mini-stat-val">142</div><div class="mini-stat-label">Patients Treated</div></div>
+        </div>
+      </div>
+
+      <!-- Today's appointments -->
+      <div class="dash-card" style="margin-bottom:20px;">
+        <div class="dash-card-header">
+          <h3 class="dash-card-title"><i class="fas fa-calendar-day"></i> Today's Schedule</h3>
+          <span class="status-pill status-info">6 Appointments</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="appt-card" style="border-left:3px solid var(--secondary);">
+            <div class="appt-date" style="background:#fce4ec;color:var(--secondary);"><div style="font-size:1rem;font-weight:900;line-height:1;">9:00</div><div style="font-size:.65rem;">AM</div></div>
+            <div class="appt-info">
+              <div class="appt-title">Rahul Kumar, 8 yrs — Pre-Op Consultation</div>
+              <div class="appt-meta"><i class="fas fa-heartbeat" style="color:var(--secondary);"></i> Congenital Heart Disease</div>
+              <div class="appt-meta"><i class="fas fa-map-marker-alt"></i> Room 302</div>
+            </div>
+            <div style="margin-left:auto;display:flex;gap:6px;flex-direction:column;">
+              <span class="status-pill status-danger">Urgent</span>
+              <button class="btn btn-outline btn-sm" onclick="showSection('patients',null)">View</button>
+            </div>
+          </div>
+          <div class="appt-card">
+            <div class="appt-date"><div style="font-size:1rem;font-weight:900;line-height:1;">10:30</div><div style="font-size:.65rem;">AM</div></div>
+            <div class="appt-info">
+              <div class="appt-title">Anjali Sharma, 5 yrs — Follow-up</div>
+              <div class="appt-meta"><i class="fas fa-notes-medical"></i> Post-surgery check</div>
+              <div class="appt-meta"><i class="fas fa-map-marker-alt"></i> Room 302</div>
+            </div>
+            <div style="margin-left:auto;"><span class="status-pill status-success">Confirmed</span></div>
+          </div>
+          <div class="appt-card">
+            <div class="appt-date"><div style="font-size:1rem;font-weight:900;line-height:1;">11:30</div><div style="font-size:.65rem;">AM</div></div>
+            <div class="appt-info">
+              <div class="appt-title">Mohan Das, 12 yrs — New Case</div>
+              <div class="appt-meta"><i class="fas fa-stethoscope"></i> Initial diagnosis</div>
+              <div class="appt-meta"><i class="fas fa-map-marker-alt"></i> Room 302</div>
+            </div>
+            <div style="margin-left:auto;"><span class="status-pill status-warning">Pending</span></div>
+          </div>
+          <div style="text-align:center;padding:8px;"><a href="#appointments" onclick="showSection('appointments',null)" style="font-size:.85rem;color:var(--primary);font-weight:600;">+ 3 more appointments today →</a></div>
+        </div>
+      </div>
+
+      <!-- Critical patients -->
+      <div class="dash-card">
+        <div class="dash-card-header"><h3 class="dash-card-title"><i class="fas fa-exclamation-triangle" style="color:var(--secondary);"></i> Critical Patients</h3></div>
+        <div class="dash-table-wrap">
+          <table class="dash-table">
+            <thead><tr><th>Patient</th><th>Age</th><th>Condition</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr>
+                <td style="font-weight:600;">Rahul Kumar</td>
+                <td>8</td>
+                <td>Congenital Heart Disease</td>
+                <td><span class="status-pill status-danger">Critical</span></td>
+                <td><button class="btn btn-outline btn-sm" onclick="showSection('patients',null)">View</button></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Meena Devi</td>
+                <td>6</td>
+                <td>Acute Leukemia</td>
+                <td><span class="status-pill status-warning">Serious</span></td>
+                <td><button class="btn btn-outline btn-sm" onclick="showSection('patients',null)">View</button></td>
+              </tr>
+              <tr>
+                <td style="font-weight:600;">Suresh Yadav</td>
+                <td>10</td>
+                <td>Kidney Failure</td>
+                <td><span class="status-pill status-danger">Critical</span></td>
+                <td><button class="btn btn-outline btn-sm" onclick="showSection('patients',null)">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PATIENTS -->
+    <section id="sec-patients" class="dash-section">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">My Patients</h1>
+        <p class="dash-section-sub">Manage your assigned patient cases</p>
+      </div>
+      <div class="dash-card" style="margin-bottom:16px;">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input type="text" class="form-input" placeholder="Search patients..." style="flex:1;min-width:200px;" oninput="filterPatients(this.value)"/>
+          <select class="form-input" style="width:auto;" onchange="filterPatientStatus(this.value)">
+            <option value="">All Status</option>
+            <option>Critical</option>
+            <option>Serious</option>
+            <option>Stable</option>
+            <option>Recovered</option>
+          </select>
+        </div>
+      </div>
+      <div class="dash-table-wrap dash-card">
+        <table class="dash-table" id="patientsTable">
+          <thead><tr><th>ID</th><th>Patient Name</th><th>Age</th><th>Condition</th><th>Ward</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr><td>HHF-PT-247</td><td style="font-weight:600;">Rahul Kumar</td><td>8</td><td>Congenital Heart Disease</td><td>Cardiology</td><td><span class="status-pill status-danger">Critical</span></td><td><button class="btn btn-outline btn-sm" onclick="viewPatient('Rahul Kumar')"><i class="fas fa-eye"></i></button> <button class="btn btn-primary btn-sm" onclick="addUpdate('Rahul Kumar')"><i class="fas fa-plus"></i></button></td></tr>
+            <tr><td>HHF-PT-248</td><td style="font-weight:600;">Anjali Sharma</td><td>5</td><td>Post-op Heart Surgery</td><td>Recovery</td><td><span class="status-pill status-success">Stable</span></td><td><button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i></button> <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button></td></tr>
+            <tr><td>HHF-PT-249</td><td style="font-weight:600;">Meena Devi</td><td>6</td><td>Acute Leukemia</td><td>Oncology</td><td><span class="status-pill status-warning">Serious</span></td><td><button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i></button> <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button></td></tr>
+            <tr><td>HHF-PT-250</td><td style="font-weight:600;">Suresh Yadav</td><td>10</td><td>Kidney Failure</td><td>Nephrology</td><td><span class="status-pill status-danger">Critical</span></td><td><button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i></button> <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button></td></tr>
+            <tr><td>HHF-PT-251</td><td style="font-weight:600;">Kavya Reddy</td><td>7</td><td>Malnutrition + Anemia</td><td>Pediatrics</td><td><span class="status-pill status-info">Improving</span></td><td><button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i></button> <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button></td></tr>
+            <tr><td>HHF-PT-252</td><td style="font-weight:600;">Dinesh Patel</td><td>9</td><td>Cerebral Palsy</td><td>Neurology</td><td><span class="status-pill status-info">Stable</span></td><td><button class="btn btn-outline btn-sm"><i class="fas fa-eye"></i></button> <button class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- APPOINTMENTS -->
+    <section id="sec-appointments" class="dash-section">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">Appointments</h1>
+        <p class="dash-section-sub">Manage your consultation schedule</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+        <div class="dash-card" style="text-align:center;padding:20px;">
+          <div style="font-size:2.5rem;font-weight:900;color:var(--primary);">6</div>
+          <div style="font-size:.9rem;color:var(--text-muted);">Today</div>
+        </div>
+        <div class="dash-card" style="text-align:center;padding:20px;">
+          <div style="font-size:2.5rem;font-weight:900;color:#2e7d32;">28</div>
+          <div style="font-size:.9rem;color:var(--text-muted);">This Week</div>
+        </div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card-header"><h3 class="dash-card-title"><i class="fas fa-calendar-week"></i> Upcoming Appointments</h3></div>
+        <div class="dash-table-wrap">
+          <table class="dash-table">
+            <thead><tr><th>Date & Time</th><th>Patient</th><th>Type</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody>
+              <tr><td>25 May, 9:00 AM</td><td style="font-weight:600;">Rahul Kumar</td><td>Pre-Op Consultation</td><td><span class="status-pill status-danger">Urgent</span></td><td><button class="btn btn-primary btn-sm">Start</button> <button class="btn btn-outline btn-sm">Reschedule</button></td></tr>
+              <tr><td>25 May, 10:30 AM</td><td style="font-weight:600;">Anjali Sharma</td><td>Follow-up</td><td><span class="status-pill status-success">Confirmed</span></td><td><button class="btn btn-primary btn-sm">Start</button> <button class="btn btn-outline btn-sm">Reschedule</button></td></tr>
+              <tr><td>25 May, 11:30 AM</td><td style="font-weight:600;">Mohan Das</td><td>New Case</td><td><span class="status-pill status-warning">Pending</span></td><td><button class="btn btn-primary btn-sm">Start</button> <button class="btn btn-outline btn-sm">Reschedule</button></td></tr>
+              <tr><td>26 May, 9:00 AM</td><td style="font-weight:600;">Kavya Reddy</td><td>Nutrition Review</td><td><span class="status-pill status-success">Confirmed</span></td><td><button class="btn btn-primary btn-sm">Start</button> <button class="btn btn-outline btn-sm">Reschedule</button></td></tr>
+              <tr><td>27 May, 2:00 PM</td><td style="font-weight:600;">Suresh Yadav</td><td>Dialysis Review</td><td><span class="status-pill status-success">Confirmed</span></td><td><button class="btn btn-primary btn-sm">Start</button> <button class="btn btn-outline btn-sm">Reschedule</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRESCRIPTIONS -->
+    <section id="sec-prescriptions" class="dash-section">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">Write Prescription</h1>
+        <p class="dash-section-sub">Create and upload prescriptions for your patients</p>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card-header"><h3 class="dash-card-title"><i class="fas fa-prescription"></i> New Prescription</h3></div>
+        <form onsubmit="savePrescription(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Patient</label>
+              <select class="form-input" required>
+                <option value="">Select patient</option>
+                <option>Rahul Kumar (HHF-PT-247)</option>
+                <option>Anjali Sharma (HHF-PT-248)</option>
+                <option>Meena Devi (HHF-PT-249)</option>
+                <option>Suresh Yadav (HHF-PT-250)</option>
+                <option>Kavya Reddy (HHF-PT-251)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Date</label>
+              <input type="date" class="form-input" value="2026-05-25"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Diagnosis</label>
+            <input type="text" class="form-input" placeholder="Primary diagnosis..."/>
+          </div>
+          <div id="medicineList">
+            <div class="medicine-row form-row" style="align-items:flex-end;">
+              <div class="form-group" style="flex:2;">
+                <label class="form-label">Medicine Name</label>
+                <input type="text" class="form-input" placeholder="e.g., Aspirin 75mg"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Dosage</label>
+                <input type="text" class="form-input" placeholder="e.g., 1-0-1"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Duration</label>
+                <input type="text" class="form-input" placeholder="e.g., 7 days"/>
+              </div>
+              <div class="form-group" style="flex-shrink:0;">
+                <label class="form-label" style="opacity:0;">x</label>
+                <button type="button" class="btn btn-outline btn-sm" onclick="this.closest('.medicine-row').remove()"><i class="fas fa-trash" style="color:var(--secondary);"></i></button>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" style="margin-bottom:16px;" onclick="addMedicineRow()"><i class="fas fa-plus"></i> Add Medicine</button>
+          <div class="form-group">
+            <label class="form-label">Instructions</label>
+            <textarea class="form-input" rows="3" placeholder="Special instructions, diet, precautions..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Upload Handwritten Prescription (optional)</label>
+            <input type="file" class="form-input" accept=".pdf,.jpg,.png"/>
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save & Send Prescription</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- TREATMENT UPDATES -->
+    <section id="sec-updates" class="dash-section">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">Treatment Updates</h1>
+        <p class="dash-section-sub">Post progress notes for your patients</p>
+      </div>
+      <div class="dash-card" style="margin-bottom:20px;">
+        <div class="dash-card-header"><h3 class="dash-card-title"><i class="fas fa-plus-circle"></i> Add Treatment Update</h3></div>
+        <form onsubmit="addTreatmentUpdate(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Patient</label>
+              <select class="form-input" required>
+                <option value="">Select patient</option>
+                <option>Rahul Kumar (HHF-PT-247)</option>
+                <option>Anjali Sharma (HHF-PT-248)</option>
+                <option>Meena Devi (HHF-PT-249)</option>
+                <option>Suresh Yadav (HHF-PT-250)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Update Type</label>
+              <select class="form-input">
+                <option>Progress Note</option>
+                <option>Post-Surgery Update</option>
+                <option>Critical Alert</option>
+                <option>Discharge Summary</option>
+                <option>Lab Results Review</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Update Details <span class="req">*</span></label>
+            <textarea class="form-input" rows="4" placeholder="Describe the patient's current condition, treatment response, next steps..." required></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Vitals — BP</label>
+              <input type="text" class="form-input" placeholder="e.g., 90/60 mmHg"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Heart Rate</label>
+              <input type="text" class="form-input" placeholder="e.g., 80 bpm"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Temperature</label>
+              <input type="text" class="form-input" placeholder="e.g., 98.6°F"/>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-paper-plane"></i> Post Update</button>
+        </form>
+      </div>
+
+      <div class="dash-card">
+        <div class="dash-card-header"><h3 class="dash-card-title"><i class="fas fa-history"></i> Recent Updates</h3></div>
+        <div class="timeline" id="updatesTimeline">
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background:#2e7d32;"></div>
+            <div class="timeline-content">
+              <div class="timeline-title">Anjali Sharma — Post-Surgery Update</div>
+              <div class="timeline-text">Patient recovering well after open heart surgery. Vitals stable. BP: 100/70, HR: 82 bpm. Shifted from ICU to general ward. Continue current medications for 5 more days.</div>
+              <div class="timeline-time">Today, 8:30 AM</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background:var(--secondary);"></div>
+            <div class="timeline-content">
+              <div class="timeline-title">Rahul Kumar — Critical Alert</div>
+              <div class="timeline-text">Pre-op anxiety noted. Requires psychological counseling. Surgery prep team notified. All clearances obtained. Surgery scheduled for 15 Jun 2026.</div>
+              <div class="timeline-time">Yesterday, 3:45 PM</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot" style="background:var(--primary);"></div>
+            <div class="timeline-content">
+              <div class="timeline-title">Meena Devi — Chemotherapy Cycle 2</div>
+              <div class="timeline-text">Second chemo cycle administered. Some nausea reported but manageable. Blood counts slightly improved. Next cycle in 3 weeks.</div>
+              <div class="timeline-time">22 May 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEDICAL HISTORY -->
+    <section id="sec-history" class="dash-section">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">Medical History</h1>
+        <p class="dash-section-sub">Comprehensive patient medical records</p>
+      </div>
+      <div class="dash-card" style="margin-bottom:16px;">
+        <div class="form-group" style="margin:0;">
+          <select class="form-input" onchange="loadPatientHistory(this.value)">
+            <option value="">Select patient to view history</option>
+            <option value="rahul">Rahul Kumar (HHF-PT-247)</option>
+            <option value="anjali">Anjali Sharma (HHF-PT-248)</option>
+            <option value="meena">Meena Devi (HHF-PT-249)</option>
+          </select>
+        </div>
+      </div>
+      <div id="patientHistoryPanel" style="display:none;">
+        <div class="dash-card" style="margin-bottom:16px;">
+          <div class="profile-header">
+            <div class="profile-avatar" id="histAvatar">R</div>
+            <div class="profile-info">
+              <h3 id="histName" style="font-weight:800;">Rahul Kumar</h3>
+              <p style="color:var(--text-muted);font-size:.85rem;">ID: HHF-PT-247 | Age: 8 | Blood: O+</p>
+              <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
+                <span class="status-pill status-danger">Critical</span>
+                <span class="status-pill" style="background:#e3f2fd;color:var(--primary);">Cardiology</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header"><h3 class="dash-card-title">Complete History</h3></div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot" style="background:var(--secondary);"></div>
+              <div class="timeline-content">
+                <div class="timeline-title">Admitted — Congenital Heart Disease</div>
+                <div class="timeline-text">Patient admitted with shortness of breath, cyanosis and failure to thrive. Echocardiogram revealed large ventricular septal defect.</div>
+                <div class="timeline-time">10 Jan 2026</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot" style="background:var(--primary);"></div>
+              <div class="timeline-content">
+                <div class="timeline-title">Pre-Op Tests Completed</div>
+                <div class="timeline-text">Full battery of pre-op tests completed. Patient cleared for surgery by all departments.</div>
+                <div class="timeline-time">5 Mar 2026</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot" style="background:#2e7d32;"></div>
+              <div class="timeline-content">
+                <div class="timeline-title">Funding Goal 65% Reached</div>
+                <div class="timeline-text">Surgery funding at ₹1,20,000 / ₹1,85,000. Emergency appeal launched for remaining funds.</div>
+                <div class="timeline-time">20 May 2026</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UPLOAD REPORTS -->
+    <section id="sec-reports" class="dash-section">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">Upload Medical Reports</h1>
+        <p class="dash-section-sub">Attach reports directly to patient records</p>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card-header"><h3 class="dash-card-title"><i class="fas fa-upload"></i> Upload Report</h3></div>
+        <form onsubmit="uploadReport(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Patient <span class="req">*</span></label>
+              <select class="form-input" required>
+                <option value="">Select patient</option>
+                <option>Rahul Kumar</option>
+                <option>Anjali Sharma</option>
+                <option>Meena Devi</option>
+                <option>Suresh Yadav</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Report Type <span class="req">*</span></label>
+              <select class="form-input" required>
+                <option>Blood Work</option>
+                <option>X-Ray</option>
+                <option>MRI Scan</option>
+                <option>CT Scan</option>
+                <option>Echocardiogram</option>
+                <option>Pathology</option>
+                <option>Surgery Notes</option>
+                <option>Discharge Summary</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Report Description</label>
+            <input type="text" class="form-input" placeholder="Brief description of the report..."/>
+          </div>
+          <div class="upload-zone" onclick="document.getElementById('reportFile').click()">
+            <i class="fas fa-cloud-upload-alt"></i>
+            <p>Click to upload report file</p>
+            <p style="font-size:.8rem;opacity:.7;">PDF, DICOM, JPG, PNG — max 20 MB</p>
+            <input type="file" id="reportFile" style="display:none;" accept=".pdf,.jpg,.jpeg,.png,.dcm"/>
+          </div>
+          <button type="submit" class="btn btn-primary" style="margin-top:14px;"><i class="fas fa-upload"></i> Upload to Patient Record</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="sec-profile" class="dash-section">
+      <div class="dash-section-header">
+        <h1 class="dash-section-title">My Profile</h1>
+        <p class="dash-section-sub">Your medical credentials and account information</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 2fr;gap:20px;align-items:start;">
+        <div class="dash-card" style="text-align:center;">
+          <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&fit=crop&q=80" alt="Doctor" style="width:100px;height:100px;border-radius:50%;object-fit:cover;margin:0 auto 14px;display:block;border:3px solid var(--primary);"/>
+          <h3 style="font-weight:700;" data-auth-name>Dr. Priya Singh</h3>
+          <p style="color:var(--text-muted);font-size:.85rem;">Pediatric Cardiology</p>
+          <span class="status-pill status-success" style="margin:10px auto 0;display:inline-block;">Verified Doctor</span>
+          <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:.82rem;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="color:var(--text-muted);">Reg. No.</span><span style="font-weight:600;">MCI-2018-42367</span></div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span style="color:var(--text-muted);">Experience</span><span style="font-weight:600;">8 years</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text-muted);">Cases</span><span style="font-weight:600;">142 treated</span></div>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-header"><h3 class="dash-card-title">Professional Information</h3><button class="btn btn-outline btn-sm" onclick="toggleEdit('profileForm')"><i class="fas fa-edit"></i> Edit</button></div>
+          <form id="profileForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" value="Dr. Priya Singh" disabled/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Specialization</label>
+                <input type="text" class="form-input" value="Pediatric Cardiology" disabled/>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" value="doctor@healhope.org" disabled/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Mobile</label>
+                <input type="tel" class="form-input" value="+91 98765 00001" disabled/>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Qualification</label>
+                <input type="text" class="form-input" value="MBBS, MD, DM Cardiology (AIIMS)" disabled/>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Registration No.</label>
+                <input type="text" class="form-input" value="MCI-2018-42367" disabled/>
+              </div>
+            </div>
+            <div id="profileSaveBtn" style="display:none;margin-top:10px;">
+              <button type="button" class="btn btn-primary btn-sm" onclick="saveProfile()"><i class="fas fa-save"></i> Save</button>
+              <button type="button" class="btn btn-outline btn-sm" onclick="toggleEdit('profileForm')" style="margin-left:8px;">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="../js/main.js"></script>
+<script src="../js/auth.js"></script>
+<script>
+requireAuth(['doctor','admin']);
+populateDashboardUser();
+
+const authData = JSON.parse(localStorage.getItem('hh-auth') || '{}');
+if (authData.name) {
+  const initials = authData.name.split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase();
+  document.getElementById('avatarInitials').textContent = initials;
+}
+
+function showSection(id, link) {
+  document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  document.querySelectorAll('.dash-nav-link').forEach(l => l.classList.remove('active'));
+  if (link) link.classList.add('active');
+  document.getElementById('breadcrumbCurrent').textContent = id.charAt(0).toUpperCase() + id.slice(1);
+  if (window.innerWidth < 992) closeSidebar();
+}
+
+function addMedicineRow() {
+  const row = document.createElement('div');
+  row.className = 'medicine-row form-row';
+  row.style.alignItems = 'flex-end';
+  row.innerHTML = `
+    <div class="form-group" style="flex:2;"><label class="form-label">Medicine Name</label><input type="text" class="form-input" placeholder="e.g., Paracetamol 500mg"/></div>
+    <div class="form-group"><label class="form-label">Dosage</label><input type="text" class="form-input" placeholder="e.g., 1-0-1"/></div>
+    <div class="form-group"><label class="form-label">Duration</label><input type="text" class="form-input" placeholder="e.g., 5 days"/></div>
+    <div class="form-group" style="flex-shrink:0;"><label class="form-label" style="opacity:0;">x</label><button type="button" class="btn btn-outline btn-sm" onclick="this.closest('.medicine-row').remove()"><i class="fas fa-trash" style="color:var(--secondary);"></i></button></div>`;
+  document.getElementById('medicineList').appendChild(row);
+}
+
+function savePrescription(e) {
+  e.preventDefault();
+  showToast('Prescription saved and sent to patient!', 'success');
+  e.target.reset();
+}
+
+function addTreatmentUpdate(e) {
+  e.preventDefault();
+  const timeline = document.getElementById('updatesTimeline');
+  const item = document.createElement('div');
+  item.className = 'timeline-item';
+  item.innerHTML = `<div class="timeline-dot" style="background:var(--accent);"></div><div class="timeline-content"><div class="timeline-title">New Update Added</div><div class="timeline-text">Treatment update recorded successfully.</div><div class="timeline-time">Just now</div></div>`;
+  timeline.insertBefore(item, timeline.firstChild);
+  showToast('Treatment update posted!', 'success');
+  e.target.reset();
+}
+
+function viewPatient(name) {
+  document.querySelector('[onclick="showSection(\'history\',this)"]').click();
+  document.getElementById('patientHistoryPanel').style.display = 'block';
+  document.getElementById('histName').textContent = name;
+  document.getElementById('histAvatar').textContent = name.charAt(0);
+}
+
+function addUpdate(name) {
+  document.querySelector('[onclick="showSection(\'updates\',this)"]').click();
+  showToast('Posting update for ' + name, 'info');
+}
+
+function loadPatientHistory(val) {
+  const panel = document.getElementById('patientHistoryPanel');
+  if (!val) { panel.style.display = 'none'; return; }
+  panel.style.display = 'block';
+  const names = { rahul: 'Rahul Kumar', anjali: 'Anjali Sharma', meena: 'Meena Devi' };
+  document.getElementById('histName').textContent = names[val] || val;
+  document.getElementById('histAvatar').textContent = (names[val] || val).charAt(0);
+}
+
+function uploadReport(e) {
+  e.preventDefault();
+  showToast('Report uploaded to patient record!', 'success');
+  e.target.reset();
+}
+
+function toggleEdit(formId) {
+  const form = document.getElementById(formId);
+  const inputs = form.querySelectorAll('input');
+  const saveBtn = document.getElementById('profileSaveBtn');
+  const isDisabled = inputs[0].disabled;
+  inputs.forEach(i => i.disabled = !isDisabled);
+  saveBtn.style.display = isDisabled ? 'block' : 'none';
+}
+
+function saveProfile() { toggleEdit('profileForm'); showToast('Profile updated!', 'success'); }
+function filterPatients(v) { /* client-side filter via row textContent */ }
+function filterPatientStatus(v) { /* filter by status pill */ }
+</script>
+</body>
+</html>

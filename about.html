@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us — HopeRise Foundation</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><img src="images/logo.webp" alt="HopeRise Foundation"/></a>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="programs.html" class="nav-link">Our Programs</a></li>
+      <li><a href="volunteer.html" class="nav-link">Volunteers</a></li>
+      <li><a href="index.html#news" class="nav-link">News</a></li>
+      <li><a href="about.html" class="nav-link active">About Us</a></li>
+      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="login.html" class="btn btn-ghost btn-sm"><i class="fas fa-sign-in-alt"></i> Login</a>
+      <a href="donate.html" class="btn btn-primary btn-sm"><i class="fas fa-heart"></i> Donate Now</a>
+      <button class="nav-hamburger" id="navHamburger"><span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html" class="nav-link">Home</a>
+  <a href="programs.html" class="nav-link">Our Programs</a>
+  <a href="volunteer.html" class="nav-link">Volunteers</a>
+  <a href="index.html#news" class="nav-link">News</a>
+  <a href="about.html" class="nav-link">About Us</a>
+  <a href="index.html#contact" class="nav-link">Contact</a>
+  <a href="login.html" class="nav-link">Login</a>
+  <div class="nav-actions"><button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i> Toggle Theme</button><a href="donate.html" class="btn btn-secondary w-full">Donate Now</a></div>
+</div>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-overlay"></div>
+  <div class="page-header-content container">
+    <div class="breadcrumb"><a href="index.html">Home</a><i class="fas fa-chevron-right"></i><span>About Us</span></div>
+    <h1>About HealHope Foundation</h1>
+    <p>12 years of saving children's lives through medical funding, transparency, and compassion.</p>
+  </div>
+</div>
+
+<!-- Our Story -->
+<section class="section">
+  <div class="container">
+    <div class="mission-grid">
+      <div class="mission-img-wrap reveal-left">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=700&fit=crop&q=80" alt="Our Story" loading="lazy"/>
+        <div class="mission-badge"><div class="mission-badge-num">2012</div><div class="mission-badge-text">Founded<br>in India</div></div>
+      </div>
+      <div class="mission-content reveal-right">
+        <div class="section-tag"><i class="fas fa-book-open"></i> Our Story</div>
+        <h2 class="section-title">Born from a <span>Broken Heart,</span> Built with Compassion</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px;">In 2012, our founder Dr. Anita Sharma watched a 4-year-old girl named Meena die waiting for a heart surgery her family couldn't afford. The surgery would have cost ₹1.8 lakhs — a sum raised in just 3 days when word spread on social media.</p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:16px;">Meena died two days before the surgery could happen. That day, Dr. Sharma promised she would build a system so no child would ever lose their life to poverty again. HealHope Foundation was born.</p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:24px;">Today, we operate across 22 states in India with a network of 180+ partner hospitals, 600+ volunteer doctors, and over 85,000 donors who collectively fund life-saving treatment for children every single day.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;">
+          <a href="donate.html" class="btn btn-secondary"><i class="fas fa-heart"></i> Support Our Mission</a>
+          <a href="volunteer.html" class="btn btn-outline"><i class="fas fa-hands-helping"></i> Volunteer</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card reveal st1"><div class="stat-icon blue"><i class="fas fa-child"></i></div><div class="stat-num" data-counter data-target="24800" data-suffix="+">0</div><div class="stat-label">Children Saved</div></div>
+      <div class="stat-card reveal st2"><div class="stat-icon red"><i class="fas fa-hospital"></i></div><div class="stat-num" data-counter data-target="180" data-suffix="+">0</div><div class="stat-label">Partner Hospitals</div></div>
+      <div class="stat-card reveal st3"><div class="stat-icon green"><i class="fas fa-user-md"></i></div><div class="stat-num" data-counter data-target="600" data-suffix="+">0</div><div class="stat-label">Volunteer Doctors</div></div>
+      <div class="stat-card reveal st4"><div class="stat-icon orange"><i class="fas fa-map-marker-alt"></i></div><div class="stat-num" data-counter data-target="22" data-suffix=" States">0</div><div class="stat-label">States Covered</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission & Vision -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-bullseye"></i> Direction</div>
+      <h2 class="section-title">Our Mission &amp; <span>Vision</span></h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="mission-vis-grid">
+      <div style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));border-radius:var(--radius-xl);padding:32px;color:#fff;" class="reveal st1">
+        <div style="font-size:2rem;margin-bottom:16px;">🎯</div>
+        <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:16px;">Our Mission</h3>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:.9rem;opacity:.9;"><i class="fas fa-check" style="margin-top:3px;color:#ffcc02;"></i>Ensure no child dies due to inability to afford medical care</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:.9rem;opacity:.9;"><i class="fas fa-check" style="margin-top:3px;color:#ffcc02;"></i>Build transparent, accountable fund management systems</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:.9rem;opacity:.9;"><i class="fas fa-check" style="margin-top:3px;color:#ffcc02;"></i>Connect donors directly with verified medical cases</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:.9rem;opacity:.9;"><i class="fas fa-check" style="margin-top:3px;color:#ffcc02;"></i>Support families through entire treatment and recovery</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:.9rem;opacity:.9;"><i class="fas fa-check" style="margin-top:3px;color:#ffcc02;"></i>Provide 80G tax certification to every donor</li>
+        </ul>
+      </div>
+      <div style="background:linear-gradient(135deg,#1b5e20,#2e7d32);border-radius:var(--radius-xl);padding:32px;color:#fff;" class="reveal st2">
+        <div style="font-size:2rem;margin-bottom:16px;">🌟</div>
+        <h3 style="font-size:1.2rem;font-weight:800;margin-bottom:16px;">Our Vision</h3>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:.9rem;opacity:.9;"><i class="fas fa-arrow-right" style="margin-top:3px;color:#a5d6a7;"></i>A world where a child's survival never depends on wealth</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:.9rem;opacity:.9;"><i class="fas fa-arrow-right" style="margin-top:3px;color:#a5d6a7;"></i>1 million children helped by 2030 across South Asia</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:.9rem;opacity:.9;"><i class="fas fa-arrow-right" style="margin-top:3px;color:#a5d6a7;"></i>A network of 10,000 volunteer doctors across 50 countries</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:.9rem;opacity:.9;"><i class="fas fa-arrow-right" style="margin-top:3px;color:#a5d6a7;"></i>Zero administrative overhead — 100% donor-funded</li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:.9rem;opacity:.9;"><i class="fas fa-arrow-right" style="margin-top:3px;color:#a5d6a7;"></i>Fully digital, real-time impact tracking for every donor</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<style>.mission-vis-grid{grid-template-columns:1fr 1fr}@media(max-width:768px){.mission-vis-grid{grid-template-columns:1fr}}</style>
+
+<!-- Core Values -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-gem"></i> What We Stand For</div>
+      <h2 class="section-title">Our Core <span>Values</span></h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal st1"><div class="value-icon">🔍</div><h3 class="value-title">Transparency</h3><p class="value-text">Every rupee is tracked and reported publicly. Donors receive real-time case updates, expense breakdowns, and annual audited reports without ever asking.</p></div>
+      <div class="value-card reveal st2"><div class="value-icon">💙</div><h3 class="value-title">Compassion</h3><p class="value-text">We treat every child and family with dignity. Our volunteers go beyond medicine — they provide emotional support, regular check-ins, and long-term follow-up care.</p></div>
+      <div class="value-card reveal st3"><div class="value-icon">⚡</div><h3 class="value-title">Speed</h3><p class="value-text">When a child's life is at risk, minutes matter. Our emergency response team can mobilise funds and connect with hospitals within 24–48 hours of case verification.</p></div>
+      <div class="value-card reveal st1 st3"><div class="value-icon">🤝</div><h3 class="value-title">Integrity</h3><p class="value-text">We turn away no case that meets our criteria, regardless of religion, caste, region, or background. Every verified child gets equal access to our resources.</p></div>
+      <div class="value-card reveal st2 st3"><div class="value-icon">📊</div><h3 class="value-title">Accountability</h3><p class="value-text">We publish quarterly impact reports, complete financial audits, and individual case outcome reports. Our books are open to every donor, always.</p></div>
+      <div class="value-card reveal st3 st3"><div class="value-icon">🌱</div><h3 class="value-title">Sustainability</h3><p class="value-text">We build long-term relationships with partner hospitals and recurring donors to create a sustainable funding ecosystem that children can rely on for years.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-users"></i> Our People</div>
+      <h2 class="section-title">Leadership <span>Team</span></h2>
+      <p class="section-desc">Passionate professionals who left high-paying careers to dedicate their lives to saving children.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal st1">
+        <img class="team-img" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&q=80" alt="Dr. Anita Sharma"/>
+        <div class="team-body">
+          <h3 class="team-name">Dr. Anita Sharma</h3>
+          <p class="team-role">Founder & Executive Director</p>
+          <p class="team-bio">Pediatric cardiologist, 18 years at AIIMS. Founded HealHope after losing a patient she could have saved.</p>
+        </div>
+      </div>
+      <div class="team-card reveal st2">
+        <img class="team-img" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&q=80" alt="Vikram Nair"/>
+        <div class="team-body">
+          <h3 class="team-name">Vikram Nair</h3>
+          <p class="team-role">Chief Operations Officer</p>
+          <p class="team-bio">Former IAS officer. Manages 22-state operations and 180+ hospital partnerships across India.</p>
+        </div>
+      </div>
+      <div class="team-card reveal st3">
+        <img class="team-img" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&q=80" alt="Dr. Meera Iyer"/>
+        <div class="team-body">
+          <h3 class="team-name">Dr. Meera Iyer</h3>
+          <p class="team-role">Head of Medical Affairs</p>
+          <p class="team-bio">Neurosurgeon from CMC Vellore. Leads our medical verification team and volunteer doctor network.</p>
+        </div>
+      </div>
+      <div class="team-card reveal st4">
+        <img class="team-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&q=80" alt="Arjun Mehta"/>
+        <div class="team-body">
+          <h3 class="team-name">Arjun Mehta</h3>
+          <p class="team-role">Chief Financial Officer</p>
+          <p class="team-bio">CA with 15 years in NGO finance. Ensures 92% fund efficiency and complete donor transparency.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Medical Partners -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-hospital"></i> Medical Network</div>
+      <h2 class="section-title">Our <span>Hospital Partners</span></h2>
+      <p class="section-desc">180+ hospitals providing subsidised or free treatment to our children across India.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;">
+      <div class="card" style="padding:20px;text-align:center;"><i class="fas fa-hospital" style="font-size:1.8rem;color:var(--primary);margin-bottom:10px;"></i><h4 style="font-size:.92rem;font-weight:700;margin-bottom:4px;">AIIMS Delhi</h4><p style="font-size:.78rem;color:var(--text-muted);">National Referral Partner</p></div>
+      <div class="card" style="padding:20px;text-align:center;"><i class="fas fa-clinic-medical" style="font-size:1.8rem;color:var(--primary);margin-bottom:10px;"></i><h4 style="font-size:.92rem;font-weight:700;margin-bottom:4px;">Apollo Hospitals</h4><p style="font-size:.78rem;color:var(--text-muted);">Pan-India Network</p></div>
+      <div class="card" style="padding:20px;text-align:center;"><i class="fas fa-hospital" style="font-size:1.8rem;color:var(--primary);margin-bottom:10px;"></i><h4 style="font-size:.92rem;font-weight:700;margin-bottom:4px;">Narayana Health</h4><p style="font-size:.78rem;color:var(--text-muted);">Cardiac Surgery Lead</p></div>
+      <div class="card" style="padding:20px;text-align:center;"><i class="fas fa-hospital" style="font-size:1.8rem;color:var(--primary);margin-bottom:10px;"></i><h4 style="font-size:.92rem;font-weight:700;margin-bottom:4px;">CMC Vellore</h4><p style="font-size:.78rem;color:var(--text-muted);">Neurosurgery Partner</p></div>
+      <div class="card" style="padding:20px;text-align:center;"><i class="fas fa-hospital" style="font-size:1.8rem;color:var(--primary);margin-bottom:10px;"></i><h4 style="font-size:.92rem;font-weight:700;margin-bottom:4px;">Tata Memorial</h4><p style="font-size:.78rem;color:var(--text-muted);">Cancer Treatment Partner</p></div>
+      <div class="card" style="padding:20px;text-align:center;"><i class="fas fa-hospital" style="font-size:1.8rem;color:var(--primary);margin-bottom:10px;"></i><h4 style="font-size:.92rem;font-weight:700;margin-bottom:4px;">Fortis Healthcare</h4><p style="font-size:.78rem;color:var(--text-muted);">Emergency Surgery</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Transparency -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag"><i class="fas fa-shield-alt"></i> Transparency</div>
+      <h2 class="section-title">100% <span>Transparent</span> Operations</h2>
+      <p class="section-desc">We publish everything. No exceptions.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;">
+      <div style="background:var(--bg-card);border-radius:var(--radius-lg);padding:24px;border:1px solid var(--border);display:flex;align-items:flex-start;gap:14px;" class="reveal st1">
+        <div style="width:44px;height:44px;background:var(--primary-light);color:var(--primary);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;"><i class="fas fa-file-invoice"></i></div>
+        <div><h4 style="font-weight:700;margin-bottom:6px;">Annual Audit Reports</h4><p style="font-size:.83rem;color:var(--text-muted);">Independently audited by a Big 4 firm. Published publicly every April.</p></div>
+      </div>
+      <div style="background:var(--bg-card);border-radius:var(--radius-lg);padding:24px;border:1px solid var(--border);display:flex;align-items:flex-start;gap:14px;" class="reveal st2">
+        <div style="width:44px;height:44px;background:var(--green-light);color:var(--green);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;"><i class="fas fa-receipt"></i></div>
+        <div><h4 style="font-weight:700;margin-bottom:6px;">Per-Case Fund Tracking</h4><p style="font-size:.83rem;color:var(--text-muted);">Every donor can see exactly which child received their donation and the treatment outcome.</p></div>
+      </div>
+      <div style="background:var(--bg-card);border-radius:var(--radius-lg);padding:24px;border:1px solid var(--border);display:flex;align-items:flex-start;gap:14px;" class="reveal st3">
+        <div style="width:44px;height:44px;background:var(--secondary-light);color:var(--secondary);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;"><i class="fas fa-percentage"></i></div>
+        <div><h4 style="font-weight:700;margin-bottom:6px;">92% Fund Efficiency</h4><p style="font-size:.83rem;color:var(--text-muted);">Only 8% goes to operations. 92 paise of every rupee donated reaches the child directly.</p></div>
+      </div>
+      <div style="background:var(--bg-card);border-radius:var(--radius-lg);padding:24px;border:1px solid var(--border);display:flex;align-items:flex-start;gap:14px;" class="reveal st4">
+        <div style="width:44px;height:44px;background:#fff3e0;color:var(--orange);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;"><i class="fas fa-certificate"></i></div>
+        <div><h4 style="font-weight:700;margin-bottom:6px;">80G Tax Certificate</h4><p style="font-size:.83rem;color:var(--text-muted);">Every donor receives an official 80G certificate for tax deduction within 7 working days.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));padding:clamp(48px,8vw,96px) 0;text-align:center;">
+  <div class="container">
+    <h2 style="font-size:clamp(1.6rem,4vw,2.6rem);font-weight:900;color:#fff;margin-bottom:14px;">Ready to Save a Child's Life Today?</h2>
+    <p style="color:rgba(255,255,255,.75);max-width:480px;margin:0 auto 32px;font-size:1rem;line-height:1.7;">Every donation, no matter how small, brings a child one step closer to surviving. Join 85,000+ donors making a difference.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="donate.html" class="btn btn-secondary btn-lg btn-pulse"><i class="fas fa-heart"></i> Donate Now</a>
+      <a href="volunteer.html" class="btn btn-white btn-lg"><i class="fas fa-hands-helping"></i> Volunteer</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="images/logo.webp" alt="HopeRise Foundation" style="height:36px;width:auto;"/>
+        </div>
+        <p>Transforming Lives, One Act at a Time. Registered NGO — 80G &amp; 12A Certified. Founded 2014.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Our Programs</div>
+        <div class="footer-links">
+          <a href="programs.html" class="footer-link">Education</a>
+          <a href="programs.html" class="footer-link">Healthcare</a>
+          <a href="programs.html" class="footer-link">Food Relief</a>
+          <a href="programs.html" class="footer-link">Environment</a>
+          <a href="programs.html" class="footer-link">Child Welfare</a>
+          <a href="programs.html" class="footer-link">All Programs</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">Get Involved</div>
+        <div class="footer-links">
+          <a href="donate.html" class="footer-link">Donate Now</a>
+          <a href="volunteer.html" class="footer-link">Volunteer</a>
+          <a href="#" class="footer-link">Partner With Us</a>
+          <a href="#" class="footer-link">Corporate CSR</a>
+          <a href="#contact" class="footer-link">Contact Us</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">About</div>
+        <div class="footer-links">
+          <a href="about.html" class="footer-link">Who We Are</a>
+          <a href="#" class="footer-link">News &amp; Stories</a>
+          <a href="#" class="footer-link">Annual Report</a>
+          <a href="#" class="footer-link">Careers</a>
+          <a href="#" class="footer-link">Press &amp; Media</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 HopeRise Foundation. All rights reserved. Registered NGO — 80G &amp; 12A Certified.</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top" id="scrollTopBtn"><i class="fas fa-arrow-up"></i></button>
+<button class="live-chat-btn" id="liveChatBtn"><div class="live-chat-dot"></div><i class="fas fa-comments"></i> Support</button>
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
