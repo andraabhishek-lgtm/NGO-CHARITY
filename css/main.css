@@ -161,11 +161,20 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
 .btn-ghost:hover { background: var(--primary-light); color: var(--primary); border-color: rgba(79,140,255,.3); transform: translateY(-2px); }
 .hero-btns .btn-ghost,
 .cta-btns .btn-ghost {
-  background: rgba(255,255,255,.12); color: #fff;
-  border-color: rgba(255,255,255,.45);
+  background: rgba(0,0,0,.35);
+  color: #fff;
+  border-color: rgba(255,255,255,.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  text-shadow: 0 1px 4px rgba(0,0,0,.5);
 }
 .hero-btns .btn-ghost:hover,
-.cta-btns .btn-ghost:hover { background: rgba(255,255,255,.22); color: #fff; border-color: rgba(255,255,255,.75); transform: translateY(-2px); }
+.cta-btns .btn-ghost:hover {
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  border-color: #fff;
+  transform: translateY(-2px);
+}
 .btn-secondary {
   background: linear-gradient(135deg, var(--green), #5AE388);
   color: #fff; box-shadow: var(--shadow-green);
