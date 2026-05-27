@@ -3,712 +3,175 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login — HopeRise Foundation</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💚</text></svg>"/>
+  <title>Login — HopeRise Stackly</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💙</text></svg>"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --green: #a3e635;
-      --green-dark: #84cc16;
-      --green-glow: rgba(163,230,53,0.35);
-      --bg: #0a0a0f;
-      --surface: #12121a;
-      --surface2: #1e1e2d;
-      --border: rgba(255,255,255,0.08);
-      --border-green: rgba(163,230,53,0.25);
-      --text: #ffffff;
-      --text-sec: #a1a1aa;
-      --text-muted: #71717a;
-      --text-faint: #3f3f46;
-    }
-
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Rajdhani', 'Poppins', sans-serif;
-      font-size: 16px;
-    }
-
-    /* ── Scrollbar ── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 3px; }
-
-    /* ══════════════════════════════════════════
-       BACKGROUND
-    ══════════════════════════════════════════ */
-    .login-bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-    }
-    /* Neon grid */
-    .login-bg::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(163,230,53,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(163,230,53,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-    /* Glow orbs */
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      pointer-events: none;
-    }
-    .orb-1 { width: 500px; height: 500px; background: rgba(163,230,53,0.07); top: -150px; left: -150px; }
-    .orb-2 { width: 400px; height: 400px; background: rgba(6,182,212,0.05); bottom: -120px; right: -100px; }
-    .orb-3 { width: 300px; height: 300px; background: rgba(139,92,246,0.04); top: 40%; left: 60%; }
-
-    /* ══════════════════════════════════════════
-       NAVBAR
-    ══════════════════════════════════════════ */
-    .login-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 32px;
-      background: rgba(10,10,15,0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .ln-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-    }
-    .ln-logo-mark {
-      width: 38px; height: 38px;
-      background: linear-gradient(135deg, var(--green), var(--green-dark));
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 18px var(--green-glow);
-      flex-shrink: 0;
-    }
-    .ln-logo-mark svg { width: 22px; height: 22px; }
-    .ln-logo-name {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: 0.03em;
-    }
-    .ln-logo-name em { color: var(--green); font-style: normal; }
-    .ln-back {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-muted);
-      font-size: 0.83rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .ln-back:hover { color: var(--green); }
-
-    /* ══════════════════════════════════════════
-       MAIN WRAPPER
-    ══════════════════════════════════════════ */
-    .login-wrap {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 100px 20px 60px;
-    }
-
-    /* ══════════════════════════════════════════
-       CARD
-    ══════════════════════════════════════════ */
-    .login-card {
-      width: 100%;
-      max-width: 480px;
-      background: rgba(18,18,26,0.96);
-      border: 1px solid var(--border-green);
-      border-radius: 20px;
-      padding: 40px 36px;
-      position: relative;
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      box-shadow:
-        0 0 0 1px rgba(163,230,53,0.05),
-        0 0 60px rgba(163,230,53,0.04),
-        0 30px 60px rgba(0,0,0,0.6);
-    }
-    /* Top accent line */
-    .login-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 50%; transform: translateX(-50%);
-      width: 55%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--green), transparent);
-      border-radius: 1px;
-    }
-
-    /* ── Card logo ── */
-    .card-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      text-decoration: none;
-      margin-bottom: 28px;
-    }
-    .card-logo-mark {
-      width: 48px; height: 48px;
-      background: linear-gradient(135deg, var(--green), var(--green-dark));
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 24px var(--green-glow);
-    }
-    .card-logo-mark svg { width: 26px; height: 26px; }
-    .card-logo-name {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.3rem;
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: 0.04em;
-    }
-    .card-logo-name em { color: var(--green); font-style: normal; }
-
-    /* ── Main tabs (Login / Register) ── */
-    .main-tabs {
-      display: flex;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 4px;
-      margin-bottom: 22px;
-    }
-    .main-tab {
-      flex: 1;
-      padding: 9px;
-      text-align: center;
-      font-size: 0.85rem;
-      font-weight: 700;
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 0.04em;
-      color: var(--text-muted);
-      border-radius: 9px;
-      cursor: pointer;
-      transition: all 0.22s;
-    }
-    .main-tab.active {
-      background: rgba(163,230,53,0.12);
-      color: var(--green);
-      border: 1px solid var(--border-green);
-    }
-    .main-tab:hover:not(.active) {
-      background: rgba(255,255,255,0.04);
-      color: var(--text-sec);
-    }
-
-    /* ── Panel headings ── */
-    .panel-heading {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--text);
-      text-align: center;
-      margin-bottom: 4px;
-    }
-    .panel-sub {
-      text-align: center;
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin-bottom: 22px;
-    }
-
-    /* ── Role tabs ── */
-    .role-tabs {
-      display: flex;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 3px;
-      margin-bottom: 22px;
-      gap: 2px;
-    }
-    .role-tab {
-      flex: 1;
-      padding: 8px 4px;
-      text-align: center;
-      font-size: 0.75rem;
-      font-weight: 700;
-      font-family: 'Orbitron', sans-serif;
-      letter-spacing: 0.03em;
-      color: var(--text-muted);
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .role-tab.active {
-      background: rgba(163,230,53,0.14);
-      color: var(--green);
-      border: 1px solid var(--border-green);
-    }
-    .role-tab:hover:not(.active) {
-      background: rgba(255,255,255,0.05);
-      color: var(--text-sec);
-    }
-
-    /* ── Form ── */
-    .fg { margin-bottom: 16px; }
-    .fg label {
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--text-sec);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 7px;
-    }
-    .fg input[type="email"],
-    .fg input[type="password"],
-    .fg input[type="text"],
-    .fg input[type="tel"] {
-      width: 100%;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 16px;
-      color: var(--text);
-      font-size: 0.95rem;
-      font-family: 'Rajdhani', sans-serif;
-      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-      outline: none;
-    }
-    .fg input:focus {
-      border-color: rgba(163,230,53,0.5);
-      background: rgba(163,230,53,0.03);
-      box-shadow: 0 0 0 3px rgba(163,230,53,0.07);
-    }
-    .fg input::placeholder { color: var(--text-faint); }
-
-    .pw-wrap { position: relative; }
-    .pw-wrap input { padding-right: 42px; }
-    .pw-btn {
-      position: absolute;
-      right: 12px; top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--text-faint);
-      font-size: 0.88rem;
-      padding: 0;
-      transition: color 0.2s;
-    }
-    .pw-btn:hover { color: var(--text-sec); }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
-    /* Remember / Forgot row */
-    .rf-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-      font-size: 0.82rem;
-    }
-    .rf-row label {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--text-sec);
-      cursor: pointer;
-    }
-    .rf-row input[type="checkbox"] { accent-color: var(--green); cursor: pointer; }
-    .rf-row a { color: var(--green); text-decoration: none; font-weight: 600; }
-    .rf-row a:hover { text-decoration: underline; }
-
-    /* Terms row */
-    .terms-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-bottom: 20px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-    .terms-row input[type="checkbox"] { accent-color: var(--green); cursor: pointer; margin-top: 2px; }
-    .terms-row a { color: var(--green); }
-
-    /* ── Submit button ── */
-    .btn-submit {
-      width: 100%;
-      padding: 14px;
-      background: linear-gradient(135deg, var(--green), var(--green-dark));
-      color: #0a0a0f;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: box-shadow 0.3s, transform 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn-submit::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-      transition: 0.5s;
-    }
-    .btn-submit:hover::before { left: 100%; }
-    .btn-submit:hover {
-      box-shadow: 0 0 32px var(--green-glow);
-      transform: translateY(-2px);
-    }
-    .btn-submit:active { transform: translateY(0); }
-
-    /* ── Social divider ── */
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 20px 0;
-    }
-    .divider::before, .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-    .divider span {
-      font-size: 0.75rem;
-      color: var(--text-faint);
-      white-space: nowrap;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    /* ── Social buttons ── */
-    .social-row { display: flex; gap: 10px; }
-    .social-btn {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 11px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text-sec);
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .social-btn:hover {
-      background: rgba(255,255,255,0.08);
-      color: var(--text);
-      border-color: rgba(255,255,255,0.18);
-    }
-
-    /* ── Demo accounts ── */
-    .demo-label {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--text-faint);
-      margin: 18px 0 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    .demo-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-    }
-    .demo-item {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 8px 10px;
-      font-size: 0.74rem;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.2s;
-      line-height: 1.5;
-    }
-    .demo-item:hover {
-      border-color: var(--border-green);
-      color: var(--green);
-      background: rgba(163,230,53,0.04);
-    }
-    .demo-item span { color: var(--text-faint); }
-
-    /* ── Footer link ── */
-    .card-footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 0.84rem;
-      color: var(--text-muted);
-    }
-    .card-footer a { color: var(--green); font-weight: 700; text-decoration: none; }
-    .card-footer a:hover { text-decoration: underline; }
-
-    /* ── Toast ── */
-    .toast-container {
-      position: fixed;
-      bottom: 24px; left: 50%; transform: translateX(-50%);
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      min-width: 300px;
-    }
-    .toast {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 18px;
-      background: #1a1a26;
-      border-radius: 10px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: #fff;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-    }
-    .toast.success { border-left: 4px solid #a3e635; }
-    .toast.error   { border-left: 4px solid #ef4444; }
-    .toast.info    { border-left: 4px solid #06b6d4; }
-    .toast.success .toast-icon { color: #a3e635; }
-    .toast.error   .toast-icon { color: #ef4444; }
-    .toast.info    .toast-icon { color: #06b6d4; }
-
-    /* ── Responsive ── */
-    @media (max-width: 520px) {
-      .login-card { padding: 28px 20px; }
-      .form-row { grid-template-columns: 1fr; gap: 0; }
-      .role-tab { font-size: 0.68rem; padding: 7px 3px; }
-      .login-nav { padding: 12px 16px; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/auth.css"/>
 </head>
 <body>
 
-<!-- Background -->
-<div class="login-bg">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-</div>
+<div class="auth-page">
 
-<!-- Navbar -->
-<nav class="login-nav">
-  <a href="index.html" class="ln-logo">
-    <img src="images/logo.webp" alt="HopeRise Foundation" style="height:36px;width:auto;"/>
-  </a>
-  <a href="index.html" class="ln-back">
-    <i class="fas fa-arrow-left"></i> Back to Home
-  </a>
-</nav>
+  <!-- ── Left Branding Panel ── -->
+  <div class="auth-panel">
+    <div class="panel-dots"></div>
 
-<!-- Main -->
-<div class="login-wrap">
-  <div class="login-card">
-
-    <!-- Card Logo -->
-    <a href="index.html" class="card-logo">
-      <img src="images/logo.webp" alt="HopeRise Foundation" style="height:44px;width:auto;filter:brightness(1.1);"/>
-    </a>
-
-    <!-- Main Tabs -->
-    <div class="main-tabs">
-      <div class="main-tab active" id="tabLogin" onclick="switchTab('login')">Login</div>
-      <div class="main-tab" id="tabRegister" onclick="switchTab('register')">Create Account</div>
+    <div class="panel-logo">
+      <img src="images/logo.webp" alt="HopeRise Stackly" style="height:44px;width:auto;border-radius:8px;flex-shrink:0"/>
+      <div>
+        <div class="panel-logo-text">HopeRise<span style="opacity:.7"> Stackly</span></div>
+        <span class="panel-logo-sub">Est. 2018</span>
+      </div>
     </div>
 
-    <!-- ══ LOGIN PANEL ══ -->
-    <div id="panelLogin">
-      <div class="panel-heading">Welcome Back</div>
-      <div class="panel-sub">Sign in to your HopeRise account</div>
+    <div class="panel-tagline">
+      Transforming Lives,<br/><span class="dim">One Donation at a Time</span>
+    </div>
 
-      <!-- Role tabs -->
-      <div class="role-tabs" id="loginRoles">
-        <div class="role-tab active" data-role="donor"    onclick="pickRole(this,'loginRoles')">Donor</div>
-        <div class="role-tab"        data-role="doctor"   onclick="pickRole(this,'loginRoles')">Doctor</div>
-        <div class="role-tab"        data-role="patient"  onclick="pickRole(this,'loginRoles')">Patient</div>
-        <div class="role-tab"        data-role="admin"    onclick="pickRole(this,'loginRoles')">Admin</div>
+    <p class="panel-desc">
+      Join thousands of compassionate donors and help us build a healthier, more equitable world for every child and community.
+    </p>
+
+    <div class="panel-stats">
+      <div class="panel-stat">
+        <span class="panel-stat-num">12,400+</span>
+        <span class="panel-stat-label">Active Donors</span>
+      </div>
+      <div class="panel-stat">
+        <span class="panel-stat-num">₹84L+</span>
+        <span class="panel-stat-label">Raised</span>
+      </div>
+      <div class="panel-stat">
+        <span class="panel-stat-num">1,284</span>
+        <span class="panel-stat-label">Lives Impacted</span>
+      </div>
+    </div>
+
+    <div class="panel-testimonial">
+      <p>"HopeRise transformed our village. My children now have access to clean water and proper nutrition — something we only dreamed of before."</p>
+      <div class="panel-testimonial-author">
+        <div class="pt-avatar">👩</div>
+        <span>Sita Devi — Beneficiary, Rajasthan</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Right Form Panel ── -->
+  <div class="auth-form-panel">
+
+    <!-- Top Nav -->
+    <div class="auth-top-nav">
+      <a href="javascript:history.back()" class="auth-back-btn">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+      <a href="index.html" class="auth-home-btn">
+        <i class="fas fa-home"></i> Home
+      </a>
+    </div>
+
+    <div class="auth-header">
+      <h1>Welcome Back 👋</h1>
+      <p>New to HopeRise? <a href="signup.html">Create a free account</a></p>
+    </div>
+
+    <!-- Role Tabs -->
+    <div class="role-tabs" id="roleTabs">
+      <button class="role-tab active" data-role="donor">
+        <i class="fas fa-heart"></i> Donor Login
+      </button>
+      <button class="role-tab" data-role="admin">
+        <i class="fas fa-shield-alt"></i> Admin Login
+      </button>
+    </div>
+
+    <!-- Login Form -->
+    <form class="auth-form" id="loginForm" novalidate>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label class="form-label" for="loginEmail">Email Address <span class="req">*</span></label>
+        <div class="form-ctrl-wrap">
+          <i class="fas fa-envelope form-icon"></i>
+          <input type="email" id="loginEmail" class="form-ctrl" placeholder="you@example.com" autocomplete="email"/>
+        </div>
+        <span class="form-err" id="loginEmailErr"><i class="fas fa-exclamation-circle"></i></span>
       </div>
 
-      <form id="loginForm">
-        <div class="fg">
-          <label for="loginEmail">Email Address</label>
-          <input type="email" id="loginEmail" placeholder="your@email.com" required/>
+      <!-- Password -->
+      <div class="form-group">
+        <label class="form-label" for="loginPassword">Password <span class="req">*</span></label>
+        <div class="form-ctrl-wrap">
+          <i class="fas fa-lock form-icon"></i>
+          <input type="password" id="loginPassword" class="form-ctrl" placeholder="Enter your password" autocomplete="current-password"/>
+          <button type="button" class="pw-toggle" aria-label="Toggle password">
+            <i class="fas fa-eye-slash"></i>
+          </button>
         </div>
-        <div class="fg">
-          <label for="loginPassword">Password</label>
-          <div class="pw-wrap">
-            <input type="password" id="loginPassword" placeholder="Enter your password" required/>
-            <button type="button" class="pw-btn" onclick="togglePw('loginPassword',this)">
-              <i class="fas fa-eye"></i>
-            </button>
-          </div>
-        </div>
-        <div class="rf-row">
-          <label><input type="checkbox"/> Remember me</label>
-          <a href="#">Forgot password?</a>
-        </div>
-        <button type="submit" class="btn-submit">
-          <i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;SIGN IN
+        <span class="form-err" id="loginPasswordErr"><i class="fas fa-exclamation-circle"></i></span>
+      </div>
+
+      <!-- Remember + Forgot -->
+      <div class="form-footer">
+        <label class="chk-wrap">
+          <input type="checkbox" id="rememberMe"/>
+          <span class="chk-label">Remember me</span>
+        </label>
+        <button type="button" class="forgot-link" id="forgotLink">Forgot password?</button>
+      </div>
+
+      <!-- Sign In -->
+      <button type="submit" class="btn-auth btn-auth-primary">
+        <div class="btn-spinner"></div>
+        <span class="btn-text"><i class="fas fa-sign-in-alt"></i> Sign In</span>
+      </button>
+
+      <!-- Divider -->
+      <div class="auth-divider">or continue with</div>
+
+      <!-- Social -->
+      <div class="social-btns">
+        <button type="button" class="btn-social">
+          <div class="icon-g"></div> Google
         </button>
-      </form>
-
-      <div class="divider"><span>or continue with</span></div>
-      <div class="social-row">
-        <a href="404.html" class="social-btn"><i class="fab fa-google"></i> Google</a>
-        <a href="404.html" class="social-btn"><i class="fab fa-github"></i> GitHub</a>
-      </div>
-
-      <div class="demo-label">One-click Demo Login</div>
-      <div class="demo-grid">
-        <div class="demo-item" onclick="fillDemo('donor@hoperise.org','donor123')">
-          <i class="fas fa-heart" style="color:#a3e635;margin-right:4px;"></i>Donor<br><span>donor@hoperise.org</span>
-        </div>
-        <div class="demo-item" onclick="fillDemo('doctor@hoperise.org','doctor123')">
-          <i class="fas fa-user-md" style="color:#06b6d4;margin-right:4px;"></i>Doctor<br><span>doctor@hoperise.org</span>
-        </div>
-        <div class="demo-item" onclick="fillDemo('patient@hoperise.org','patient123')">
-          <i class="fas fa-procedures" style="color:#8b5cf6;margin-right:4px;"></i>Patient<br><span>patient@hoperise.org</span>
-        </div>
-        <div class="demo-item" onclick="fillDemo('admin@hoperise.org','admin123')">
-          <i class="fas fa-shield-alt" style="color:#f97316;margin-right:4px;"></i>Admin<br><span>admin@hoperise.org</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ══ REGISTER PANEL ══ -->
-    <div id="panelRegister" style="display:none;">
-      <div class="panel-heading">Create Account</div>
-      <div class="panel-sub">Join HopeRise Foundation today</div>
-
-      <!-- Role tabs -->
-      <div class="role-tabs" id="regRoles">
-        <div class="role-tab active"  data-role="donor"     onclick="pickRole(this,'regRoles')">Donor</div>
-        <div class="role-tab"         data-role="doctor"    onclick="pickRole(this,'regRoles')">Doctor</div>
-        <div class="role-tab"         data-role="patient"   onclick="pickRole(this,'regRoles')">Patient</div>
-        <div class="role-tab"         data-role="volunteer" onclick="pickRole(this,'regRoles')">Volunteer</div>
-      </div>
-
-      <form id="registerForm">
-        <div class="form-row">
-          <div class="fg">
-            <label>Full Name <span style="color:#ef4444;">*</span></label>
-            <input type="text" id="regName" placeholder="Your full name" required/>
-          </div>
-          <div class="fg">
-            <label>Email <span style="color:#ef4444;">*</span></label>
-            <input type="email" id="regEmail" placeholder="your@email.com" required/>
-          </div>
-        </div>
-        <div class="fg">
-          <label>Mobile Number</label>
-          <input type="tel" id="regPhone" placeholder="10-digit mobile number"/>
-        </div>
-        <div class="form-row">
-          <div class="fg">
-            <label>Password <span style="color:#ef4444;">*</span></label>
-            <input type="password" id="regPassword" placeholder="Min. 6 characters" required/>
-          </div>
-          <div class="fg">
-            <label>Confirm Password <span style="color:#ef4444;">*</span></label>
-            <input type="password" id="regConfirm" placeholder="Re-enter password" required/>
-          </div>
-        </div>
-        <div class="terms-row">
-          <input type="checkbox" id="agreeTerms" required/>
-          <label for="agreeTerms">
-            I agree to HopeRise's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-          </label>
-        </div>
-        <button type="submit" class="btn-submit">
-          <i class="fas fa-user-plus"></i>&nbsp;&nbsp;CREATE ACCOUNT
+        <button type="button" class="btn-social">
+          <i class="fab fa-linkedin-in icon-li"></i> LinkedIn
         </button>
-      </form>
-    </div>
+      </div>
 
-    <div class="card-footer" id="cardFooter">
-      New here? <a href="#" onclick="switchTab('register');return false;">Create Account</a>
-    </div>
+    </form>
 
+    <p style="margin-top:18px;font-size:.8rem;color:var(--text-muted);text-align:center;">
+      Don't have an account? <a href="signup.html" style="color:var(--primary);font-weight:700;">Sign up free</a>
+    </p>
+
+  </div><!-- /auth-form-panel -->
+</div><!-- /auth-page -->
+
+<!-- Forgot Password Modal -->
+<div class="modal-overlay" id="forgotModal">
+  <div class="modal-box">
+    <button class="modal-close-btn" id="forgotClose"><i class="fas fa-times"></i></button>
+    <div class="modal-icon"><i class="fas fa-key" style="color:var(--primary)"></i></div>
+    <h3>Reset Password</h3>
+    <p>Enter your email address and we'll send you a link to reset your password.</p>
+    <form id="forgotForm" novalidate>
+      <div class="form-group" style="margin-bottom:14px">
+        <label class="form-label" for="forgotEmail">Email Address <span class="req">*</span></label>
+        <div class="form-ctrl-wrap">
+          <i class="fas fa-envelope form-icon"></i>
+          <input type="email" id="forgotEmail" class="form-ctrl" placeholder="you@example.com"/>
+        </div>
+      </div>
+      <button type="submit" class="btn-auth btn-auth-primary">
+        <i class="fas fa-paper-plane"></i> Send Reset Link
+      </button>
+    </form>
   </div>
 </div>
 
 <div class="toast-container" id="toastContainer"></div>
-
-<script>
-function switchTab(tab) {
-  const isLogin = (tab === 'login');
-  document.getElementById('tabLogin').classList.toggle('active', isLogin);
-  document.getElementById('tabRegister').classList.toggle('active', !isLogin);
-  document.getElementById('panelLogin').style.display = isLogin ? '' : 'none';
-  document.getElementById('panelRegister').style.display = isLogin ? 'none' : '';
-  document.getElementById('cardFooter').innerHTML = isLogin
-    ? 'New here? <a href="#" onclick="switchTab(\'register\');return false;">Create Account</a>'
-    : 'Already have an account? <a href="#" onclick="switchTab(\'login\');return false;">Sign In</a>';
-}
-
-function pickRole(el, groupId) {
-  document.getElementById(groupId).querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-}
-
-function togglePw(id, btn) {
-  const inp = document.getElementById(id);
-  const isText = inp.type === 'text';
-  inp.type = isText ? 'password' : 'text';
-  btn.innerHTML = isText ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
-}
-
-function fillDemo(email, pass) {
-  document.getElementById('loginEmail').value = email;
-  document.getElementById('loginPassword').value = pass;
-  const map = {
-    'donor@hoperise.org':  'donor',
-    'doctor@hoperise.org': 'doctor',
-    'patient@hoperise.org':'patient',
-    'admin@hoperise.org':  'admin'
-  };
-  const role = map[email];
-  document.getElementById('loginRoles').querySelectorAll('.role-tab').forEach(t => {
-    t.classList.toggle('active', t.dataset.role === role);
-  });
-  // Auto-submit after a short delay so user sees the fill
-  setTimeout(() => {
-    document.getElementById('loginForm').dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
-  }, 300);
-}
-</script>
-<script src="js/main.js"></script>
 <script src="js/auth.js"></script>
 </body>
 </html>

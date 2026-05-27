@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard — HopeRise Stackly</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/admin-dashboard.css"/>
+</head>
+<body>
+
+<div class="dash-layout">
+
+  <!-- ── Sidebar (Dark Navy) ── -->
+  <aside class="dash-sidebar" id="dashSidebar">
+
+    <!-- Logo -->
+    <div class="sidebar-logo">
+      <img src="images/logo.webp" alt="HopeRise Stackly" style="height:36px;width:auto;border-radius:6px;flex-shrink:0"/>
+      <div>
+        <div class="sidebar-logo-text">HopeRise<span style="opacity:.6"> Stackly</span></div>
+        <span class="sidebar-logo-sub">Admin Portal</span>
+      </div>
+    </div>
+
+    <!-- Admin Info -->
+    <div class="sidebar-user">
+      <div class="sidebar-avatar" data-user-avatar>AU</div>
+      <div style="overflow:hidden">
+        <div class="sidebar-user-name" data-user-name>Admin User</div>
+        <span class="sidebar-user-role">Super Admin</span>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Overview</div>
+
+      <button class="sidebar-link active" data-section="sectionDashboard">
+        <i class="fas fa-th-large"></i>
+        <span class="link-text">Dashboard</span>
+      </button>
+
+      <div class="sidebar-section-label">Management</div>
+
+      <button class="sidebar-link" data-section="sectionDonors">
+        <i class="fas fa-users"></i>
+        <span class="link-text">Donors</span>
+        <span class="sidebar-badge">6</span>
+      </button>
+
+      <button class="sidebar-link" data-section="sectionDonations">
+        <i class="fas fa-hand-holding-usd"></i>
+        <span class="link-text">Donations</span>
+      </button>
+
+      <button class="sidebar-link" data-section="sectionPrograms">
+        <i class="fas fa-project-diagram"></i>
+        <span class="link-text">Programs</span>
+      </button>
+
+      <button class="sidebar-link" data-section="sectionCampaigns">
+        <i class="fas fa-bullhorn"></i>
+        <span class="link-text">Campaigns</span>
+      </button>
+
+      <button class="sidebar-link" data-section="sectionBeneficiaries">
+        <i class="fas fa-heart"></i>
+        <span class="link-text">Beneficiaries</span>
+      </button>
+
+      <div class="sidebar-section-label">Analytics</div>
+
+      <button class="sidebar-link" data-section="sectionReports">
+        <i class="fas fa-chart-bar"></i>
+        <span class="link-text">Reports</span>
+      </button>
+
+      <div class="sidebar-section-label">System</div>
+
+      <button class="sidebar-link" data-section="sectionSettings">
+        <i class="fas fa-cog"></i>
+        <span class="link-text">Settings</span>
+      </button>
+    </nav>
+
+    <!-- Logout -->
+    <div class="sidebar-footer">
+      <button class="sidebar-link logout-link logout-btn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span class="link-text">Logout</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- Mobile Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ── Main ── -->
+  <main class="dash-main">
+
+    <!-- Topbar -->
+    <header class="dash-topbar">
+      <div class="topbar-left">
+        <button class="topbar-hamburger" id="sidebarToggle" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="topbar-page-title" id="pageTitle">Dashboard</div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-email" data-user-email-display title="Logged in as">
+          <i class="fas fa-envelope"></i>
+          <span data-user-email>admin@example.com</span>
+        </div>
+        <a href="index.html" class="topbar-icon-btn" title="Visit Website">
+          <i class="fas fa-globe"></i>
+        </a>
+        <button class="topbar-icon-btn" title="Notifications" onclick="showToast('3 new notifications','info')">
+          <i class="fas fa-bell"></i>
+          <span class="notif-dot"></span>
+        </button>
+        <button class="topbar-icon-btn" title="Reports" onclick="document.querySelector('[data-section=sectionReports]').click()">
+          <i class="fas fa-chart-bar"></i>
+        </button>
+        <div class="topbar-avatar" data-user-avatar title="Admin">AU</div>
+      </div>
+    </header>
+
+    <!-- ── Content ── -->
+    <div class="dash-content">
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Dashboard
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section active" id="sectionDashboard">
+
+        <!-- Admin Welcome Banner -->
+        <div class="welcome-banner">
+          <div class="welcome-text">
+            <h2>Admin Control Centre 🛡️</h2>
+            <p>Manage campaigns, donors, and track foundation performance in real time.</p>
+          </div>
+          <span class="welcome-emoji">🛡️</span>
+          <div class="welcome-stats">
+            <div class="ws-item">
+              <span class="ws-value" id="statTotalRaised">₹8.4L</span>
+              <span class="ws-label">Total Raised</span>
+            </div>
+            <div class="ws-item">
+              <span class="ws-value">94%</span>
+              <span class="ws-label">Success Rate</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 Stat Cards -->
+        <div class="stats-grid-6">
+          <div class="stat-card stat-card-blue">
+            <div class="stat-card-top">
+              <div class="stat-icon"><i class="fas fa-rupee-sign"></i></div>
+              <span class="stat-badge up"><i class="fas fa-arrow-up"></i> +23%</span>
+            </div>
+            <div class="stat-value" id="statTotalRaisedCard">₹8,42,500</div>
+            <div class="stat-label">Total Donations Raised</div>
+          </div>
+          <div class="stat-card stat-card-green">
+            <div class="stat-card-top">
+              <div class="stat-icon"><i class="fas fa-bullhorn"></i></div>
+              <span class="stat-badge up"><i class="fas fa-arrow-up"></i> +1</span>
+            </div>
+            <div class="stat-value" id="statActiveCampaigns">4</div>
+            <div class="stat-label">Active Campaigns</div>
+          </div>
+          <div class="stat-card stat-card-pink">
+            <div class="stat-card-top">
+              <div class="stat-icon"><i class="fas fa-users"></i></div>
+              <span class="stat-badge up"><i class="fas fa-arrow-up"></i> +87</span>
+            </div>
+            <div class="stat-value" id="statBeneficiaries">1,284</div>
+            <div class="stat-label">Beneficiaries Helped</div>
+          </div>
+          <div class="stat-card stat-card-purple">
+            <div class="stat-card-top">
+              <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+              <span class="stat-badge up">+23%</span>
+            </div>
+            <div class="stat-value" id="statMonthlyGrowth">+23%</div>
+            <div class="stat-label">Monthly Growth</div>
+          </div>
+          <div class="stat-card stat-card-orange">
+            <div class="stat-card-top">
+              <div class="stat-icon"><i class="fas fa-clock"></i></div>
+              <span class="stat-badge warn">Action needed</span>
+            </div>
+            <div class="stat-value" id="statPending">6</div>
+            <div class="stat-label">Pending Requests</div>
+          </div>
+          <div class="stat-card stat-card-cyan">
+            <div class="stat-card-top">
+              <div class="stat-icon"><i class="fas fa-check-double"></i></div>
+              <span class="stat-badge up"><i class="fas fa-arrow-up"></i> +2%</span>
+            </div>
+            <div class="stat-value" id="statSuccessRate">94%</div>
+            <div class="stat-label">Program Success Rate</div>
+          </div>
+        </div>
+
+        <!-- Charts Row 1 -->
+        <div class="charts-grid-22">
+          <div class="card">
+            <div class="card-hdr">
+              <div class="card-title"><i class="fas fa-chart-bar"></i> Monthly Donations</div>
+              <span class="badge badge-success">+23% this month</span>
+            </div>
+            <div class="chart-wrap h240">
+              <canvas id="chartMonthly"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-hdr">
+              <div class="card-title"><i class="fas fa-chart-pie"></i> Campaign Performance</div>
+            </div>
+            <div class="chart-wrap h240">
+              <canvas id="chartCampaign"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row 2 -->
+        <div class="charts-grid-2">
+          <div class="card">
+            <div class="card-hdr">
+              <div class="card-title"><i class="fas fa-chart-line"></i> Fund Distribution (Annual)</div>
+              <div style="display:flex;gap:12px;font-size:.78rem">
+                <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:50%;background:var(--primary);display:inline-block"></span>Raised</span>
+                <span style="display:flex;align-items:center;gap:5px"><span style="width:10px;height:10px;border-radius:50%;background:var(--green);display:inline-block"></span>Spent</span>
+              </div>
+            </div>
+            <div class="chart-wrap h240">
+              <canvas id="chartFund"></canvas>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-hdr">
+              <div class="card-title"><i class="fas fa-trophy"></i> Program Success Rate</div>
+            </div>
+            <div class="chart-wrap h240">
+              <canvas id="chartProgram"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Activity Feed -->
+        <div class="card">
+          <div class="card-hdr">
+            <div class="card-title"><i class="fas fa-stream"></i> Recent Activity</div>
+            <button class="card-link" onclick="showToast('Loading full activity log…','info')">View All →</button>
+          </div>
+          <div class="activity-list" id="activityFeed">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+      </div><!-- /sectionDashboard -->
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Donors
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section" id="sectionDonors">
+        <div class="page-hdr">
+          <div>
+            <h2><i class="fas fa-users" style="color:var(--primary);margin-right:8px"></i>Donors</h2>
+            <p>Manage all registered donors and their contributions</p>
+          </div>
+          <button class="btn btn-primary" onclick="showToast('Add donor form coming soon!','info')">
+            <i class="fas fa-user-plus"></i> Add Donor
+          </button>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <input type="text" id="donorSearch" class="filter-input" placeholder="Search donors…" style="flex:1;max-width:320px"/>
+          <select class="filter-select">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Inactive</option>
+            <option>Pending</option>
+          </select>
+          <button class="btn btn-outline btn-sm" onclick="showToast('Exporting donor list…','info')">
+            <i class="fas fa-download"></i> Export
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="tbl-wrap">
+            <table class="admin-tbl">
+              <thead>
+                <tr>
+                  <th>Donor</th>
+                  <th>Total Donated</th>
+                  <th>Last Donation</th>
+                  <th>Campaigns</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="donorsTableBody">
+                <!-- Rendered by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div><!-- /sectionDonors -->
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Donations
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section" id="sectionDonations">
+        <div class="page-hdr">
+          <div>
+            <h2><i class="fas fa-hand-holding-usd" style="color:var(--primary);margin-right:8px"></i>Donations</h2>
+            <p>Track all donation transactions</p>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="showToast('Generating report…','info')">
+            <i class="fas fa-file-pdf"></i> Generate Report
+          </button>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="stats-grid-4" style="margin-bottom:18px">
+          <div class="stat-card stat-card-blue">
+            <div class="stat-card-top"><div class="stat-icon"><i class="fas fa-rupee-sign"></i></div></div>
+            <div class="stat-value">₹8.4L</div>
+            <div class="stat-label">Total Received</div>
+          </div>
+          <div class="stat-card stat-card-green">
+            <div class="stat-card-top"><div class="stat-icon"><i class="fas fa-check-circle"></i></div></div>
+            <div class="stat-value">721</div>
+            <div class="stat-label">Completed</div>
+          </div>
+          <div class="stat-card stat-card-orange">
+            <div class="stat-card-top"><div class="stat-icon"><i class="fas fa-clock"></i></div></div>
+            <div class="stat-value">12</div>
+            <div class="stat-label">Processing</div>
+          </div>
+          <div class="stat-card stat-card-pink">
+            <div class="stat-card-top"><div class="stat-icon"><i class="fas fa-users"></i></div></div>
+            <div class="stat-value">12,400</div>
+            <div class="stat-label">Total Donors</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-hdr">
+            <div class="card-title"><i class="fas fa-list"></i> All Transactions</div>
+            <span class="badge badge-info">733 records</span>
+          </div>
+          <div class="tbl-wrap">
+            <table class="admin-tbl">
+              <thead>
+                <tr>
+                  <th>Transaction ID</th>
+                  <th>Donor</th>
+                  <th>Amount</th>
+                  <th>Campaign</th>
+                  <th>Date</th>
+                  <th>Method</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span style="font-family:var(--font-display);font-size:.78rem;color:var(--primary);font-weight:700">TXN-2024-0721</span></td>
+                  <td><div class="donor-cell"><div class="donor-avatar">PS</div><div><div class="donor-name">Priya Sharma</div></div></div></td>
+                  <td><strong>₹5,000</strong></td>
+                  <td>Child Nutrition Drive</td>
+                  <td>Dec 01, 2024</td>
+                  <td><span class="badge badge-cyan">UPI</span></td>
+                  <td><span class="badge badge-success">Completed</span></td>
+                </tr>
+                <tr>
+                  <td><span style="font-family:var(--font-display);font-size:.78rem;color:var(--primary);font-weight:700">TXN-2024-0720</span></td>
+                  <td><div class="donor-cell"><div class="donor-avatar">RV</div><div><div class="donor-name">Rahul Verma</div></div></div></td>
+                  <td><strong>₹3,000</strong></td>
+                  <td>Education for All</td>
+                  <td>Nov 28, 2024</td>
+                  <td><span class="badge badge-info">Net Banking</span></td>
+                  <td><span class="badge badge-success">Completed</span></td>
+                </tr>
+                <tr>
+                  <td><span style="font-family:var(--font-display);font-size:.78rem;color:var(--primary);font-weight:700">TXN-2024-0719</span></td>
+                  <td><div class="donor-cell"><div class="donor-avatar">AS</div><div><div class="donor-name">Anjali Singh</div></div></div></td>
+                  <td><strong>₹10,000</strong></td>
+                  <td>Medical Aid Program</td>
+                  <td>Nov 25, 2024</td>
+                  <td><span class="badge badge-purple">Card</span></td>
+                  <td><span class="badge badge-success">Completed</span></td>
+                </tr>
+                <tr>
+                  <td><span style="font-family:var(--font-display);font-size:.78rem;color:var(--primary);font-weight:700">TXN-2024-0718</span></td>
+                  <td><div class="donor-cell"><div class="donor-avatar">KP</div><div><div class="donor-name">Kiran Patel</div></div></div></td>
+                  <td><strong>₹1,500</strong></td>
+                  <td>Clean Water Initiative</td>
+                  <td>Nov 20, 2024</td>
+                  <td><span class="badge badge-cyan">UPI</span></td>
+                  <td><span class="badge badge-warning">Processing</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div><!-- /sectionDonations -->
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Programs
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section" id="sectionPrograms">
+        <div class="page-hdr">
+          <div>
+            <h2><i class="fas fa-project-diagram" style="color:var(--primary);margin-right:8px"></i>Programs</h2>
+            <p>Manage all active and completed NGO programs</p>
+          </div>
+          <button class="btn btn-primary" onclick="showToast('Program creation coming soon!','info')">
+            <i class="fas fa-plus"></i> New Program
+          </button>
+        </div>
+
+        <div class="grid-2">
+          <div class="card" style="border-top:3px solid var(--primary)">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+              <div style="width:52px;height:52px;border-radius:var(--radius);background:var(--primary-light);display:flex;align-items:center;justify-content:center;font-size:1.5rem">🍎</div>
+              <div>
+                <div style="font-family:var(--font-display);font-weight:800;font-size:1rem">Child Nutrition Drive</div>
+                <span class="badge badge-success">Active</span>
+              </div>
+            </div>
+            <div style="font-size:.85rem;color:var(--text-muted);margin-bottom:14px">Providing daily nutritious meals to underprivileged children across 5 districts.</div>
+            <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:8px">
+              <span style="font-weight:700;color:var(--primary)">₹1,87,500 raised</span>
+              <span style="color:var(--text-muted)">of ₹2,50,000</span>
+            </div>
+            <div class="progress-wrap" style="height:8px;margin-bottom:12px"><div class="progress-fill" style="width:75%"></div></div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button>
+              <button class="btn btn-outline btn-sm" onclick="showToast('Viewing program details…','info')"><i class="fas fa-eye"></i> View</button>
+            </div>
+          </div>
+
+          <div class="card" style="border-top:3px solid var(--green)">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+              <div style="width:52px;height:52px;border-radius:var(--radius);background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:1.5rem">📚</div>
+              <div>
+                <div style="font-family:var(--font-display);font-weight:800;font-size:1rem">Education for All</div>
+                <span class="badge badge-success">Active</span>
+              </div>
+            </div>
+            <div style="font-size:.85rem;color:var(--text-muted);margin-bottom:14px">Supporting primary education with books, uniforms, and scholarships.</div>
+            <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:8px">
+              <span style="font-weight:700;color:var(--primary)">₹2,15,000 raised</span>
+              <span style="color:var(--text-muted)">of ₹3,00,000</span>
+            </div>
+            <div class="progress-wrap" style="height:8px;margin-bottom:12px"><div class="progress-fill green" style="width:72%"></div></div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button>
+              <button class="btn btn-outline btn-sm" onclick="showToast('Viewing program details…','info')"><i class="fas fa-eye"></i> View</button>
+            </div>
+          </div>
+
+          <div class="card" style="border-top:3px solid var(--pink)">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+              <div style="width:52px;height:52px;border-radius:var(--radius);background:var(--pink-light);display:flex;align-items:center;justify-content:center;font-size:1.5rem">🏥</div>
+              <div>
+                <div style="font-family:var(--font-display);font-weight:800;font-size:1rem">Medical Aid Program</div>
+                <span class="badge badge-success">Active</span>
+              </div>
+            </div>
+            <div style="font-size:.85rem;color:var(--text-muted);margin-bottom:14px">Free medical camps and medicine distribution in rural areas.</div>
+            <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:8px">
+              <span style="font-weight:700;color:var(--primary)">₹92,000 raised</span>
+              <span style="color:var(--text-muted)">of ₹1,50,000</span>
+            </div>
+            <div class="progress-wrap" style="height:8px;margin-bottom:12px"><div class="progress-fill" style="width:61%;background:linear-gradient(90deg,#db2777,var(--pink))"></div></div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button>
+              <button class="btn btn-outline btn-sm" onclick="showToast('Viewing program details…','info')"><i class="fas fa-eye"></i> View</button>
+            </div>
+          </div>
+
+          <div class="card" style="border-top:3px solid var(--cyan)">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px">
+              <div style="width:52px;height:52px;border-radius:var(--radius);background:var(--cyan-light);display:flex;align-items:center;justify-content:center;font-size:1.5rem">💧</div>
+              <div>
+                <div style="font-family:var(--font-display);font-weight:800;font-size:1rem">Clean Water Initiative</div>
+                <span class="badge badge-success">Active</span>
+              </div>
+            </div>
+            <div style="font-size:.85rem;color:var(--text-muted);margin-bottom:14px">Installing water purification systems in underserved communities.</div>
+            <div style="display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:8px">
+              <span style="font-weight:700;color:var(--primary)">₹44,000 raised</span>
+              <span style="color:var(--text-muted)">of ₹1,00,000</span>
+            </div>
+            <div class="progress-wrap" style="height:8px;margin-bottom:12px"><div class="progress-fill" style="width:44%;background:linear-gradient(90deg,#0369a1,var(--cyan))"></div></div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</button>
+              <button class="btn btn-outline btn-sm" onclick="showToast('Viewing program details…','info')"><i class="fas fa-eye"></i> View</button>
+            </div>
+          </div>
+        </div>
+      </div><!-- /sectionPrograms -->
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Campaigns
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section" id="sectionCampaigns">
+        <div class="page-hdr">
+          <div>
+            <h2><i class="fas fa-bullhorn" style="color:var(--primary);margin-right:8px"></i>Campaigns</h2>
+            <p>Monitor all fundraising campaigns and goals</p>
+          </div>
+          <button class="btn btn-primary" onclick="showToast('Campaign creation coming soon!','info')">
+            <i class="fas fa-plus"></i> New Campaign
+          </button>
+        </div>
+
+        <!-- Search -->
+        <div class="filter-bar">
+          <input type="text" id="campaignSearch" class="filter-input" placeholder="Search campaigns…" style="flex:1;max-width:320px"/>
+          <select class="filter-select">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Completed</option>
+            <option>Paused</option>
+          </select>
+        </div>
+
+        <div class="card">
+          <div class="tbl-wrap">
+            <table class="admin-tbl">
+              <thead>
+                <tr>
+                  <th>Campaign</th>
+                  <th>Goal</th>
+                  <th>Raised</th>
+                  <th>Progress</th>
+                  <th>Donors</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="campaignsTableBody">
+                <!-- Rendered by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div><!-- /sectionCampaigns -->
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Beneficiaries
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section" id="sectionBeneficiaries">
+        <div class="page-hdr">
+          <div>
+            <h2><i class="fas fa-heart" style="color:var(--primary);margin-right:8px"></i>Beneficiaries</h2>
+            <p>People whose lives are being transformed by your programs</p>
+          </div>
+          <button class="btn btn-primary" onclick="showToast('Add beneficiary coming soon!','info')">
+            <i class="fas fa-user-plus"></i> Add Beneficiary
+          </button>
+        </div>
+
+        <!-- Search -->
+        <div class="filter-bar">
+          <input type="text" id="beneSearch" class="filter-input" placeholder="Search beneficiaries…" style="flex:1;max-width:320px"/>
+          <select class="filter-select">
+            <option>All Types</option>
+            <option>Medical Aid</option>
+            <option>Nutrition</option>
+            <option>Education</option>
+          </select>
+        </div>
+
+        <div class="card">
+          <div class="tbl-wrap">
+            <table class="admin-tbl">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Support Type</th>
+                  <th>Location</th>
+                  <th>Date Enrolled</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="beneTableBody">
+                <!-- Rendered by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div><!-- /sectionBeneficiaries -->
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Reports
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section" id="sectionReports">
+        <div class="page-hdr">
+          <div>
+            <h2><i class="fas fa-chart-bar" style="color:var(--primary);margin-right:8px"></i>Reports</h2>
+            <p>Download audited financial and impact reports</p>
+          </div>
+          <button class="btn btn-primary" onclick="showToast('Generating custom report…','info')">
+            <i class="fas fa-file-alt"></i> Custom Report
+          </button>
+        </div>
+
+        <!-- Quick stats -->
+        <div class="stats-grid-4" style="margin-bottom:18px">
+          <div class="stat-card stat-card-blue">
+            <div class="stat-card-top"><div class="stat-icon"><i class="fas fa-file-invoice-dollar"></i></div></div>
+            <div class="stat-value">12</div>
+            <div class="stat-label">Reports Generated</div>
+          </div>
+          <div class="stat-card stat-card-green">
+            <div class="stat-card-top"><div class="stat-icon"><i class="fas fa-check-circle"></i></div></div>
+            <div class="stat-value">100%</div>
+            <div class="stat-label">Audit Compliance</div>
+          </div>
+          <div class="stat-card stat-card-purple">
+            <div class="stat-card-top"><div class="stat-icon"><i class="fas fa-calendar"></i></div></div>
+            <div class="stat-value">Q3 2024</div>
+            <div class="stat-label">Latest Report</div>
+          </div>
+          <div class="stat-card stat-card-orange">
+            <div class="stat-card-top"><div class="stat-icon"><i class="fas fa-shield-alt"></i></div></div>
+            <div class="stat-value">80G</div>
+            <div class="stat-label">Tax Certified</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-hdr">
+            <div class="card-title"><i class="fas fa-folder-open"></i> Available Reports</div>
+          </div>
+          <div class="report-list">
+            <div class="report-item">
+              <div class="report-item-left">
+                <div class="report-icon" style="background:var(--primary-light);color:var(--primary)"><i class="fas fa-file-pdf"></i></div>
+                <div>
+                  <div class="report-name">Annual Impact Report 2024</div>
+                  <div class="report-period">Jan 2024 – Dec 2024 • PDF, 4.2 MB</div>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="showToast('Downloading Annual Impact Report…','success')">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+            <div class="report-item">
+              <div class="report-item-left">
+                <div class="report-icon" style="background:var(--green-light);color:var(--green-dark)"><i class="fas fa-file-excel"></i></div>
+                <div>
+                  <div class="report-name">Q3 Donations Report</div>
+                  <div class="report-period">Jul – Sep 2024 • Excel, 1.8 MB</div>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="showToast('Downloading Q3 Donations Report…','success')">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+            <div class="report-item">
+              <div class="report-item-left">
+                <div class="report-icon" style="background:var(--orange-light);color:var(--orange)"><i class="fas fa-file-alt"></i></div>
+                <div>
+                  <div class="report-name">Beneficiary Impact Report</div>
+                  <div class="report-period">2024 • PDF, 2.1 MB</div>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="showToast('Downloading Beneficiary Report…','success')">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+            <div class="report-item">
+              <div class="report-item-left">
+                <div class="report-icon" style="background:var(--purple-light);color:var(--purple)"><i class="fas fa-file-invoice"></i></div>
+                <div>
+                  <div class="report-name">Audit Report 2023-24</div>
+                  <div class="report-period">FY 2023-24 • PDF, 3.5 MB</div>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="showToast('Downloading Audit Report…','success')">
+                <i class="fas fa-download"></i> Download
+              </button>
+            </div>
+          </div>
+        </div>
+      </div><!-- /sectionReports -->
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Settings
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section" id="sectionSettings">
+        <div class="page-hdr">
+          <div>
+            <h2><i class="fas fa-cog" style="color:var(--primary);margin-right:8px"></i>Settings</h2>
+            <p>System configuration and preferences</p>
+          </div>
+        </div>
+
+        <!-- General Settings -->
+        <div class="settings-card">
+          <div class="settings-card-title">
+            <i class="fas fa-building"></i> Organization Details
+          </div>
+          <form id="settingsForm">
+            <div class="settings-grid">
+              <div class="form-group">
+                <label class="form-lbl">Organization Name</label>
+                <input type="text" class="form-input" value="HopeRise Foundation"/>
+              </div>
+              <div class="form-group">
+                <label class="form-lbl">Registration Number</label>
+                <input type="text" class="form-input" value="NGO/DL/2018/001284"/>
+              </div>
+              <div class="form-group">
+                <label class="form-lbl">Admin Email</label>
+                <input type="email" class="form-input" value="admin@hoperise.org"/>
+              </div>
+              <div class="form-group">
+                <label class="form-lbl">Support Phone</label>
+                <input type="tel" class="form-input" value="+91 98765 43210"/>
+              </div>
+              <div class="form-group" style="grid-column:1/-1">
+                <label class="form-lbl">Website</label>
+                <input type="url" class="form-input" value="https://hoperise.org"/>
+              </div>
+            </div>
+            <div style="margin-top:16px">
+              <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Changes</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Notification Settings -->
+        <div class="settings-card">
+          <div class="settings-card-title">
+            <i class="fas fa-bell"></i> Notification Settings
+          </div>
+          <div>
+            <div class="settings-row">
+              <div class="settings-row-info">
+                <h4>New Donor Registration</h4>
+                <p>Get notified when a new donor registers</p>
+              </div>
+              <label class="toggle-sw">
+                <input type="checkbox" checked/>
+                <span class="toggle-sw-slider"></span>
+              </label>
+            </div>
+            <div class="settings-row">
+              <div class="settings-row-info">
+                <h4>Large Donation Alert</h4>
+                <p>Alert for donations above ₹10,000</p>
+              </div>
+              <label class="toggle-sw">
+                <input type="checkbox" checked/>
+                <span class="toggle-sw-slider"></span>
+              </label>
+            </div>
+            <div class="settings-row">
+              <div class="settings-row-info">
+                <h4>Campaign Milestone Alerts</h4>
+                <p>Get notified at 25%, 50%, 75%, and 100% of campaign goals</p>
+              </div>
+              <label class="toggle-sw">
+                <input type="checkbox" checked/>
+                <span class="toggle-sw-slider"></span>
+              </label>
+            </div>
+            <div class="settings-row">
+              <div class="settings-row-info">
+                <h4>Weekly Summary Email</h4>
+                <p>Receive a weekly summary every Monday</p>
+              </div>
+              <label class="toggle-sw">
+                <input type="checkbox"/>
+                <span class="toggle-sw-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Security -->
+        <div class="settings-card">
+          <div class="settings-card-title">
+            <i class="fas fa-shield-alt"></i> Security
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <button class="btn btn-outline" style="width:fit-content" onclick="showToast('Password change email sent!','success')">
+              <i class="fas fa-key"></i> Change Password
+            </button>
+            <button class="btn btn-outline" style="width:fit-content" onclick="showToast('2FA setup coming soon!','info')">
+              <i class="fas fa-mobile-alt"></i> Enable 2-Factor Authentication
+            </button>
+            <button class="btn btn-outline" style="width:fit-content" onclick="showToast('Session cleared!','success')">
+              <i class="fas fa-sign-out-alt"></i> Revoke All Sessions
+            </button>
+          </div>
+        </div>
+
+      </div><!-- /sectionSettings -->
+
+    </div><!-- /dash-content -->
+  </main><!-- /dash-main -->
+</div><!-- /dash-layout -->
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="js/admin-dashboard.js"></script>
+</body>
+</html>

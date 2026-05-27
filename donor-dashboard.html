@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donor Dashboard — HopeRise Stackly</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💙</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/donor-dashboard.css"/>
+</head>
+<body>
+
+<div class="dash-layout">
+
+  <!-- ── Sidebar ── -->
+  <aside class="dash-sidebar" id="dashSidebar">
+
+    <!-- Logo -->
+    <div class="sidebar-logo">
+      <img src="images/logo.webp" alt="HopeRise Stackly" style="height:36px;width:auto;border-radius:6px;flex-shrink:0"/>
+      <div>
+        <div class="sidebar-logo-text">HopeRise<span style="opacity:.6"> Stackly</span></div>
+      </div>
+    </div>
+
+    <!-- User Info -->
+    <div class="sidebar-user">
+      <div class="sidebar-avatar" data-user-avatar>JD</div>
+      <div class="sidebar-user-info" style="overflow:hidden">
+        <div class="sidebar-user-name" data-user-name>John Doe</div>
+        <span class="sidebar-user-role" data-user-role>Donor</span>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Main</div>
+
+      <button class="sidebar-link active" data-section="sectionDashboard">
+        <i class="fas fa-th-large"></i>
+        <span class="link-text">Dashboard</span>
+      </button>
+
+      <button class="sidebar-link" data-section="sectionDonations">
+        <i class="fas fa-hand-holding-heart"></i>
+        <span class="link-text">My Donations</span>
+        <span class="sidebar-badge">6</span>
+      </button>
+
+      <button class="sidebar-link" data-section="sectionCampaigns">
+        <i class="fas fa-bullhorn"></i>
+        <span class="link-text">Active Campaigns</span>
+      </button>
+
+      <button class="sidebar-link" data-section="sectionHistory">
+        <i class="fas fa-history"></i>
+        <span class="link-text">Donation History</span>
+      </button>
+
+      <button class="sidebar-link" data-section="sectionCertificates">
+        <i class="fas fa-award"></i>
+        <span class="link-text">Certificates</span>
+      </button>
+
+      <div class="sidebar-section-label">Account</div>
+
+      <button class="sidebar-link" data-section="sectionImpact">
+        <i class="fas fa-chart-line"></i>
+        <span class="link-text">Impact Tracker</span>
+      </button>
+
+      <button class="sidebar-link" data-section="sectionProfile">
+        <i class="fas fa-user-circle"></i>
+        <span class="link-text">Profile</span>
+      </button>
+
+      <button class="sidebar-link" data-section="sectionSettings">
+        <i class="fas fa-cog"></i>
+        <span class="link-text">Settings</span>
+      </button>
+    </nav>
+
+    <!-- Logout -->
+    <div class="sidebar-footer">
+      <button class="sidebar-link logout-link logout-btn">
+        <i class="fas fa-sign-out-alt"></i>
+        <span class="link-text">Logout</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- Overlay for mobile -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ── Main ── -->
+  <main class="dash-main">
+
+    <!-- Topbar -->
+    <header class="dash-topbar">
+      <div class="topbar-left">
+        <button class="topbar-hamburger" id="sidebarToggle" aria-label="Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div>
+          <div class="topbar-page-title" id="pageTitle">Dashboard</div>
+          <div class="topbar-breadcrumb">HopeRise / <span>Donor Portal</span></div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-email" data-user-email-display title="Logged in as">
+          <i class="fas fa-envelope"></i>
+          <span data-user-email>user@example.com</span>
+        </div>
+        <a href="index.html" class="topbar-icon-btn" title="Visit Website">
+          <i class="fas fa-globe"></i>
+        </a>
+        <button class="topbar-icon-btn" title="Notifications">
+          <i class="fas fa-bell"></i>
+          <span class="notif-dot"></span>
+        </button>
+        <div class="topbar-avatar" data-user-avatar title="Profile">JD</div>
+      </div>
+    </header>
+
+    <!-- ── Content ── -->
+    <div class="dash-content">
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Dashboard (Home)
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section active" id="sectionDashboard">
+
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+          <div class="welcome-text">
+            <h2>Welcome back, <span id="welcomeName">John</span>! 👋</h2>
+            <p>Your generosity is changing lives. Here's your impact overview.</p>
+          </div>
+          <span class="welcome-emoji">💙</span>
+          <button class="welcome-btn" onclick="document.querySelector('[data-section=sectionCampaigns]').click()">
+            <i class="fas fa-heart"></i> Donate Now
+          </button>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card stat-card-blue">
+            <div class="stat-card-top">
+              <div class="stat-icon"><i class="fas fa-rupee-sign"></i></div>
+              <span class="stat-badge up"><i class="fas fa-arrow-up"></i> +12%</span>
+            </div>
+            <div class="stat-value" id="statTotalDonated">₹21,500</div>
+            <div class="stat-label">Total Donated</div>
+          </div>
+          <div class="stat-card stat-card-green">
+            <div class="stat-card-top">
+              <div class="stat-icon"><i class="fas fa-bullhorn"></i></div>
+              <span class="stat-badge up"><i class="fas fa-arrow-up"></i> +2</span>
+            </div>
+            <div class="stat-value" id="statCampaigns">8</div>
+            <div class="stat-label">Campaigns Supported</div>
+          </div>
+          <div class="stat-card stat-card-pink">
+            <div class="stat-card-top">
+              <div class="stat-icon"><i class="fas fa-heart"></i></div>
+              <span class="stat-badge up"><i class="fas fa-arrow-up"></i> +45</span>
+            </div>
+            <div class="stat-value" id="statLives">320</div>
+            <div class="stat-label">Lives Impacted</div>
+          </div>
+          <div class="stat-card stat-card-purple">
+            <div class="stat-card-top">
+              <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+              <span class="stat-badge up"><i class="fas fa-arrow-up"></i> +5%</span>
+            </div>
+            <div class="stat-value" id="statMonthly">₹2,500</div>
+            <div class="stat-label">Monthly Contribution</div>
+          </div>
+        </div>
+
+        <!-- Two Column -->
+        <div class="grid-2">
+
+          <!-- Recent Donations -->
+          <div class="card">
+            <div class="card-hdr">
+              <div class="card-title"><i class="fas fa-history"></i> Recent Donations</div>
+              <button class="card-link" onclick="document.querySelector('[data-section=sectionDonations]').click()">View All →</button>
+            </div>
+            <div class="tbl-wrap">
+              <table class="dash-tbl" id="recentDonationsTable">
+                <thead>
+                  <tr>
+                    <th>Campaign</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Child Nutrition Drive</td>
+                    <td><strong>₹5,000</strong></td>
+                    <td>Nov 15, 2024</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td>Medical Aid Program</td>
+                    <td><strong>₹2,500</strong></td>
+                    <td>Oct 22, 2024</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td>Education for All</td>
+                    <td><strong>₹7,500</strong></td>
+                    <td>Sep 10, 2024</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                  </tr>
+                  <tr>
+                    <td>Child Nutrition Drive</td>
+                    <td><strong>₹2,500</strong></td>
+                    <td>Dec 01, 2024</td>
+                    <td><span class="badge badge-warning">Processing</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Active Campaigns Preview -->
+          <div class="card">
+            <div class="card-hdr">
+              <div class="card-title"><i class="fas fa-bullhorn"></i> Active Campaigns</div>
+              <button class="card-link" onclick="document.querySelector('[data-section=sectionCampaigns]').click()">View All →</button>
+            </div>
+            <div class="campaign-list">
+              <div class="campaign-item">
+                <div class="ci-top">
+                  <div>
+                    <div class="ci-title">🍎 Child Nutrition Drive</div>
+                    <div class="ci-cat">Nutrition • 18 days left</div>
+                  </div>
+                  <span class="badge badge-info">75%</span>
+                </div>
+                <div class="ci-amounts">
+                  <span class="ci-raised">₹1,87,500 raised</span>
+                  <span class="ci-goal">of ₹2,50,000</span>
+                </div>
+                <div class="progress-wrap" style="height:8px">
+                  <div class="progress-fill" style="width:75%"></div>
+                </div>
+              </div>
+              <div class="campaign-item">
+                <div class="ci-top">
+                  <div>
+                    <div class="ci-title">📚 Education for All</div>
+                    <div class="ci-cat">Education • 45 days left</div>
+                  </div>
+                  <span class="badge badge-info">72%</span>
+                </div>
+                <div class="ci-amounts">
+                  <span class="ci-raised">₹2,15,000 raised</span>
+                  <span class="ci-goal">of ₹3,00,000</span>
+                </div>
+                <div class="progress-wrap" style="height:8px">
+                  <div class="progress-fill" style="width:72%"></div>
+                </div>
+              </div>
+              <div class="campaign-item">
+                <div class="ci-top">
+                  <div>
+                    <div class="ci-title">🏥 Medical Aid Program</div>
+                    <div class="ci-cat">Healthcare • 32 days left</div>
+                  </div>
+                  <span class="badge badge-info">61%</span>
+                </div>
+                <div class="ci-amounts">
+                  <span class="ci-raised">₹92,000 raised</span>
+                  <span class="ci-goal">of ₹1,50,000</span>
+                </div>
+                <div class="progress-wrap" style="height:8px">
+                  <div class="progress-fill" style="width:61%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /grid-2 -->
+
+        <!-- Impact Highlights -->
+        <div class="card">
+          <div class="card-hdr">
+            <div class="card-title"><i class="fas fa-star"></i> Your Impact Highlights</div>
+          </div>
+          <div class="impact-grid">
+            <div class="impact-item">
+              <span class="impact-emoji">👶</span>
+              <span class="impact-value" data-counter data-target="128" data-suffix="">128</span>
+              <span class="impact-label">Children Fed</span>
+            </div>
+            <div class="impact-item">
+              <span class="impact-emoji">🍽️</span>
+              <span class="impact-value" data-counter data-target="3840" data-suffix="">3,840</span>
+              <span class="impact-label">Meals Provided</span>
+            </div>
+            <div class="impact-item">
+              <span class="impact-emoji">📚</span>
+              <span class="impact-value" data-counter data-target="64" data-suffix="">64</span>
+              <span class="impact-label">Kids in School</span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /sectionDashboard -->
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: My Donations (Full Table)
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section" id="sectionDonations">
+        <div class="page-hdr">
+          <div class="page-hdr-left">
+            <h2><i class="fas fa-hand-holding-heart" style="color:var(--primary);margin-right:8px"></i>My Donations</h2>
+            <p>Complete record of all your contributions</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-hdr">
+            <div class="card-title"><i class="fas fa-list"></i> All Transactions</div>
+            <div style="display:flex;gap:10px;align-items:center">
+              <input type="text" id="donationSearch" placeholder="Search donations…" style="padding:7px 13px;border:1.5px solid var(--border);border-radius:var(--radius);font-size:.83rem;outline:none;font-family:var(--font-body);color:var(--text);background:var(--bg);transition:border-color var(--transition)" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='var(--border)'"/>
+              <button class="btn btn-outline btn-sm" onclick="showToast('Exporting donations…','info')">
+                <i class="fas fa-download"></i> Export
+              </button>
+            </div>
+          </div>
+          <div class="tbl-wrap">
+            <table class="dash-tbl">
+              <thead>
+                <tr>
+                  <th>Donation ID</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                  <th>Campaign</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="donationTableBody">
+                <!-- Rendered by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div><!-- /sectionDonations -->
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Active Campaigns
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section" id="sectionCampaigns">
+        <div class="page-hdr">
+          <div class="page-hdr-left">
+            <h2><i class="fas fa-bullhorn" style="color:var(--primary);margin-right:8px"></i>Active Campaigns</h2>
+            <p>Choose a campaign to support</p>
+          </div>
+        </div>
+
+        <div id="campaignList" class="campaign-list">
+          <!-- Rendered by JS -->
+        </div>
+      </div><!-- /sectionCampaigns -->
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Donation History
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section" id="sectionHistory">
+        <div class="page-hdr">
+          <div class="page-hdr-left">
+            <h2><i class="fas fa-history" style="color:var(--primary);margin-right:8px"></i>Donation History</h2>
+            <p>Your complete giving timeline</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-hdr">
+            <div class="card-title"><i class="fas fa-calendar"></i> Timeline</div>
+            <span class="badge badge-info">6 donations total</span>
+          </div>
+
+          <!-- Timeline view -->
+          <div style="position:relative;padding-left:28px">
+            <div style="position:absolute;left:10px;top:0;bottom:0;width:2px;background:var(--border)"></div>
+
+            <div style="position:relative;margin-bottom:24px">
+              <div style="position:absolute;left:-22px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--primary);border:2px solid #fff;box-shadow:0 0 0 3px rgba(79,140,255,.2)"></div>
+              <div style="font-size:.72rem;color:var(--text-muted);margin-bottom:4px">December 2024</div>
+              <div class="card" style="padding:14px 16px">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+                  <div>
+                    <div style="font-weight:700;font-size:.9rem">Child Nutrition Drive</div>
+                    <div style="font-size:.78rem;color:var(--text-muted)">Dec 01, 2024</div>
+                  </div>
+                  <div style="text-align:right">
+                    <div style="font-weight:800;font-size:1rem;color:var(--primary)">₹2,500</div>
+                    <span class="badge badge-warning">Processing</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="position:relative;margin-bottom:24px">
+              <div style="position:absolute;left:-22px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--green);border:2px solid #fff;box-shadow:0 0 0 3px rgba(46,204,113,.2)"></div>
+              <div style="font-size:.72rem;color:var(--text-muted);margin-bottom:4px">November 2024</div>
+              <div class="card" style="padding:14px 16px">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+                  <div>
+                    <div style="font-weight:700;font-size:.9rem">Child Nutrition Drive</div>
+                    <div style="font-size:.78rem;color:var(--text-muted)">Nov 15, 2024</div>
+                  </div>
+                  <div style="text-align:right">
+                    <div style="font-weight:800;font-size:1rem;color:var(--primary)">₹5,000</div>
+                    <span class="badge badge-success">Completed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="position:relative;margin-bottom:24px">
+              <div style="position:absolute;left:-22px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--green);border:2px solid #fff;box-shadow:0 0 0 3px rgba(46,204,113,.2)"></div>
+              <div style="font-size:.72rem;color:var(--text-muted);margin-bottom:4px">October 2024</div>
+              <div class="card" style="padding:14px 16px">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+                  <div>
+                    <div style="font-weight:700;font-size:.9rem">Medical Aid Program</div>
+                    <div style="font-size:.78rem;color:var(--text-muted)">Oct 22, 2024</div>
+                  </div>
+                  <div style="text-align:right">
+                    <div style="font-weight:800;font-size:1rem;color:var(--primary)">₹2,500</div>
+                    <span class="badge badge-success">Completed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="position:relative;margin-bottom:24px">
+              <div style="position:absolute;left:-22px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--green);border:2px solid #fff;box-shadow:0 0 0 3px rgba(46,204,113,.2)"></div>
+              <div style="font-size:.72rem;color:var(--text-muted);margin-bottom:4px">September 2024</div>
+              <div class="card" style="padding:14px 16px">
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+                  <div>
+                    <div style="font-weight:700;font-size:.9rem">Education for All</div>
+                    <div style="font-size:.78rem;color:var(--text-muted)">Sep 10, 2024</div>
+                  </div>
+                  <div style="text-align:right">
+                    <div style="font-weight:800;font-size:1rem;color:var(--primary)">₹7,500</div>
+                    <span class="badge badge-success">Completed</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- /timeline -->
+        </div>
+      </div><!-- /sectionHistory -->
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Certificates
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section" id="sectionCertificates">
+        <div class="page-hdr">
+          <div class="page-hdr-left">
+            <h2><i class="fas fa-award" style="color:var(--primary);margin-right:8px"></i>My Certificates</h2>
+            <p>Download your donation certificates and recognition awards</p>
+          </div>
+        </div>
+
+        <!-- Notice -->
+        <div style="background:var(--green-light);border:1px solid rgba(46,204,113,.25);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:12px;font-size:.85rem;color:var(--green-dark)">
+          <i class="fas fa-info-circle" style="font-size:1.1rem"></i>
+          <span>Certificates are generated automatically after each successful donation. All certificates are 80G tax-deductible.</span>
+        </div>
+
+        <div class="cert-grid" id="certGrid">
+          <!-- Rendered by JS -->
+        </div>
+      </div><!-- /sectionCertificates -->
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Impact Tracker
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section" id="sectionImpact">
+        <div class="page-hdr">
+          <div class="page-hdr-left">
+            <h2><i class="fas fa-chart-line" style="color:var(--primary);margin-right:8px"></i>Impact Tracker</h2>
+            <p>See the real-world difference your donations make</p>
+          </div>
+        </div>
+
+        <!-- Impact Stats -->
+        <div class="grid-3" style="margin-bottom:20px">
+          <div class="stat-card stat-card-blue">
+            <div class="stat-card-top">
+              <div class="stat-icon"><i class="fas fa-child"></i></div>
+            </div>
+            <div class="stat-value" data-counter data-target="128">128</div>
+            <div class="stat-label">Children Helped</div>
+          </div>
+          <div class="stat-card stat-card-green">
+            <div class="stat-card-top">
+              <div class="stat-icon"><i class="fas fa-utensils"></i></div>
+            </div>
+            <div class="stat-value" data-counter data-target="3840">3840</div>
+            <div class="stat-label">Meals Provided</div>
+          </div>
+          <div class="stat-card stat-card-pink">
+            <div class="stat-card-top">
+              <div class="stat-icon"><i class="fas fa-book"></i></div>
+            </div>
+            <div class="stat-value" data-counter data-target="4">4</div>
+            <div class="stat-label">Programs Supported</div>
+          </div>
+        </div>
+
+        <!-- Programs Breakdown -->
+        <div class="card">
+          <div class="card-hdr">
+            <div class="card-title"><i class="fas fa-project-diagram"></i> Program-wise Impact</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:18px">
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:.85rem">
+                <span style="font-weight:600">🍎 Child Nutrition Drive</span>
+                <span style="font-weight:700;color:var(--primary)">₹7,500 contributed</span>
+              </div>
+              <div class="progress-wrap" style="height:10px">
+                <div class="progress-fill" style="width:60%"></div>
+              </div>
+              <div style="font-size:.75rem;color:var(--text-muted);margin-top:4px">60 children fed • 1,800 meals</div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:.85rem">
+                <span style="font-weight:600">📚 Education for All</span>
+                <span style="font-weight:700;color:var(--primary)">₹7,500 contributed</span>
+              </div>
+              <div class="progress-wrap" style="height:10px">
+                <div class="progress-fill green" style="width:45%"></div>
+              </div>
+              <div style="font-size:.75rem;color:var(--text-muted);margin-top:4px">34 students supported • 2 classrooms</div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:.85rem">
+                <span style="font-weight:600">🏥 Medical Aid Program</span>
+                <span style="font-weight:700;color:var(--primary)">₹2,500 contributed</span>
+              </div>
+              <div class="progress-wrap" style="height:10px">
+                <div class="progress-fill" style="width:30%;background:linear-gradient(90deg,#db2777,var(--pink))"></div>
+              </div>
+              <div style="font-size:.75rem;color:var(--text-muted);margin-top:4px">34 patients assisted • 3 camps</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /sectionImpact -->
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Profile
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section" id="sectionProfile">
+        <div class="page-hdr">
+          <div class="page-hdr-left">
+            <h2><i class="fas fa-user-circle" style="color:var(--primary);margin-right:8px"></i>My Profile</h2>
+            <p>Update your personal information</p>
+          </div>
+        </div>
+
+        <!-- Profile Header -->
+        <div class="profile-hdr">
+          <div class="profile-avatar-lg" data-user-avatar>JD</div>
+          <div>
+            <div class="profile-name" data-user-name>John Doe</div>
+            <div class="profile-email">donor@example.com</div>
+            <span class="badge badge-success"><i class="fas fa-check-circle"></i> Verified Donor</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-hdr">
+            <div class="card-title"><i class="fas fa-edit"></i> Edit Profile</div>
+          </div>
+          <form id="profileForm">
+            <div class="settings-grid">
+              <div class="form-group">
+                <label class="form-lbl">First Name</label>
+                <input type="text" class="form-input" id="profileFirstName" placeholder="First name"/>
+              </div>
+              <div class="form-group">
+                <label class="form-lbl">Last Name</label>
+                <input type="text" class="form-input" id="profileLastName" placeholder="Last name"/>
+              </div>
+              <div class="form-group">
+                <label class="form-lbl">Email Address</label>
+                <input type="email" class="form-input" id="profileEmail" placeholder="Email"/>
+              </div>
+              <div class="form-group">
+                <label class="form-lbl">Phone Number</label>
+                <input type="tel" class="form-input" id="profilePhone" placeholder="+91 98765 43210"/>
+              </div>
+              <div class="form-group" style="grid-column:1/-1">
+                <label class="form-lbl">Bio / Message</label>
+                <textarea class="form-input" rows="3" placeholder="Tell us about your giving journey…" style="resize:vertical"></textarea>
+              </div>
+            </div>
+            <div style="margin-top:16px;display:flex;gap:10px">
+              <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Changes</button>
+              <button type="button" class="btn btn-outline" onclick="showToast('Changes discarded.','info')">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div><!-- /sectionProfile -->
+
+
+      <!-- ═══════════════════════════════════════════
+           SECTION: Settings
+      ═══════════════════════════════════════════ -->
+      <div class="dash-section" id="sectionSettings">
+        <div class="page-hdr">
+          <div class="page-hdr-left">
+            <h2><i class="fas fa-cog" style="color:var(--primary);margin-right:8px"></i>Settings</h2>
+            <p>Manage notifications and account preferences</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-hdr">
+            <div class="card-title"><i class="fas fa-bell"></i> Notification Preferences</div>
+          </div>
+          <form id="settingsForm">
+            <div style="display:flex;flex-direction:column;gap:0">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border)">
+                <div>
+                  <div style="font-weight:600;font-size:.9rem">Email Donation Receipts</div>
+                  <div style="font-size:.78rem;color:var(--text-muted)">Receive email confirmation after each donation</div>
+                </div>
+                <label style="position:relative;width:44px;height:24px;flex-shrink:0">
+                  <input type="checkbox" checked style="opacity:0;width:0;height:0;position:absolute"/>
+                  <span style="position:absolute;inset:0;background:var(--primary);border-radius:9999px;cursor:pointer;transition:.25s ease"></span>
+                  <span style="position:absolute;top:3px;left:23px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15);transition:.25s ease"></span>
+                </label>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border)">
+                <div>
+                  <div style="font-weight:600;font-size:.9rem">Campaign Updates</div>
+                  <div style="font-size:.78rem;color:var(--text-muted)">Get notified when campaigns you support reach milestones</div>
+                </div>
+                <label style="position:relative;width:44px;height:24px;flex-shrink:0">
+                  <input type="checkbox" checked style="opacity:0;width:0;height:0;position:absolute"/>
+                  <span style="position:absolute;inset:0;background:var(--primary);border-radius:9999px;cursor:pointer;transition:.25s ease"></span>
+                  <span style="position:absolute;top:3px;left:23px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15);transition:.25s ease"></span>
+                </label>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border)">
+                <div>
+                  <div style="font-weight:600;font-size:.9rem">Impact Reports</div>
+                  <div style="font-size:.78rem;color:var(--text-muted)">Receive monthly impact summary reports</div>
+                </div>
+                <label style="position:relative;width:44px;height:24px;flex-shrink:0">
+                  <input type="checkbox" style="opacity:0;width:0;height:0;position:absolute"/>
+                  <span style="position:absolute;inset:0;background:var(--border);border-radius:9999px;cursor:pointer;transition:.25s ease"></span>
+                  <span style="position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15);transition:.25s ease"></span>
+                </label>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0">
+                <div>
+                  <div style="font-weight:600;font-size:.9rem">New Campaign Alerts</div>
+                  <div style="font-size:.78rem;color:var(--text-muted)">Be the first to know about new campaigns</div>
+                </div>
+                <label style="position:relative;width:44px;height:24px;flex-shrink:0">
+                  <input type="checkbox" checked style="opacity:0;width:0;height:0;position:absolute"/>
+                  <span style="position:absolute;inset:0;background:var(--primary);border-radius:9999px;cursor:pointer;transition:.25s ease"></span>
+                  <span style="position:absolute;top:3px;left:23px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.15);transition:.25s ease"></span>
+                </label>
+              </div>
+            </div>
+            <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);display:flex;gap:10px">
+              <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Settings</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Danger Zone -->
+        <div class="card" style="margin-top:16px;border-color:rgba(239,68,68,.2)">
+          <div class="card-hdr">
+            <div class="card-title" style="color:var(--red)"><i class="fas fa-exclamation-triangle"></i> Danger Zone</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <div>
+              <div style="font-weight:600;font-size:.9rem">Delete Account</div>
+              <div style="font-size:.78rem;color:var(--text-muted)">Permanently delete your account and all data</div>
+            </div>
+            <button class="btn btn-danger btn-sm" onclick="showToast('Contact support to delete your account.','info')">
+              <i class="fas fa-trash"></i> Delete Account
+            </button>
+          </div>
+        </div>
+
+      </div><!-- /sectionSettings -->
+
+    </div><!-- /dash-content -->
+  </main><!-- /dash-main -->
+</div><!-- /dash-layout -->
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="js/donor-dashboard.js"></script>
+</body>
+</html>

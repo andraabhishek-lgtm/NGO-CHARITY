@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Account — HopeRise Stackly</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💙</text></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/auth.css"/>
+</head>
+<body>
+
+<div class="auth-page">
+
+  <!-- ── Left Branding Panel ── -->
+  <div class="auth-panel">
+    <div class="panel-dots"></div>
+
+    <div class="panel-logo">
+      <img src="images/logo.webp" alt="HopeRise Stackly" style="height:44px;width:auto;border-radius:8px;flex-shrink:0"/>
+      <div>
+        <div class="panel-logo-text">HopeRise<span style="opacity:.7"> Stackly</span></div>
+        <span class="panel-logo-sub">Est. 2018</span>
+      </div>
+    </div>
+
+    <div class="panel-tagline">
+      Join Our Mission<br/><span class="dim">of Hope & Healing</span>
+    </div>
+
+    <p class="panel-desc">
+      Create your account today and become part of a community that's changing lives every single day through compassion and generosity.
+    </p>
+
+    <div class="panel-stats">
+      <div class="panel-stat">
+        <span class="panel-stat-num">4</span>
+        <span class="panel-stat-label">Active Programs</span>
+      </div>
+      <div class="panel-stat">
+        <span class="panel-stat-num">1,284</span>
+        <span class="panel-stat-label">Beneficiaries</span>
+      </div>
+      <div class="panel-stat">
+        <span class="panel-stat-num">94%</span>
+        <span class="panel-stat-label">Success Rate</span>
+      </div>
+    </div>
+
+    <!-- Why join cards -->
+    <div style="display:flex;flex-direction:column;gap:10px;position:relative;z-index:1;">
+      <div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:12px;backdrop-filter:blur(10px);">
+        <span style="font-size:1.5rem">🔍</span>
+        <div>
+          <div style="font-weight:700;font-size:.88rem">Track Your Impact</div>
+          <div style="font-size:.75rem;opacity:.75">See exactly where your donations go</div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:12px;backdrop-filter:blur(10px);">
+        <span style="font-size:1.5rem">🏆</span>
+        <div>
+          <div style="font-weight:700;font-size:.88rem">Earn Certificates</div>
+          <div style="font-size:.75rem;opacity:.75">Download donation certificates</div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius);padding:14px 16px;display:flex;align-items:center;gap:12px;backdrop-filter:blur(10px);">
+        <span style="font-size:1.5rem">💛</span>
+        <div>
+          <div style="font-weight:700;font-size:.88rem">Tax Benefits</div>
+          <div style="font-size:.75rem;opacity:.75">80G certified donations</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Right Form Panel ── -->
+  <div class="auth-form-panel">
+
+    <!-- Top Nav -->
+    <div class="auth-top-nav">
+      <a href="login.html" class="auth-back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Login
+      </a>
+      <a href="index.html" class="auth-home-btn">
+        <i class="fas fa-home"></i> Home
+      </a>
+    </div>
+
+    <!-- Success Screen -->
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">✅</div>
+      <h2>Account Created!</h2>
+      <p>Welcome to the HopeRise family! You're being redirected to the login page…</p>
+      <div style="font-size:.85rem;color:var(--text-muted)">
+        <i class="fas fa-spinner fa-spin" style="margin-right:6px;color:var(--primary)"></i>
+        Redirecting in 3 seconds…
+      </div>
+    </div>
+
+    <!-- Signup Form -->
+    <div id="signupFormWrap">
+      <div class="auth-header">
+        <h1>Create Account ✨</h1>
+        <p>Already have an account? <a href="login.html">Sign in</a></p>
+      </div>
+
+      <form class="auth-form" id="signupForm" novalidate>
+
+        <!-- Name Row -->
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="firstName">First Name <span class="req">*</span></label>
+            <div class="form-ctrl-wrap">
+              <i class="fas fa-user form-icon"></i>
+              <input type="text" id="firstName" class="form-ctrl" placeholder="First name" autocomplete="given-name"/>
+            </div>
+            <span class="form-err" id="firstNameErr"><i class="fas fa-exclamation-circle"></i></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lastName">Last Name <span class="req">*</span></label>
+            <div class="form-ctrl-wrap">
+              <i class="fas fa-user form-icon"></i>
+              <input type="text" id="lastName" class="form-ctrl" placeholder="Last name" autocomplete="family-name"/>
+            </div>
+            <span class="form-err" id="lastNameErr"><i class="fas fa-exclamation-circle"></i></span>
+          </div>
+        </div>
+
+        <!-- Username -->
+        <div class="form-group">
+          <label class="form-label" for="username">Username <span class="req">*</span></label>
+          <div class="form-ctrl-wrap">
+            <i class="fas fa-at form-icon"></i>
+            <input type="text" id="username" class="form-ctrl" placeholder="Choose a username" autocomplete="username"/>
+          </div>
+          <span class="form-err" id="usernameErr"><i class="fas fa-exclamation-circle"></i></span>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label class="form-label" for="signupEmail">Email Address <span class="req">*</span></label>
+          <div class="form-ctrl-wrap">
+            <i class="fas fa-envelope form-icon"></i>
+            <input type="email" id="signupEmail" class="form-ctrl" placeholder="you@example.com" autocomplete="email"/>
+          </div>
+          <span class="form-err" id="signupEmailErr"><i class="fas fa-exclamation-circle"></i></span>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label class="form-label" for="signupPassword">Password <span class="req">*</span></label>
+          <div class="form-ctrl-wrap">
+            <i class="fas fa-lock form-icon"></i>
+            <input type="password" id="signupPassword" class="form-ctrl" placeholder="Create a strong password" autocomplete="new-password"/>
+            <button type="button" class="pw-toggle" aria-label="Toggle password">
+              <i class="fas fa-eye-slash"></i>
+            </button>
+          </div>
+          <span class="form-err" id="signupPasswordErr"><i class="fas fa-exclamation-circle"></i></span>
+          <!-- Password Strength -->
+          <div class="pw-strength" id="pwStrengthWrap">
+            <div class="pw-strength-bars">
+              <div class="pw-bar" id="bar1"></div>
+              <div class="pw-bar" id="bar2"></div>
+              <div class="pw-bar" id="bar3"></div>
+              <div class="pw-bar" id="bar4"></div>
+            </div>
+            <span class="pw-strength-label"></span>
+          </div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="form-group">
+          <label class="form-label" for="confirmPassword">Confirm Password <span class="req">*</span></label>
+          <div class="form-ctrl-wrap">
+            <i class="fas fa-lock form-icon"></i>
+            <input type="password" id="confirmPassword" class="form-ctrl" placeholder="Repeat your password" autocomplete="new-password"/>
+            <button type="button" class="pw-toggle" aria-label="Toggle password">
+              <i class="fas fa-eye-slash"></i>
+            </button>
+          </div>
+          <span class="form-err" id="confirmPasswordErr"><i class="fas fa-exclamation-circle"></i></span>
+        </div>
+
+        <!-- Role Selection -->
+        <div class="form-group">
+          <label class="form-label">Register As <span class="req">*</span></label>
+          <div class="role-selector-grid">
+            <div class="role-card active" data-role="donor">
+              <div class="rc-check"><i class="fas fa-check"></i></div>
+              <span class="rc-icon">💙</span>
+              <div class="rc-title">Donor</div>
+              <div class="rc-desc">Make donations and track your impact across campaigns</div>
+            </div>
+            <div class="role-card" data-role="admin">
+              <div class="rc-check"><i class="fas fa-check"></i></div>
+              <span class="rc-icon">🛡️</span>
+              <div class="rc-title">Admin</div>
+              <div class="rc-desc">Manage campaigns, donors, and reports for the NGO</div>
+            </div>
+          </div>
+          <input type="hidden" id="selectedRole" value="donor"/>
+        </div>
+
+        <!-- Terms -->
+        <div class="form-footer">
+          <label class="chk-wrap">
+            <input type="checkbox" id="agreeTerms"/>
+            <span class="chk-label">
+              I agree to the <a href="#" style="color:var(--primary);font-weight:700">Terms of Service</a>
+              &amp; <a href="#" style="color:var(--primary);font-weight:700">Privacy Policy</a>
+            </span>
+          </label>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn-auth btn-auth-primary">
+          <div class="btn-spinner"></div>
+          <span class="btn-text"><i class="fas fa-user-plus"></i> Create Account</span>
+        </button>
+
+        <!-- Divider -->
+        <div class="auth-divider">or sign up with</div>
+
+        <!-- Social -->
+        <div class="social-btns">
+          <button type="button" class="btn-social">
+            <div class="icon-g"></div> Google
+          </button>
+          <button type="button" class="btn-social">
+            <i class="fab fa-linkedin-in icon-li"></i> LinkedIn
+          </button>
+        </div>
+
+      </form>
+    </div><!-- /signupFormWrap -->
+
+  </div><!-- /auth-form-panel -->
+</div><!-- /auth-page -->
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="js/auth.js"></script>
+<script>
+  /* Hide form wrap once success is shown */
+  document.addEventListener('DOMContentLoaded', () => {
+    const success = document.getElementById('successScreen');
+    const wrap    = document.getElementById('signupFormWrap');
+    const obs = new MutationObserver(() => {
+      if (success.classList.contains('show')) wrap.style.display = 'none';
+    });
+    obs.observe(success, { attributes: true, attributeFilter: ['class'] });
+  });
+</script>
+</body>
+</html>

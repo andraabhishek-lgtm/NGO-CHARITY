@@ -240,20 +240,6 @@ function initRoleSelector() {
   });
 }
 
-// ── Login Tabs ────────────────────────────────────────────────
-function initLoginTabs() {
-  document.querySelectorAll('.login-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = tab.dataset.tab;
-      document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      document.querySelectorAll('.login-panel').forEach(p => {
-        p.style.display = p.id === target ? 'block' : 'none';
-      });
-    });
-  });
-}
-
 // ── Modal ─────────────────────────────────────────────────────
 function openModal(id) {
   const modal = document.getElementById(id);
@@ -268,33 +254,6 @@ document.addEventListener('click', e => {
   if (e.target.classList.contains('modal-close')) e.target.closest('.modal-overlay')?.classList.remove('open');
 });
 
-// ── Sidebar (Dashboard) ───────────────────────────────────────
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebarOverlay');
-  const main = document.getElementById('dashMain');
-  if (!sidebar) return;
-  if (window.innerWidth >= 992) {
-    sidebar.classList.toggle('collapsed');
-    if (main) main.classList.toggle('sidebar-collapsed');
-  } else {
-    sidebar.classList.toggle('mobile-open');
-    if (overlay) overlay.classList.toggle('active');
-  }
-}
-function closeSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebarOverlay');
-  if (sidebar) sidebar.classList.remove('mobile-open');
-  if (overlay) overlay.classList.remove('active');
-}
-function openSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const overlay = document.getElementById('sidebarOverlay');
-  if (sidebar) sidebar.classList.add('mobile-open');
-  if (overlay) overlay.classList.add('active');
-}
-
 // ── Init ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
@@ -308,13 +267,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initAmountSelector();
   initPaymentMethods();
   initRoleSelector();
-  initLoginTabs();
 });
 
 // ── Globals ───────────────────────────────────────────────────
 window.showToast = showToast;
 window.openModal = openModal;
 window.closeModal = closeModal;
-window.toggleSidebar = toggleSidebar;
-window.closeSidebar = closeSidebar;
-window.openSidebar = openSidebar;
