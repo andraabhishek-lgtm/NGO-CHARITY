@@ -159,6 +159,13 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
   border: 1px solid var(--border);
 }
 .btn-ghost:hover { background: var(--primary-light); color: var(--primary); border-color: rgba(79,140,255,.3); transform: translateY(-2px); }
+.hero-btns .btn-ghost,
+.cta-btns .btn-ghost {
+  background: rgba(255,255,255,.12); color: #fff;
+  border-color: rgba(255,255,255,.45);
+}
+.hero-btns .btn-ghost:hover,
+.cta-btns .btn-ghost:hover { background: rgba(255,255,255,.22); color: #fff; border-color: rgba(255,255,255,.75); transform: translateY(-2px); }
 .btn-secondary {
   background: linear-gradient(135deg, var(--green), #5AE388);
   color: #fff; box-shadow: var(--shadow-green);
@@ -274,6 +281,7 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
   .nav-menu { display: none; }
   .nav-hamburger { display: flex; }
   .nav-actions .btn { display: none; }
+  .nav-mobile .nav-actions .btn { display: flex; }
 }
 
 /* ════════════════════════════════════════════════
@@ -659,7 +667,7 @@ button { cursor: pointer; border: none; background: none; font-family: var(--fon
 .approach-icon { font-size: 1.8rem; margin-bottom: 16px; }
 .approach-num {
   font-family: var(--font-display); font-size: 2.5rem; font-weight: 900;
-  line-height: 1; margin-bottom: 4px; opacity: .06;
+  line-height: 1; margin-bottom: 4px; opacity: .18;
   position: absolute; top: 16px; right: 20px; color: var(--text);
   pointer-events: none;
 }

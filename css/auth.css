@@ -253,8 +253,8 @@ body {
 .auth-form-panel {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 48px 56px;
+  justify-content: flex-start;
+  padding: 80px 56px 48px;
   background: var(--bg);
   position: relative;
   overflow-y: auto;
