@@ -631,21 +631,25 @@ body {
 
 /* ── Password Strength ── */
 .pw-strength {
-  margin-top: 4px;
+  margin-top: 8px;
+  padding: 12px 14px;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
 }
 
 .pw-strength-bars {
   display: flex;
-  gap: 4px;
-  margin-bottom: 5px;
+  gap: 6px;
+  margin-bottom: 10px;
 }
 
 .pw-bar {
   flex: 1;
-  height: 4px;
-  border-radius: 2px;
+  height: 8px;
+  border-radius: 4px;
   background: var(--border);
-  transition: background .3s ease;
+  transition: background .3s ease, transform .2s ease;
 }
 
 .pw-bar.weak   { background: var(--red); }
@@ -654,15 +658,55 @@ body {
 .pw-bar.strong { background: var(--green); }
 
 .pw-strength-label {
-  font-size: .73rem;
+  font-size: .75rem;
   font-weight: 700;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .5px;
 }
 
 .pw-strength-label.weak   { color: var(--red); }
 .pw-strength-label.fair   { color: var(--orange); }
 .pw-strength-label.good   { color: #3B82F6; }
 .pw-strength-label.strong { color: var(--green); }
+
+/* ── Password Requirements ── */
+.pw-requirements {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+.pw-req {
+  font-size: .76rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  transition: color .25s ease;
+}
+
+.pw-req .req-icon {
+  font-size: .45rem;
+  color: var(--border);
+  transition: color .25s ease;
+}
+
+.pw-req.met {
+  color: var(--green);
+}
+
+.pw-req.met .req-icon {
+  font-size: .65rem;
+  color: var(--green);
+}
+
+.pw-req.met .req-icon::before {
+  content: "\f058"; /* fa-circle-check */
+}
 
 /* ── Role Selector (Signup) ── */
 .role-selector-grid {

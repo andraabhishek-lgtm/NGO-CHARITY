@@ -117,11 +117,17 @@ function initPwStrength() {
   const labelEl   = document.querySelector('.pw-strength-label');
   if (!pwInput || !bars.length) return;
 
+  const reqLen     = document.getElementById('req-len');
+  const reqUpper   = document.getElementById('req-upper');
+  const reqNum     = document.getElementById('req-num');
+  const reqSpecial = document.getElementById('req-special');
+
   pwInput.addEventListener('input', () => {
     const val = pwInput.value;
     if (!val) {
       bars.forEach(b => { b.className = 'pw-bar'; });
       if (labelEl) { labelEl.textContent = ''; labelEl.className = 'pw-strength-label'; }
+      [reqLen, reqUpper, reqNum, reqSpecial].forEach(r => r && r.classList.remove('met'));
       return;
     }
     const result = checkStrength(val);
@@ -132,6 +138,10 @@ function initPwStrength() {
       labelEl.textContent = result.label;
       labelEl.className   = `pw-strength-label ${result.level}`;
     }
+    if (reqLen)     reqLen.classList.toggle('met',     val.length >= 8);
+    if (reqUpper)   reqUpper.classList.toggle('met',   /[A-Z]/.test(val));
+    if (reqNum)     reqNum.classList.toggle('met',     /[0-9]/.test(val));
+    if (reqSpecial) reqSpecial.classList.toggle('met', /[^A-Za-z0-9]/.test(val));
   });
 }
 
